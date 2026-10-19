@@ -45,6 +45,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.knockheart.mywishes.card.CardGenerationRequest
@@ -166,10 +167,10 @@ private fun WishesHome() {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                Text("My Wishes", style = MaterialTheme.typography.headlineMedium)
-                Text("Create a greeting worth sharing.")
+                Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
+                Text(stringResource(R.string.home_subtitle))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Dark theme", modifier = Modifier.padding(end = 8.dp))
+                    Text(stringResource(R.string.dark_theme), modifier = Modifier.padding(end = 8.dp))
                     Switch(
                         checked = preferences.isDarkTheme,
                         onCheckedChange = { enabled ->
@@ -204,19 +205,19 @@ private fun WishesHome() {
             value = displayName,
             onValueChange = { displayName = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Your name (optional)") },
+            label = { Text(stringResource(R.string.your_name_optional)) },
             singleLine = true
         )
         OutlinedTextField(
             value = signature,
             onValueChange = { signature = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Card signature (optional)") },
+            label = { Text(stringResource(R.string.card_signature_optional)) },
             singleLine = true
         )
 
-        Text("Choose an occasion", style = MaterialTheme.typography.titleLarge)
-        if (loading) Text("Loading greetings…")
+        Text(stringResource(R.string.choose_occasion), style = MaterialTheme.typography.titleLarge)
+        if (loading) Text(stringResource(R.string.loading_greetings))
         occasions.forEach { occasion ->
             Card(
                 modifier = Modifier.fillMaxWidth().clickable {
@@ -259,12 +260,12 @@ private fun WishesHome() {
             modifier = Modifier.fillMaxWidth(),
             onClick = { photoPicker.launch("image/*") }
         ) {
-            Text(if (photoBitmap == null) "Add a photo (optional)" else "Change selected photo")
+            Text(if (photoBitmap == null) stringResource(R.string.add_photo_optional) else stringResource(R.string.change_selected_photo))
         }
         if (photoBitmap != null) {
             Image(
                 bitmap = photoBitmap!!.asImageBitmap(),
-                contentDescription = "Selected photo",
+                contentDescription = stringResource(R.string.selected_photo),
                 modifier = Modifier.size(112.dp).align(Alignment.CenterHorizontally)
             )
         }
@@ -293,14 +294,14 @@ private fun WishesHome() {
                 }
             }
         ) {
-            Text("Generate card preview")
+            Text(stringResource(R.string.generate_card_preview))
         }
 
         previewBitmap?.let { bitmap ->
-            Text("Preview", style = MaterialTheme.typography.titleLarge)
+            Text(stringResource(R.string.preview), style = MaterialTheme.typography.titleLarge)
             Image(
                 bitmap = bitmap.asImageBitmap(),
-                contentDescription = "Generated greeting card preview",
+                contentDescription = stringResource(R.string.generated_card_preview),
                 modifier = Modifier.fillMaxWidth().height(320.dp)
             )
             Button(
@@ -325,13 +326,13 @@ private fun WishesHome() {
                             putExtra(Intent.EXTRA_STREAM, uri)
                             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                         }
-                        context.startActivity(Intent.createChooser(sendIntent, "Share your wish"))
+                        context.startActivity(Intent.createChooser(sendIntent, context.getString(R.string.share_your_wish)))
                     } catch (error: Exception) {
                         errorMessage = error.localizedMessage ?: "Could not prepare the card for sharing."
                     }
                 }
             ) {
-                Text("Share card")
+                Text(stringResource(R.string.share_card))
             }
         }
 
