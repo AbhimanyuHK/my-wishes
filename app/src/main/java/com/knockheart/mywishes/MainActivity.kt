@@ -341,25 +341,33 @@ private fun WishesHome() {
         }
 
         Text(stringResource(R.string.card_color_palette), style = MaterialTheme.typography.titleMedium)
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            CardPalette.entries.forEach { palette ->
-                OutlinedButton(
-                    modifier = Modifier.weight(1f),
-                    onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
+        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            listOf(
+                listOf(CardPalette.SUNSET, CardPalette.OCEAN, CardPalette.FOREST),
+                listOf(CardPalette.ROSE, CardPalette.NIGHT)
+            ).forEach { paletteRow ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = when (palette) {
-                            CardPalette.SUNSET -> stringResource(R.string.palette_sunset)
-                            CardPalette.OCEAN -> stringResource(R.string.palette_ocean)
-                            CardPalette.FOREST -> stringResource(R.string.palette_forest)
-                            CardPalette.ROSE -> stringResource(R.string.palette_rose)
-                            CardPalette.NIGHT -> stringResource(R.string.palette_night)
-                        },
-                        color = androidx.compose.ui.graphics.Color(palette.accentColor)
-                    )
+                    paletteRow.forEach { palette ->
+                        OutlinedButton(
+                            modifier = Modifier.weight(1f),
+                            onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
+                        ) {
+                            Text(
+                                text = when (palette) {
+                                    CardPalette.SUNSET -> stringResource(R.string.palette_sunset)
+                                    CardPalette.OCEAN -> stringResource(R.string.palette_ocean)
+                                    CardPalette.FOREST -> stringResource(R.string.palette_forest)
+                                    CardPalette.ROSE -> stringResource(R.string.palette_rose)
+                                    CardPalette.NIGHT -> stringResource(R.string.palette_night)
+                                },
+                                color = androidx.compose.ui.graphics.Color(palette.accentColor)
+                            )
+                        }
+                    }
+                    repeat(3 - paletteRow.size) { Spacer(Modifier.weight(1f)) }
                 }
             }
         }
