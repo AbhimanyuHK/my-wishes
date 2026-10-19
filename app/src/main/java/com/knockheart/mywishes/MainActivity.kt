@@ -61,7 +61,6 @@ import com.knockheart.mywishes.data.model.UserProfile
 import com.knockheart.mywishes.data.preferences.UserPreferencesRepository
 import com.knockheart.mywishes.data.profile.ProfileImageStorage
 import kotlinx.coroutines.launch
-import java.io.File
 import java.util.Locale
 
 class MainActivity : ComponentActivity() {
@@ -132,6 +131,7 @@ private fun WishesHome() {
     LaunchedEffect(preferences.profile, profileLoaded) {
         if (!profileLoaded) {
             displayName = preferences.profile.displayName
+            signature = preferences.profile.cardSignature
             photoBitmap = profileImageStorage.load(preferences.profile.profileImagePath)
             profileLoaded = true
         }
@@ -145,7 +145,7 @@ private fun WishesHome() {
             selectedOccasion = occasions.firstOrNull()
             selectedGreeting = selectedOccasion?.greetings?.firstOrNull()
         } catch (error: Exception) {
-            errorMessage = error.localizedMessage ?: "Could not load the offline greeting catalog."
+            errorMessage = error.localizedMessage ?: context.getString(R.string.catalog_load_error)
         } finally {
             loading = false
         }
@@ -159,18 +159,22 @@ private fun WishesHome() {
                 val privatePath = profileImageStorage.copyFromContentUri(uri.toString())
                 val savedBitmap = profileImageStorage.load(privatePath)
                 if (savedBitmap == null) {
-                    errorMessage = "The selected image could not be saved."
+                    errorMessage = context.getString(R.string.image_save_error)
                 } else {
                     photoBitmap = savedBitmap
                     scope.launch {
                         preferencesRepository.saveProfile(
-                            UserProfile(displayName = displayName, profileImagePath = privatePath)
+                            UserProfile(
+                                displayName = displayName,
+                                profileImagePath = privatePath,
+                                cardSignature = signature
+                            )
                         )
                     }
                     errorMessage = null
                 }
             } catch (error: Exception) {
-                errorMessage = error.localizedMessage ?: "Could not save the selected image."
+                errorMessage = error.localizedMessage ?: context.getString(R.string.image_save_error)
             }
         }
     }
@@ -304,11 +308,15 @@ private fun WishesHome() {
                     errorMessage = null
                     scope.launch {
                         preferencesRepository.saveProfile(
-                            UserProfile(displayName = displayName, profileImagePath = preferences.profile.profileImagePath)
+                            UserProfile(
+                                displayName = displayName,
+                                profileImagePath = preferences.profile.profileImagePath,
+                                cardSignature = signature
+                            )
                         )
                     }
                 } catch (error: Exception) {
-                    errorMessage = error.localizedMessage ?: "Could not generate the card."
+                    errorMessage = error.localizedMessage ?: context.getString(R.string.card_generate_error)
                 }
             }
         ) {
@@ -346,7 +354,7 @@ private fun WishesHome() {
                         }
                         context.startActivity(Intent.createChooser(sendIntent, context.getString(R.string.share_your_wish)))
                     } catch (error: Exception) {
-                        errorMessage = error.localizedMessage ?: "Could not prepare the card for sharing."
+                        errorMessage = error.localizedMessage ?: context.getString(R.string.card_share_error)
                     }
                 }
             ) {
