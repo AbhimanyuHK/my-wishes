@@ -8,6 +8,12 @@
     <string name="choose_occasion">Choose an occasion</string>
     <string name="search_greetings">Search occasions and greetings</string>
     <string name="no_greetings_found">No matching occasions or greetings found.</string>
+    <string name="card_color_palette">Card color palette</string>
+    <string name="palette_sunset">Sunset</string>
+    <string name="palette_ocean">Ocean</string>
+    <string name="palette_forest">Forest</string>
+    <string name="palette_rose">Rose</string>
+    <string name="palette_night">Night</string>
     <string name="favorites_only">Show favorites only</string>
     <string name="show_all_greetings">Show all greetings</string>
     <string name="loading_greetings">Loading greetings…</string>

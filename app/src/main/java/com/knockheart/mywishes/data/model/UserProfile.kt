@@ -39,5 +39,6 @@ data class UserPreferences(
     val profile: UserProfile = UserProfile(),
     val preferredLanguage: AppLanguage = AppLanguage.ENGLISH,
     val isDarkTheme: Boolean = false,
-    val favoriteGreetingIds: Set<String> = emptySet()
+    val favoriteGreetingIds: Set<String> = emptySet(),
+    val cardPaletteId: String = "sunset"
 )

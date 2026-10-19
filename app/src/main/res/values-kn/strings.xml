@@ -8,6 +8,12 @@
     <string name="choose_occasion">ಸಂದರ್ಭವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="search_greetings">ಸಂದರ್ಭಗಳು ಮತ್ತು ಶುಭಾಶಯಗಳನ್ನು ಹುಡುಕಿ</string>
     <string name="no_greetings_found">ಹೊಂದಾಣಿಕೆಯ ಸಂದರ್ಭಗಳು ಅಥವಾ ಶುಭಾಶಯಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
+    <string name="card_color_palette">ಕಾರ್ಡ್ ಬಣ್ಣದ ವಿನ್ಯಾಸ</string>
+    <string name="palette_sunset">ಸೂರ್ಯಾಸ್ತ</string>
+    <string name="palette_ocean">ಸಾಗರ</string>
+    <string name="palette_forest">ಅರಣ್ಯ</string>
+    <string name="palette_rose">ಗುಲಾಬಿ</string>
+    <string name="palette_night">ರಾತ್ರಿ</string>
     <string name="favorites_only">ಮೆಚ್ಚಿನ ಶುಭಾಶಯಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸಿ</string>
     <string name="show_all_greetings">ಎಲ್ಲಾ ಶುಭಾಶಯಗಳನ್ನು ತೋರಿಸಿ</string>
     <string name="loading_greetings">ಶುಭಾಶಯಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
