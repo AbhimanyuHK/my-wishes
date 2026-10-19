@@ -51,6 +51,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
+import com.knockheart.mywishes.card.CardPalette
 import com.knockheart.mywishes.card.CardGenerationRequest
 import com.knockheart.mywishes.card.CardGeneratorEngine
 import com.knockheart.mywishes.data.catalog.AssetGreetingCatalogRepository
@@ -339,6 +340,30 @@ private fun WishesHome() {
             )
         }
 
+        Text(stringResource(R.string.card_color_palette), style = MaterialTheme.typography.titleMedium)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            CardPalette.entries.forEach { palette ->
+                OutlinedButton(
+                    modifier = Modifier.weight(1f),
+                    onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
+                ) {
+                    Text(
+                        text = when (palette) {
+                            CardPalette.SUNSET -> stringResource(R.string.palette_sunset)
+                            CardPalette.OCEAN -> stringResource(R.string.palette_ocean)
+                            CardPalette.FOREST -> stringResource(R.string.palette_forest)
+                            CardPalette.ROSE -> stringResource(R.string.palette_rose)
+                            CardPalette.NIGHT -> stringResource(R.string.palette_night)
+                        },
+                        color = androidx.compose.ui.graphics.Color(palette.accentColor)
+                    )
+                }
+            }
+        }
+
         Button(
             modifier = Modifier.fillMaxWidth(),
             enabled = selectedGreeting != null && !loading,
@@ -349,7 +374,10 @@ private fun WishesHome() {
                         greetingText = greeting.text,
                         occasionTitle = selectedOccasion?.title,
                         signature = signature.ifBlank { displayName },
-                        photo = photoBitmap
+                        photo = photoBitmap,
+                        backgroundColor = CardPalette.fromId(preferences.cardPaletteId).backgroundColor,
+                        accentColor = CardPalette.fromId(preferences.cardPaletteId).accentColor,
+                        textColor = CardPalette.fromId(preferences.cardPaletteId).textColor
                     )
                     previewBitmap = CardGeneratorEngine(context).render(request)
                     errorMessage = null
@@ -386,7 +414,10 @@ private fun WishesHome() {
                                 greetingText = selectedGreeting?.text ?: return@Button,
                                 occasionTitle = selectedOccasion?.title,
                                 signature = signature.ifBlank { displayName },
-                                photo = photoBitmap
+                                photo = photoBitmap,
+                                backgroundColor = CardPalette.fromId(preferences.cardPaletteId).backgroundColor,
+                                accentColor = CardPalette.fromId(preferences.cardPaletteId).accentColor,
+                                textColor = CardPalette.fromId(preferences.cardPaletteId).textColor
                             )
                         )
                         val uri = FileProvider.getUriForFile(
