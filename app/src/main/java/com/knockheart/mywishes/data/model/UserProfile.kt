@@ -27,11 +27,12 @@ enum class AppLanguage(
 
 /**
  * User-owned profile data. profileImagePath should be an app-private file path,
- * never a temporary Photo Picker URI.
+ * never a temporary Photo Picker URI. cardSignature is used on generated cards.
  */
 data class UserProfile(
     val displayName: String = "",
-    val profileImagePath: String? = null
+    val profileImagePath: String? = null,
+    val cardSignature: String = ""
 )
 
 data class UserPreferences(
