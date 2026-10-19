@@ -19,7 +19,7 @@ class ProfileImageStorage(context: Context) {
             if (!exists() && !mkdirs()) throw IOException("Could not create profile image directory.")
         }
         val destination = File(directory, "profile-${UUID.randomUUID()}.jpg")
-        val bitmap = appContext.contentResolver.openInputStream(uri)?.use(BitmapFactory::decodeStream)
+        val bitmap = appContext.contentResolver.openInputStream(uri)?.use { stream -> BitmapFactory.decodeStream(stream) }
             ?: throw IOException("Could not read the selected profile image.")
         try {
             FileOutputStream(destination).use { output ->
