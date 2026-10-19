@@ -36,6 +36,8 @@
     <string name="recent_cards">Recent cards</string>
     <string name="recent_card_thumbnail">Recent greeting card thumbnail</string>
     <string name="card_history_load_error">Could not open this saved card.</string>
+    <string name="delete_recent_card_accessibility">Delete recent card: %1$s</string>
+    <string name="card_history_delete_error">Could not delete this saved card.</string>
     <string name="catalog_load_error">Could not load the offline greeting catalog.</string>
     <string name="image_save_error">The selected image could not be saved.</string>
     <string name="card_generate_error">Could not generate the card.</string>
