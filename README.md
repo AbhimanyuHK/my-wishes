@@ -25,7 +25,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 15 — Save cards to device:** merged into `main`.
 - **Milestone 16 — Recent generated cards:** merged into `main`.
 - **Milestone 17 — Delete recent cards:** merged into `main`.
-- **Milestone 18 — Profile settings reset:** proposed in pull request.
+- **Milestone 18 — Profile settings reset:** merged into `main`.
+- **Milestone 19 — Kannada typography and text fitting:** proposed in pull request.
 
 ## Offline data foundation
 
@@ -37,7 +38,7 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 ## Card generation
 
 - `CardGeneratorEngine` renders 1080×1080 card bitmaps.
-- Supports occasion title, optional photo, multiline greeting, signature, theme colors, and a caller-supplied typeface. The UI offers five preset palettes, highlights the currently selected palette, and persists the selected palette locally.
+- Supports occasion title, optional photo, multiline greeting, signature, theme colors, and a caller-supplied typeface. Greeting text is measured and reduced to fit the available card area, with Android sans-serif as the default font fallback. The UI offers five preset palettes, highlights the currently selected palette, and persists the selected palette locally.
 - Generated PNGs are exported into app-private cache and shared through FileProvider.
 
 ## User interface
