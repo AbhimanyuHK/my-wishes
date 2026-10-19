@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Wishes</string>
+    <string name="home_subtitle">Create a greeting worth sharing.</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="your_name_optional">Your name (optional)</string>
+    <string name="card_signature_optional">Card signature (optional)</string>
+    <string name="choose_occasion">Choose an occasion</string>
+    <string name="loading_greetings">Loading greetings…</string>
+    <string name="add_photo_optional">Add a photo (optional)</string>
+    <string name="change_selected_photo">Change selected photo</string>
+    <string name="selected_photo">Selected photo</string>
+    <string name="generate_card_preview">Generate card preview</string>
+    <string name="preview">Preview</string>
+    <string name="generated_card_preview">Generated greeting card preview</string>
+    <string name="share_your_wish">Share your wish</string>
+    <string name="share_card">Share card</string>
+    <string name="catalog_load_error">Could not load the offline greeting catalog.</string>
+    <string name="image_save_error">The selected image could not be saved.</string>
+    <string name="card_generate_error">Could not generate the card.</string>
+    <string name="card_share_error">Could not prepare the card for sharing.</string>
 </resources>
