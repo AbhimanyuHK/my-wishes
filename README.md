@@ -26,13 +26,14 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 16 — Recent generated cards:** merged into `main`.
 - **Milestone 17 — Delete recent cards:** merged into `main`.
 - **Milestone 18 — Profile settings reset:** merged into `main`.
-- **Milestone 19 — Kannada typography and text fitting:** proposed in pull request.
+- **Milestone 19 — Kannada typography and text fitting:** merged into `main`.
+- **Milestone 20 — Expand bilingual greeting catalog:** proposed in pull request.
 
 ## Offline data foundation
 
 - AndroidX DataStore Preferences stores the display name, app-private profile image path, card signature, preferred language, theme preference, favorite greeting IDs, and selected card palette.
 - Bundled JSON catalogs are located in `app/src/main/assets/catalog/`.
-- Current catalog languages: English (`en`) and Kannada (`kn`).
+- Current catalog languages: English (`en`) and Kannada (`kn`). The bundled catalogs share occasion and greeting IDs across both languages; they include birthdays, friendship, festivals, national and Karnataka days, professional/awareness days, weddings, new babies, achievements, recovery wishes, housewarmings, and retirement.
 - No network calls or internet permission are required for catalog loading or rendering.
 
 ## Card generation

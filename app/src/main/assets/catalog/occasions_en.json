@@ -218,6 +218,96 @@
           "text": "Wishing you and your family happiness, prosperity, and togetherness."
         }
       ]
+    },
+    {
+      "id": "wedding",
+      "title": "Wedding & Anniversary",
+      "description": "Celebrate lasting love and shared milestones",
+      "greetings": [
+        {
+          "id": "wedding_blessing_01",
+          "text": "Wishing you a lifetime of love, laughter, trust, and beautiful memories together."
+        },
+        {
+          "id": "wedding_anniversary_01",
+          "text": "May every year together deepen your love and bring you new reasons to celebrate."
+        }
+      ]
+    },
+    {
+      "id": "new_baby",
+      "title": "New Baby",
+      "description": "Welcome a little one and celebrate a growing family",
+      "greetings": [
+        {
+          "id": "new_baby_welcome_01",
+          "text": "Welcome to the world, little one. May your life be filled with love, health, and wonder."
+        },
+        {
+          "id": "new_baby_family_01",
+          "text": "Congratulations on your beautiful new arrival. Wishing your family endless joy."
+        }
+      ]
+    },
+    {
+      "id": "congratulations",
+      "title": "Congratulations & Achievements",
+      "description": "Celebrate milestones, success, and new beginnings",
+      "greetings": [
+        {
+          "id": "congratulations_success_01",
+          "text": "Congratulations on your achievement. Your hard work and determination truly paid off."
+        },
+        {
+          "id": "congratulations_next_01",
+          "text": "Celebrate this milestone and keep reaching for bigger dreams. Your journey is just beginning."
+        }
+      ]
+    },
+    {
+      "id": "get_well",
+      "title": "Get Well Soon",
+      "description": "Send comfort, strength, and warm wishes for recovery",
+      "greetings": [
+        {
+          "id": "get_well_strength_01",
+          "text": "Sending you strength, comfort, and warm thoughts for a smooth and speedy recovery."
+        },
+        {
+          "id": "get_well_care_01",
+          "text": "Take good care of yourself and give yourself time to rest. Wishing you brighter, healthier days ahead."
+        }
+      ]
+    },
+    {
+      "id": "housewarming",
+      "title": "New Home & Housewarming",
+      "description": "Wish happiness and prosperity in a new home",
+      "greetings": [
+        {
+          "id": "housewarming_warm_01",
+          "text": "May your new home be filled with peace, laughter, loving company, and happy memories."
+        },
+        {
+          "id": "housewarming_prosperity_01",
+          "text": "Wishing your family prosperity, harmony, and countless joyful moments in your new home."
+        }
+      ]
+    },
+    {
+      "id": "retirement",
+      "title": "Retirement & New Chapter",
+      "description": "Honor years of dedication and welcome a new chapter",
+      "greetings": [
+        {
+          "id": "retirement_gratitude_01",
+          "text": "Thank you for your years of dedication and wisdom. Wishing you a joyful and fulfilling retirement."
+        },
+        {
+          "id": "retirement_newchapter_01",
+          "text": "May this new chapter bring you time for family, passions, peaceful days, and fresh adventures."
+        }
+      ]
     }
   ]
 }
