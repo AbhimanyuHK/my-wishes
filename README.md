@@ -43,7 +43,7 @@ gradle --no-daemon assembleDebug
 gradle --no-daemon assembleRelease
 ```
 
-Release variant assembly validates the release configuration but does **not** sign an installable production release. Configure and protect a real signing key outside source control before distributing a production APK or publishing to a store. See [release readiness and QA checklist](docs/release-readiness.md).
+CI also builds the release Android App Bundle (AAB) and uploads it as a downloadable GitHub Actions artifact named `my-wishes-release-aab-<run-number>` (retained for 30 days). Open the successful Actions run and download it from **Artifacts**. This keeps generated binaries out of Git history. The current release build is not configured with production signing, so do not publish the generated AAB. Store any future keystore and passwords in protected GitHub Actions secrets, never in the repository. See [release readiness and QA checklist](docs/release-readiness.md).
 
 ## Architecture notes
 
