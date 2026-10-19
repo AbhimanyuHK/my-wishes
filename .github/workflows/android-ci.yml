@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   validate-catalogs:
-    name: Validate offline catalogs
+    name: Validate offline catalogs and package identity
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -21,11 +21,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate catalog structure and bilingual ID parity
+      - name: Validate catalog structure, bilingual IDs, and package identity
         run: python scripts/validate_catalogs.py
 
   android:
-    name: Android unit tests and debug build
+    name: Android tests and build variants
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -47,3 +47,14 @@ jobs:
         run: gradle --no-daemon testDebugUnitTest
       - name: Assemble debug APK
         run: gradle --no-daemon assembleDebug
+      - name: Assemble release APK variant
+        run: gradle --no-daemon assembleRelease
+      - name: Build release Android App Bundle
+        run: gradle --no-daemon bundleRelease
+      - name: Upload release AAB for reference
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-wishes-release-aab-${{ github.run_number }}
+          path: app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
+          retention-days: 30

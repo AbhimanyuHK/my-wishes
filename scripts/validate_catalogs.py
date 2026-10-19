@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Validate bundled English/Kannada greeting catalog shape and stable IDs."""
+"""Validate bilingual greeting catalogs and the permanent Android package identity."""
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -11,6 +12,23 @@ CATALOGS = {
     "en": CATALOG_DIR / "occasions_en.json",
     "kn": CATALOG_DIR / "occasions_kn.json",
 }
+EXPECTED_APPLICATION_ID = "com.knockheart.mywishes"
+ANDROID_BUILD_FILE = ROOT / "app" / "build.gradle.kts"
+
+
+def validate_package_identity() -> None:
+    """Fail CI if namespace or applicationId drifts from the permanent identity."""
+    source = ANDROID_BUILD_FILE.read_text(encoding="utf-8")
+    for property_name in ("namespace", "applicationId"):
+        match = re.search(
+            rf"(?m)^\s*{property_name}\s*=\s*[\"']([^\"']+)[\"']",
+            source,
+        )
+        assert match, f"{ANDROID_BUILD_FILE}: {property_name} declaration not found"
+        assert match.group(1) == EXPECTED_APPLICATION_ID, (
+            f"{ANDROID_BUILD_FILE}: {property_name} must remain "
+            f"{EXPECTED_APPLICATION_ID}, found {match.group(1)}"
+        )
 
 
 def load_catalog(language: str) -> dict:
@@ -44,6 +62,7 @@ def load_catalog(language: str) -> dict:
 
 
 def main() -> int:
+    validate_package_identity()
     catalogs = {language: load_catalog(language) for language in CATALOGS}
     english = catalogs["en"]
     kannada = catalogs["kn"]
@@ -60,6 +79,7 @@ def main() -> int:
         kn_ids = {greeting["id"] for greeting in kn_occasion["greetings"]}
         assert en_ids == kn_ids, f"Greeting ID mismatch for occasion {occasion_id}"
 
+    print(f"Package identity validated: {EXPECTED_APPLICATION_ID}")
     print(
         "Catalog validation passed: "
         f"{len(english_occasions)} shared occasions, "
@@ -72,5 +92,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except (AssertionError, OSError, json.JSONDecodeError) as error:
-        print(f"Catalog validation failed: {error}", file=sys.stderr)
+        print(f"Validation failed: {error}", file=sys.stderr)
         sys.exit(1)
