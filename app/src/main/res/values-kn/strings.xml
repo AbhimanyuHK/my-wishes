@@ -30,6 +30,9 @@
     <string name="generated_card_preview">ರಚಿಸಿದ ಶುಭಾಶಯ ಕಾರ್ಡ್ ಪೂರ್ವವೀಕ್ಷಣೆ</string>
     <string name="share_your_wish">ನಿಮ್ಮ ಶುಭಾಶಯ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="share_card">ಕಾರ್ಡ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="save_card_to_device">ಸಾಧನದಲ್ಲಿ ಕಾರ್ಡ್ ಉಳಿಸಿ</string>
+    <string name="card_saved_successfully">ಶುಭಾಶಯ ಕಾರ್ಡ್ ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ.</string>
+    <string name="card_save_error">ಶುಭಾಶಯ ಕಾರ್ಡ್ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
     <string name="catalog_load_error">ಆಫ್‌ಲೈನ್ ಶುಭಾಶಯಗಳ ಪಟ್ಟಿಯನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
     <string name="image_save_error">ಆಯ್ಕೆ ಮಾಡಿದ ಚಿತ್ರವನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
     <string name="card_generate_error">ಕಾರ್ಡ್ ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
