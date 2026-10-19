@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   validate-catalogs:
-    name: Validate offline catalogs
+    name: Validate offline catalogs and package identity
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -21,11 +21,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate catalog structure and bilingual ID parity
+      - name: Validate catalog structure, bilingual IDs, and package identity
         run: python scripts/validate_catalogs.py
 
   android:
-    name: Android unit tests and debug build
+    name: Android tests and build variants
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -47,3 +47,5 @@ jobs:
         run: gradle --no-daemon testDebugUnitTest
       - name: Assemble debug APK
         run: gradle --no-daemon assembleDebug
+      - name: Assemble release variant
+        run: gradle --no-daemon assembleRelease
