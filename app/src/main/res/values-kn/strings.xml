@@ -5,6 +5,8 @@
     <string name="dark_theme">ಡಾರ್ಕ್ ಥೀಮ್</string>
     <string name="your_name_optional">ನಿಮ್ಮ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
     <string name="card_signature_optional">ಕಾರ್ಡ್‌ನ ಸಹಿ (ಐಚ್ಛಿಕ)</string>
+    <string name="custom_greeting_optional">ನಿಮ್ಮದೇ ಶುಭಾಶಯ (ಐಚ್ಛಿಕ)</string>
+    <string name="custom_greeting_hint">ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಬರೆಯಿರಿ; ಖಾಲಿ ಬಿಟ್ಟರೆ ಆಯ್ಕೆ ಮಾಡಿದ ಶುಭಾಶಯ ಬಳಸಲಾಗುತ್ತದೆ.</string>
     <string name="choose_occasion">ಸಂದರ್ಭವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="search_greetings">ಸಂದರ್ಭಗಳು ಮತ್ತು ಶುಭಾಶಯಗಳನ್ನು ಹುಡುಕಿ</string>
     <string name="no_greetings_found">ಹೊಂದಾಣಿಕೆಯ ಸಂದರ್ಭಗಳು ಅಥವಾ ಶುಭಾಶಯಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
