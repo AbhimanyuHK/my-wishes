@@ -6,6 +6,8 @@
     <string name="your_name_optional">ನಿಮ್ಮ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
     <string name="card_signature_optional">ಕಾರ್ಡ್‌ನ ಸಹಿ (ಐಚ್ಛಿಕ)</string>
     <string name="choose_occasion">ಸಂದರ್ಭವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="search_greetings">ಸಂದರ್ಭಗಳು ಮತ್ತು ಶುಭಾಶಯಗಳನ್ನು ಹುಡುಕಿ</string>
+    <string name="no_greetings_found">ಹೊಂದಾಣಿಕೆಯ ಸಂದರ್ಭಗಳು ಅಥವಾ ಶುಭಾಶಯಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
     <string name="loading_greetings">ಶುಭಾಶಯಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <string name="add_photo_optional">ಫೋಟೋ ಸೇರಿಸಿ (ಐಚ್ಛಿಕ)</string>
     <string name="change_selected_photo">ಆಯ್ಕೆ ಮಾಡಿದ ಫೋಟೋ ಬದಲಿಸಿ</string>

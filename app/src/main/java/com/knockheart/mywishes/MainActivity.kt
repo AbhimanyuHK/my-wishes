@@ -116,6 +116,24 @@ private fun WishesHome() {
     val scope = rememberCoroutineScope()
 
     var occasions by remember { mutableStateOf<List<Occasion>>(emptyList()) }
+    var searchQuery by remember { mutableStateOf("") }
+    val filteredOccasions = remember(occasions, searchQuery) {
+        val query = searchQuery.trim()
+        if (query.isEmpty()) {
+            occasions.map { occasion -> occasion to occasion.greetings }
+        } else {
+            occasions.mapNotNull { occasion ->
+                val occasionMatches = occasion.title.contains(query, ignoreCase = true) ||
+                    occasion.description.contains(query, ignoreCase = true)
+                val matchingGreetings = if (occasionMatches) {
+                    occasion.greetings
+                } else {
+                    occasion.greetings.filter { it.text.contains(query, ignoreCase = true) }
+                }
+                if (matchingGreetings.isNotEmpty()) occasion to matchingGreetings else null
+            }
+        }
+    }
     var selectedGreeting by remember { mutableStateOf<Greeting?>(null) }
     var selectedOccasion by remember { mutableStateOf<Occasion?>(null) }
     var displayName by remember { mutableStateOf("") }
@@ -239,12 +257,22 @@ private fun WishesHome() {
         )
 
         Text(stringResource(R.string.choose_occasion), style = MaterialTheme.typography.titleLarge)
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = { searchQuery = it },
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(stringResource(R.string.search_greetings)) },
+            singleLine = true
+        )
         if (loading) Text(stringResource(R.string.loading_greetings))
-        occasions.forEach { occasion ->
+        if (!loading && searchQuery.isNotBlank() && filteredOccasions.isEmpty()) {
+            Text(stringResource(R.string.no_greetings_found), color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        filteredOccasions.forEach { (occasion, visibleGreetings) ->
             Card(
                 modifier = Modifier.fillMaxWidth().clickable {
                     selectedOccasion = occasion
-                    selectedGreeting = occasion.greetings.firstOrNull()
+                    selectedGreeting = visibleGreetings.firstOrNull()
                     previewBitmap = null
                 }
             ) {
@@ -255,7 +283,7 @@ private fun WishesHome() {
                     }
                     if (selectedOccasion?.id == occasion.id) {
                         Spacer(Modifier.height(8.dp))
-                        occasion.greetings.forEachIndexed { index, greeting ->
+                        visibleGreetings.forEachIndexed { index, greeting ->
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable {
                                     selectedGreeting = greeting
@@ -269,7 +297,7 @@ private fun WishesHome() {
                                 )
                                 Text(greeting.text, modifier = Modifier.weight(1f))
                             }
-                            if (index < occasion.greetings.lastIndex) {
+                            if (index < visibleGreetings.lastIndex) {
                                 Spacer(Modifier.height(2.dp))
                             }
                         }
