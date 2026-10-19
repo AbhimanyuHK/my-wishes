@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "language": "en",
+  "occasions": [
+    {
+      "id": "birthday",
+      "title": "Birthday",
+      "description": "Warm wishes for their special day",
+      "greetings": [
+        {
+          "id": "birthday_warm_01",
+          "text": "Wishing you a wonderful birthday filled with love, laughter, and beautiful memories."
+        },
+        {
+          "id": "birthday_short_01",
+          "text": "May your new year of life bring happiness, good health, and dreams come true."
+        }
+      ]
+    },
+    {
+      "id": "friendship",
+      "title": "Friendship",
+      "description": "Celebrate the friends who make life brighter",
+      "greetings": [
+        {
+          "id": "friendship_heartfelt_01",
+          "text": "Life is brighter and every memory is better because I have a friend like you."
+        },
+        {
+          "id": "friendship_short_01",
+          "text": "Real friendship turns ordinary days into unforgettable memories."
+        }
+      ]
+    },
+    {
+      "id": "hindu_festivals",
+      "title": "Indian Hindu Festivals",
+      "description": "Greetings for festivals celebrated across India",
+      "greetings": [
+        {
+          "id": "diwali_01",
+          "text": "May the lights of Deepavali brighten your home with peace, prosperity, and happiness."
+        },
+        {
+          "id": "ugadi_01",
+          "text": "Happy Ugadi! May the new year bring fresh hope, good health, and success to your family."
+        },
+        {
+          "id": "dasara_01",
+          "text": "Wishing you a joyful Dasara. May goodness triumph and courage guide every new beginning."
+        },
+        {
+          "id": "ganesh_chaturthi_01",
+          "text": "May Lord Ganesha bless you with wisdom, remove obstacles, and bring peace to your home."
+        },
+        {
+          "id": "makara_sankranti_01",
+          "text": "Wishing you a happy Sankranti filled with warmth, abundance, and new beginnings."
+        },
+        {
+          "id": "holi_01",
+          "text": "May the colours of Holi fill your life with friendship, laughter, and renewed hope."
+        },
+        {
+          "id": "rama_navami_01",
+          "text": "May the ideals of Lord Rama inspire truth, kindness, and strength in your life."
+        },
+        {
+          "id": "krishna_janmashtami_01",
+          "text": "May the blessings of Lord Krishna fill your heart with love, wisdom, and joy."
+        },
+        {
+          "id": "navaratri_01",
+          "text": "May Navaratri bring you strength, courage, and the blessings of the Divine Mother."
+        },
+        {
+          "id": "maha_shivaratri_01",
+          "text": "On Maha Shivaratri, may you find peace, inner strength, and spiritual renewal."
+        }
+      ]
+    },
+    {
+      "id": "national_days",
+      "title": "Indian National Days",
+      "description": "Patriotic greetings for important national observances",
+      "greetings": [
+        {
+          "id": "republic_day_01",
+          "text": "Happy Republic Day! May we uphold the values of our Constitution and work for a stronger, kinder India."
+        },
+        {
+          "id": "independence_day_01",
+          "text": "Happy Independence Day! Let us honour the freedom we share and contribute to a peaceful, inclusive India."
+        },
+        {
+          "id": "gandhi_jayanti_01",
+          "text": "On Gandhi Jayanti, may truth, non-violence, and compassion guide our actions."
+        },
+        {
+          "id": "constitution_day_01",
+          "text": "Let us celebrate Constitution Day by respecting justice, liberty, equality, and fraternity."
+        },
+        {
+          "id": "childrens_day_01",
+          "text": "Happy Children's Day! May every child grow with safety, opportunity, curiosity, and joy."
+        },
+        {
+          "id": "national_voters_day_01",
+          "text": "On National Voters' Day, celebrate your voice and the responsibility of participating in democracy."
+        }
+      ]
+    },
+    {
+      "id": "karnataka_days",
+      "title": "Karnataka Celebrations & Literary Legends",
+      "description": "Celebrate Karnataka, Kannada language, and its poets and thinkers",
+      "greetings": [
+        {
+          "id": "karnataka_rajyotsava_01",
+          "text": "Happy Karnataka Rajyotsava! May Kannada, our culture, and the spirit of Karnataka flourish for generations."
+        },
+        {
+          "id": "kuvempu_jayanti_01",
+          "text": "Remembering Kuvempu and his universal humanism. May his words inspire equality, wisdom, and compassion."
+        },
+        {
+          "id": "basava_jayanti_01",
+          "text": "On Basava Jayanti, may the values of equality, dignity of labour, and compassion guide us."
+        },
+        {
+          "id": "kanakadasa_jayanti_01",
+          "text": "May Kanakadasa's devotion, poetry, and message of equality continue to inspire us."
+        },
+        {
+          "id": "purandara_dasa_01",
+          "text": "Honouring Purandara Dasa, whose compositions continue to enrich Karnataka's musical and spiritual heritage."
+        },
+        {
+          "id": "kannada_language_01",
+          "text": "Let us cherish Kannada, read its literature, share its stories, and pass its beautiful heritage to the next generation."
+        }
+      ]
+    },
+    {
+      "id": "professional_days",
+      "title": "Professional & Public Awareness Days",
+      "description": "Appreciation and awareness greetings for service, science, and nature",
+      "greetings": [
+        {
+          "id": "national_science_day_01",
+          "text": "Happy National Science Day! Stay curious, ask questions, and let evidence and discovery shape a brighter future."
+        },
+        {
+          "id": "national_technology_day_01",
+          "text": "Happy National Technology Day! May innovation solve real problems and improve lives."
+        },
+        {
+          "id": "engineers_day_01",
+          "text": "Happy Engineers' Day! Celebrating the creativity and dedication that turn ideas into solutions."
+        },
+        {
+          "id": "doctors_day_01",
+          "text": "Happy Doctors' Day! Thank you for your skill, compassion, and commitment to caring for others."
+        },
+        {
+          "id": "nurses_day_01",
+          "text": "Happy Nurses' Day! Your kindness, resilience, and care make a lasting difference."
+        },
+        {
+          "id": "teachers_day_01",
+          "text": "Happy Teachers' Day! Thank you for nurturing knowledge, confidence, and the courage to dream."
+        },
+        {
+          "id": "world_forest_day_01",
+          "text": "On the International Day of Forests, let us protect forests, restore nature, and safeguard biodiversity."
+        },
+        {
+          "id": "world_environment_day_01",
+          "text": "Happy World Environment Day! Small everyday choices can help protect our shared planet."
+        },
+        {
+          "id": "world_water_day_01",
+          "text": "On World Water Day, let us conserve clean water and protect this essential resource for everyone."
+        },
+        {
+          "id": "international_womens_day_01",
+          "text": "Happy International Women's Day! Celebrate women's achievements and keep working for equality and opportunity."
+        },
+        {
+          "id": "international_yoga_day_01",
+          "text": "Happy International Day of Yoga! May mindful movement and breathing support balance and well-being."
+        },
+        {
+          "id": "world_mental_health_day_01",
+          "text": "On World Mental Health Day, remember that listening, kindness, and seeking support are signs of strength."
+        },
+        {
+          "id": "world_earth_day_01",
+          "text": "Happy Earth Day! Let's care for our planet through thoughtful choices and collective action."
+        },
+        {
+          "id": "labour_day_01",
+          "text": "Happy Labour Day! Honouring the dignity, skill, and contribution of workers everywhere."
+        }
+      ]
+    },
+    {
+      "id": "festivals",
+      "title": "Festive Wishes",
+      "description": "Share joy and good wishes",
+      "greetings": [
+        {
+          "id": "festival_warm_01",
+          "text": "May this festive season bring peace to your home, joy to your heart, and hope for the days ahead."
+        },
+        {
+          "id": "festival_short_01",
+          "text": "Wishing you and your family happiness, prosperity, and togetherness."
+        }
+      ]
+    }
+  ]
+}
