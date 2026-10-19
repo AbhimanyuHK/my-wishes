@@ -17,11 +17,12 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 7 — Language-aware UI strings:** merged into `main`.
 - **Milestone 8 — Persist card signature:** merged into `main`.
 - **Milestone 9 — Offline greeting search:** merged into `main`.
-- **Milestone 10 — Favorite greetings:** proposed in pull request.
+- **Milestone 10 — Favorite greetings:** merged into `main`.
+- **Milestone 11 — Card color palettes:** proposed in pull request.
 
 ## Offline data foundation
 
-- AndroidX DataStore Preferences stores the display name, app-private profile image path, card signature, preferred language, theme preference, and favorite greeting IDs.
+- AndroidX DataStore Preferences stores the display name, app-private profile image path, card signature, preferred language, theme preference, favorite greeting IDs, and selected card palette.
 - Bundled JSON catalogs are located in `app/src/main/assets/catalog/`.
 - Current catalog languages: English (`en`) and Kannada (`kn`).
 - No network calls or internet permission are required for catalog loading or rendering.
@@ -29,7 +30,7 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 ## Card generation
 
 - `CardGeneratorEngine` renders 1080×1080 card bitmaps.
-- Supports occasion title, optional photo, multiline greeting, signature, theme colors, and a caller-supplied typeface.
+- Supports occasion title, optional photo, multiline greeting, signature, theme colors, and a caller-supplied typeface. The UI offers five preset palettes and persists the selected palette locally.
 - Generated PNGs are exported into app-private cache and shared through FileProvider.
 
 ## User interface
@@ -55,3 +56,5 @@ See [Milestone 5 profile notes](docs/milestones/milestone-5-profile-settings-acc
 
 
 See [Milestone 10 favorite greetings notes](docs/milestones/milestone-10-favorite-greetings.md).
+
+See [Milestone 11 card palette notes](docs/milestones/milestone-11-card-color-palettes.md).
