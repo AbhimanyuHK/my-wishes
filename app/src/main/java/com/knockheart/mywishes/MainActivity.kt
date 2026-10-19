@@ -178,6 +178,26 @@ private fun WishesHome() {
         }
     }
 
+    val saveCardLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("image/png")
+    ) { uri ->
+        val bitmap = previewBitmap
+        if (uri != null && bitmap != null) {
+            try {
+                val output = context.contentResolver.openOutputStream(uri)
+                    ?: throw IllegalStateException(context.getString(R.string.card_save_error))
+                output.use { stream ->
+                    if (!bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, stream)) {
+                        throw IllegalStateException(context.getString(R.string.card_save_error))
+                    }
+                }
+                errorMessage = context.getString(R.string.card_saved_successfully)
+            } catch (error: Exception) {
+                errorMessage = error.localizedMessage ?: context.getString(R.string.card_save_error)
+            }
+        }
+    }
+
     val photoPicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
@@ -465,6 +485,12 @@ private fun WishesHome() {
                 contentDescription = stringResource(R.string.generated_card_preview),
                 modifier = Modifier.fillMaxWidth().height(320.dp)
             )
+            OutlinedButton(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = { saveCardLauncher.launch("my-wish.png") }
+            ) {
+                Text(stringResource(R.string.save_card_to_device))
+            }
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
