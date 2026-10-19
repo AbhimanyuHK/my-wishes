@@ -118,7 +118,7 @@ private fun WishesHome() {
     var occasions by remember { mutableStateOf<List<Occasion>>(emptyList()) }
     var searchQuery by remember { mutableStateOf("") }
     var favoritesOnly by remember { mutableStateOf(false) }
-    val filteredOccasions = remember(occasions, searchQuery) {
+    val filteredOccasions = remember(occasions, searchQuery, favoritesOnly, preferences.favoriteGreetingIds) {
         val query = searchQuery.trim()
         val candidateOccasions = if (query.isEmpty()) {
             occasions.map { occasion -> occasion to occasion.greetings }
