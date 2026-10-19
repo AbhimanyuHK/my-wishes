@@ -27,7 +27,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 17 — Delete recent cards:** merged into `main`.
 - **Milestone 18 — Profile settings reset:** merged into `main`.
 - **Milestone 19 — Kannada typography and text fitting:** merged into `main`.
-- **Milestone 20 — Expand bilingual greeting catalog:** proposed in pull request.
+- **Milestone 20 — Expand bilingual greeting catalog:** merged into `main`.
+- **Milestone 21 — CI and regression tests:** proposed in pull request.
 
 ## Offline data foundation
 
@@ -53,7 +54,7 @@ See the [Milestone 4 architecture notes](docs/milestones/milestone-4-greeting-ca
 
 ## Build and test
 
-The repository does not currently include a Gradle wrapper. In an Android development environment with a compatible Gradle installation and Android SDK, run:
+The repository does not currently include a Gradle wrapper. GitHub Actions is configured to run Android unit tests and assemble the debug APK on pushes and pull requests. In an Android development environment with a compatible Gradle installation and Android SDK, run:
 
 ```bash
 gradle testDebugUnitTest assembleDebug
