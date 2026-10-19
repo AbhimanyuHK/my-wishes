@@ -6,6 +6,8 @@
     <string name="your_name_optional">Your name (optional)</string>
     <string name="card_signature_optional">Card signature (optional)</string>
     <string name="choose_occasion">Choose an occasion</string>
+    <string name="search_greetings">Search occasions and greetings</string>
+    <string name="no_greetings_found">No matching occasions or greetings found.</string>
     <string name="loading_greetings">Loading greetings…</string>
     <string name="add_photo_optional">Add a photo (optional)</string>
     <string name="change_selected_photo">Change selected photo</string>
