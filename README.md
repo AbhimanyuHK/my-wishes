@@ -18,7 +18,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 8 — Persist card signature:** merged into `main`.
 - **Milestone 9 — Offline greeting search:** merged into `main`.
 - **Milestone 10 — Favorite greetings:** merged into `main`.
-- **Milestone 11 — Card color palettes:** proposed in pull request.
+- **Milestone 11 — Card color palettes:** merged into `main`.
+- **Milestone 12 — Browsing UX polish:** proposed in pull request.
 
 ## Offline data foundation
 
@@ -30,12 +31,12 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 ## Card generation
 
 - `CardGeneratorEngine` renders 1080×1080 card bitmaps.
-- Supports occasion title, optional photo, multiline greeting, signature, theme colors, and a caller-supplied typeface. The UI offers five preset palettes and persists the selected palette locally.
+- Supports occasion title, optional photo, multiline greeting, signature, theme colors, and a caller-supplied typeface. The UI offers five preset palettes, highlights the currently selected palette, and persists the selected palette locally.
 - Generated PNGs are exported into app-private cache and shared through FileProvider.
 
 ## User interface
 
-- Browse and search occasions/greetings offline, save favorites, filter to favorite greetings, switch language, add a photo, generate a preview, and share the PNG.
+- Browse and search occasions/greetings offline, save favorites, filter to favorite greetings, clear filters from an empty state, switch language, add a photo, generate a preview, and share the PNG.
 - Display name, card signature, and selected profile photo are restored from local preferences/app-private storage.
 - Photo selection uses the Android system picker; selected image bytes are copied into app-private storage.
 - The typeface hook supports a bundled Kannada font later, but no custom font binary is currently included.
