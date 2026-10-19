@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "language": "en",
+  "occasions": [
+    {
+      "id": "birthday",
+      "title": "Birthday",
+      "description": "Warm wishes for their special day",
+      "greetings": [
+        { "id": "birthday_warm_01", "text": "Wishing you a wonderful birthday filled with love, laughter, and beautiful memories." },
+        { "id": "birthday_short_01", "text": "May your new year of life bring happiness, good health, and dreams come true." }
+      ]
+    },
+    {
+      "id": "friendship",
+      "title": "Friendship",
+      "description": "Celebrate the friends who make life brighter",
+      "greetings": [
+        { "id": "friendship_heartfelt_01", "text": "Life is brighter and every memory is better because I have a friend like you." },
+        { "id": "friendship_short_01", "text": "Real friendship turns ordinary days into unforgettable memories." }
+      ]
+    },
+    {
+      "id": "festivals",
+      "title": "Festivals",
+      "description": "Share joy and good wishes",
+      "greetings": [
+        { "id": "festival_warm_01", "text": "May this festive season bring peace to your home, joy to your heart, and hope for the days ahead." },
+        { "id": "festival_short_01", "text": "Wishing you and your family happiness, prosperity, and togetherness." }
+      ]
+    }
+  ]
+}
