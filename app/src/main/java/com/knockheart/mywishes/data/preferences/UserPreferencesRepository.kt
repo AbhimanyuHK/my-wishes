@@ -33,7 +33,8 @@ class UserPreferencesRepository(context: Context) {
             ),
             preferredLanguage = AppLanguage.fromCode(stored[Keys.PREFERRED_LANGUAGE]),
             isDarkTheme = stored[Keys.DARK_THEME] ?: false,
-            favoriteGreetingIds = stored[Keys.FAVORITE_GREETING_IDS] ?: emptySet()
+            favoriteGreetingIds = stored[Keys.FAVORITE_GREETING_IDS] ?: emptySet(),
+            cardPaletteId = stored[Keys.CARD_PALETTE_ID] ?: "sunset"
         )
     }
 
@@ -60,6 +61,10 @@ class UserPreferencesRepository(context: Context) {
                 stored[Keys.CARD_SIGNATURE] = signature
             }
         }
+    }
+
+    suspend fun setCardPalette(paletteId: String) {
+        dataStore.edit { stored -> stored[Keys.CARD_PALETTE_ID] = paletteId }
     }
 
     suspend fun setFavoriteGreeting(greetingId: String, isFavorite: Boolean) {
@@ -98,5 +103,6 @@ class UserPreferencesRepository(context: Context) {
         val PREFERRED_LANGUAGE = stringPreferencesKey("preferred_language")
         val DARK_THEME = booleanPreferencesKey("dark_theme_enabled")
         val FAVORITE_GREETING_IDS = stringSetPreferencesKey("favorite_greeting_ids")
+        val CARD_PALETTE_ID = stringPreferencesKey("card_palette_id")
     }
 }
