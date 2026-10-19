@@ -2,7 +2,6 @@ package com.knockheart.mywishes
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -27,6 +26,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -49,6 +49,8 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.knockheart.mywishes.card.CardPalette
@@ -320,14 +322,26 @@ private fun WishesHome() {
                                     color = MaterialTheme.colorScheme.primary
                                 )
                                 Text(greeting.text, modifier = Modifier.weight(1f))
-                                Text(
-                                    text = if (greeting.id in preferences.favoriteGreetingIds) "★" else "☆",
-                                    color = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.clickable {
-                                        val currentlyFavorite = greeting.id in preferences.favoriteGreetingIds
-                                        scope.launch { preferencesRepository.setFavoriteGreeting(greeting.id, !currentlyFavorite) }
-                                    }.padding(start = 10.dp)
-                                )
+                                val isFavorite = greeting.id in preferences.favoriteGreetingIds
+                                IconButton(
+                                    onClick = {
+                                        scope.launch {
+                                            preferencesRepository.setFavoriteGreeting(greeting.id, !isFavorite)
+                                        }
+                                    },
+                                    modifier = Modifier.semantics {
+                                        contentDescription = context.getString(
+                                            if (isFavorite) R.string.remove_favorite_accessibility
+                                            else R.string.add_favorite_accessibility,
+                                            greeting.text
+                                        )
+                                    }
+                                ) {
+                                    Text(
+                                        text = if (isFavorite) "★" else "☆",
+                                        color = MaterialTheme.colorScheme.primary
+                                    )
+                                }
                             }
                             if (index < visibleGreetings.lastIndex) {
                                 Spacer(Modifier.height(2.dp))
