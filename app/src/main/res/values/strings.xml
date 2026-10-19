@@ -30,6 +30,9 @@
     <string name="generated_card_preview">Generated greeting card preview</string>
     <string name="share_your_wish">Share your wish</string>
     <string name="share_card">Share card</string>
+    <string name="save_card_to_device">Save card to device</string>
+    <string name="card_saved_successfully">Greeting card saved successfully.</string>
+    <string name="card_save_error">Could not save the greeting card.</string>
     <string name="catalog_load_error">Could not load the offline greeting catalog.</string>
     <string name="image_save_error">The selected image could not be saved.</string>
     <string name="card_generate_error">Could not generate the card.</string>
