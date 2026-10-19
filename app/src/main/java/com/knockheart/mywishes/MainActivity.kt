@@ -1,6 +1,7 @@
 package com.knockheart.mywishes
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -34,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -45,6 +47,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
@@ -59,6 +62,7 @@ import com.knockheart.mywishes.data.preferences.UserPreferencesRepository
 import com.knockheart.mywishes.data.profile.ProfileImageStorage
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,12 +72,26 @@ class MainActivity : ComponentActivity() {
             val preferences by preferencesRepository.preferences.collectAsState(
                 initial = com.knockheart.mywishes.data.model.UserPreferences()
             )
-            MyWishesTheme(isDarkTheme = preferences.isDarkTheme) {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    WishesHome()
+            val systemConfiguration = LocalConfiguration.current
+            val localizedConfiguration = remember(systemConfiguration, preferences.preferredLanguage) {
+                Configuration(systemConfiguration).apply {
+                    setLocale(Locale.forLanguageTag(preferences.preferredLanguage.code))
+                }
+            }
+            val localizedContext = remember(localizedConfiguration) {
+                createConfigurationContext(localizedConfiguration)
+            }
+            CompositionLocalProvider(
+                LocalContext provides localizedContext,
+                LocalConfiguration provides localizedConfiguration
+            ) {
+                MyWishesTheme(isDarkTheme = preferences.isDarkTheme) {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        WishesHome()
+                    }
                 }
             }
         }
