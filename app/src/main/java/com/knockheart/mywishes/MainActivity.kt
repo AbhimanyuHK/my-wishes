@@ -1,6 +1,8 @@
 package com.knockheart.mywishes
 
 import android.content.Intent
+import android.graphics.BitmapFactory
+import java.io.File
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
@@ -56,6 +58,7 @@ import androidx.core.content.FileProvider
 import com.knockheart.mywishes.card.CardPalette
 import com.knockheart.mywishes.card.CardGenerationRequest
 import com.knockheart.mywishes.card.CardGeneratorEngine
+import com.knockheart.mywishes.card.CardHistoryStorage
 import com.knockheart.mywishes.data.catalog.AssetGreetingCatalogRepository
 import com.knockheart.mywishes.data.catalog.Greeting
 import com.knockheart.mywishes.data.catalog.Occasion
@@ -149,11 +152,17 @@ private fun WishesHome() {
     var customGreeting by remember { mutableStateOf("") }
     var photoBitmap by remember { mutableStateOf<android.graphics.Bitmap?>(null) }
     var previewBitmap by remember { mutableStateOf<android.graphics.Bitmap?>(null) }
+    var recentCards by remember { mutableStateOf<List<File>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var languageMenuExpanded by remember { mutableStateOf(false) }
     val profileImageStorage = remember { ProfileImageStorage(context) }
+    val cardHistoryStorage = remember { CardHistoryStorage(context) }
     var profileLoaded by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        recentCards = cardHistoryStorage.listRecent()
+    }
 
     LaunchedEffect(preferences.profile, profileLoaded) {
         if (!profileLoaded) {
@@ -460,6 +469,8 @@ private fun WishesHome() {
                         textColor = CardPalette.fromId(preferences.cardPaletteId).textColor
                     )
                     previewBitmap = CardGeneratorEngine(context).render(request)
+                    cardHistoryStorage.save(previewBitmap!!)
+                    recentCards = cardHistoryStorage.listRecent()
                     errorMessage = null
                     scope.launch {
                         preferencesRepository.saveProfile(
@@ -476,6 +487,35 @@ private fun WishesHome() {
             }
         ) {
             Text(stringResource(R.string.generate_card_preview))
+        }
+
+        if (recentCards.isNotEmpty()) {
+            Text(stringResource(R.string.recent_cards), style = MaterialTheme.typography.titleLarge)
+            recentCards.forEach { cardFile ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().clickable {
+                        val restored = BitmapFactory.decodeFile(cardFile.absolutePath)
+                        if (restored != null) {
+                            previewBitmap = restored
+                            errorMessage = null
+                        } else {
+                            errorMessage = context.getString(R.string.card_history_load_error)
+                        }
+                    }.padding(vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    val thumbnail = BitmapFactory.decodeFile(cardFile.absolutePath)
+                    if (thumbnail != null) {
+                        Image(
+                            bitmap = thumbnail.asImageBitmap(),
+                            contentDescription = stringResource(R.string.recent_card_thumbnail),
+                            modifier = Modifier.size(72.dp)
+                        )
+                    }
+                    Text(cardFile.name, modifier = Modifier.weight(1f))
+                }
+            }
         }
 
         previewBitmap?.let { bitmap ->
