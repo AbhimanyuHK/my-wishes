@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ನನ್ನ ಶುಭಾಶಯಗಳು</string>
+    <string name="home_subtitle">ಹಂಚಿಕೊಳ್ಳಲು ಸುಂದರವಾದ ಶುಭಾಶಯ ರಚಿಸಿ.</string>
+    <string name="dark_theme">ಡಾರ್ಕ್ ಥೀಮ್</string>
+    <string name="your_name_optional">ನಿಮ್ಮ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
+    <string name="card_signature_optional">ಕಾರ್ಡ್‌ನ ಸಹಿ (ಐಚ್ಛಿಕ)</string>
+    <string name="choose_occasion">ಸಂದರ್ಭವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="loading_greetings">ಶುಭಾಶಯಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <string name="add_photo_optional">ಫೋಟೋ ಸೇರಿಸಿ (ಐಚ್ಛಿಕ)</string>
+    <string name="change_selected_photo">ಆಯ್ಕೆ ಮಾಡಿದ ಫೋಟೋ ಬದಲಿಸಿ</string>
+    <string name="selected_photo">ಆಯ್ಕೆ ಮಾಡಿದ ಫೋಟೋ</string>
+    <string name="generate_card_preview">ಕಾರ್ಡ್ ಪೂರ್ವವೀಕ್ಷಣೆ ರಚಿಸಿ</string>
+    <string name="preview">ಪೂರ್ವವೀಕ್ಷಣೆ</string>
+    <string name="generated_card_preview">ರಚಿಸಿದ ಶುಭಾಶಯ ಕಾರ್ಡ್ ಪೂರ್ವವೀಕ್ಷಣೆ</string>
+    <string name="share_your_wish">ನಿಮ್ಮ ಶುಭಾಶಯ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_card">ಕಾರ್ಡ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="catalog_load_error">ಆಫ್‌ಲೈನ್ ಶುಭಾಶಯಗಳ ಪಟ್ಟಿಯನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
+    <string name="image_save_error">ಆಯ್ಕೆ ಮಾಡಿದ ಚಿತ್ರವನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
+    <string name="card_generate_error">ಕಾರ್ಡ್ ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
+    <string name="card_share_error">ಹಂಚಿಕೊಳ್ಳಲು ಕಾರ್ಡ್ ಸಿದ್ಧಪಡಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
+</resources>
