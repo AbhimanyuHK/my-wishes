@@ -47,5 +47,14 @@ jobs:
         run: gradle --no-daemon testDebugUnitTest
       - name: Assemble debug APK
         run: gradle --no-daemon assembleDebug
-      - name: Assemble release variant
+      - name: Assemble release APK variant
         run: gradle --no-daemon assembleRelease
+      - name: Build release Android App Bundle
+        run: gradle --no-daemon bundleRelease
+      - name: Upload release AAB for reference
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-wishes-release-aab-${{ github.run_number }}
+          path: app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
+          retention-days: 30
