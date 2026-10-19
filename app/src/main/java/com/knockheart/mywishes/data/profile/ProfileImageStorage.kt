@@ -36,6 +36,12 @@ class ProfileImageStorage(context: Context) {
         return destination.absolutePath
     }
 
+    fun delete(path: String) {
+        val directory = File(appContext.filesDir, DIRECTORY).canonicalFile
+        val target = File(path).canonicalFile
+        if (target.parentFile == directory && target.isFile) target.delete()
+    }
+
     fun load(path: String?): Bitmap? {
         if (path.isNullOrBlank()) return null
         val file = File(path)
