@@ -76,24 +76,20 @@ class CardGeneratorEngine(
 
         val bottomReserved = if (request.signature.isNullOrBlank()) 100f else 150f
         val availableHeight = (DESIGN_SIZE - cursorY - bottomReserved).coerceAtLeast(160f)
-        val greetingPaint = textPaint(42f, request.textColor, request.typeface, false)
-        val greetingLayout = createLayout(request.greetingText, greetingPaint, 820)
+        // Fit by measured layout height so long English and Kannada greetings
+        // remain inside the card's safe text region without drawing twice.
+        var greetingSize = 42f
+        var greetingPaint = textPaint(greetingSize, request.textColor, request.typeface, false)
+        var greetingLayout = createLayout(request.greetingText, greetingPaint, 820)
+        while (greetingLayout.height > availableHeight && greetingSize > 22f) {
+            greetingSize -= 2f
+            greetingPaint = textPaint(greetingSize, request.textColor, request.typeface, false)
+            greetingLayout = createLayout(request.greetingText, greetingPaint, 820)
+        }
         canvas.save()
         canvas.translate((DESIGN_SIZE - greetingLayout.width) / 2f, cursorY)
         greetingLayout.draw(canvas)
         canvas.restore()
-
-        // If the greeting is unusually long, shrink its layout into the safe region
-        // rather than clipping text at the bottom of the card.
-        if (greetingLayout.height > availableHeight) {
-            val fittedPaint = textPaint(34f, request.textColor, request.typeface, false)
-            val fittedLayout = createLayout(request.greetingText, fittedPaint, 820)
-            canvas.save()
-            canvas.drawRect(100f, cursorY, 980f, DESIGN_SIZE - bottomReserved, innerPaint)
-            canvas.translate((DESIGN_SIZE - fittedLayout.width) / 2f, cursorY)
-            fittedLayout.draw(canvas)
-            canvas.restore()
-        }
 
         request.signature?.takeIf(String::isNotBlank)?.let { signature ->
             val signaturePaint = textPaint(27f, request.accentColor, request.typeface, true)
@@ -199,7 +195,7 @@ class CardGeneratorEngine(
     ) = TextPaint(Paint.ANTI_ALIAS_FLAG or Paint.SUBPIXEL_TEXT_FLAG).apply {
         textSize = size
         this.color = color
-        this.typeface = typeface ?: if (bold) Typeface.create(Typeface.DEFAULT, Typeface.BOLD) else Typeface.DEFAULT
+        this.typeface = typeface ?: Typeface.create("sans-serif", if (bold) Typeface.BOLD else Typeface.NORMAL)
     }
 
     companion object {
