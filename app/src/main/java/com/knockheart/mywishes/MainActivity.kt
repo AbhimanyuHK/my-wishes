@@ -146,6 +146,7 @@ private fun WishesHome() {
     var selectedOccasion by remember { mutableStateOf<Occasion?>(null) }
     var displayName by remember { mutableStateOf("") }
     var signature by remember { mutableStateOf("") }
+    var customGreeting by remember { mutableStateOf("") }
     var photoBitmap by remember { mutableStateOf<android.graphics.Bitmap?>(null) }
     var previewBitmap by remember { mutableStateOf<android.graphics.Bitmap?>(null) }
     var loading by remember { mutableStateOf(false) }
@@ -299,6 +300,7 @@ private fun WishesHome() {
                 modifier = Modifier.fillMaxWidth().clickable {
                     selectedOccasion = occasion
                     selectedGreeting = visibleGreetings.firstOrNull()
+                    customGreeting = ""
                     previewBitmap = null
                 }
             ) {
@@ -313,6 +315,7 @@ private fun WishesHome() {
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable {
                                     selectedGreeting = greeting
+                                    customGreeting = ""
                                     previewBitmap = null
                                 }.padding(vertical = 5.dp),
                                 verticalAlignment = Alignment.CenterVertically
@@ -350,6 +353,18 @@ private fun WishesHome() {
                     }
                 }
             }
+        }
+
+        if (selectedGreeting != null) {
+            OutlinedTextField(
+                value = customGreeting,
+                onValueChange = { customGreeting = it },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text(stringResource(R.string.custom_greeting_optional)) },
+                placeholder = { Text(stringResource(R.string.custom_greeting_hint)) },
+                minLines = 2,
+                maxLines = 5
+            )
         }
 
         OutlinedButton(
@@ -416,7 +431,7 @@ private fun WishesHome() {
                 val greeting = selectedGreeting ?: return@Button
                 try {
                     val request = CardGenerationRequest(
-                        greetingText = greeting.text,
+                        greetingText = customGreeting.trim().ifBlank { greeting.text },
                         occasionTitle = selectedOccasion?.title,
                         signature = signature.ifBlank { displayName },
                         photo = photoBitmap,
@@ -456,7 +471,9 @@ private fun WishesHome() {
                     try {
                         val file = CardGeneratorEngine(context).exportPng(
                             CardGenerationRequest(
-                                greetingText = selectedGreeting?.text ?: return@Button,
+                                greetingText = customGreeting.trim().ifBlank {
+                                    selectedGreeting?.text ?: return@Button
+                                },
                                 occasionTitle = selectedOccasion?.title,
                                 signature = signature.ifBlank { displayName },
                                 photo = photoBitmap,
