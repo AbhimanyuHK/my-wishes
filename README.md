@@ -13,7 +13,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 3 — Card generation engine:** merged into `main`.
 - **Milestone 4 — Greeting catalog and card creation UI:** merged into `main`.
 - **Milestone 5 — Persistent profile:** merged into `main`.
-- **Milestone 6 — Theme preference and accessibility polish:** submitted for review.
+- **Milestone 6 — Theme preference and accessibility polish:** merged into `main`.
+- **Milestone 7 — Language-aware UI strings:** submitted for review.
 
 ## Offline data foundation
 
@@ -61,3 +62,11 @@ See [Milestone 5 architecture notes](docs/milestones/milestone-5-profile-setting
 - Review both themes with TalkBack and large font/display-size settings before release.
 
 See [Milestone 6 architecture notes](docs/milestones/milestone-6-theme-accessibility.md).
+
+## UI localization
+
+- English and Kannada home-screen strings are stored in Android string resources.
+- The saved language preference controls both the bundled greeting catalog and UI resource locale.
+- This milestone does not add additional languages beyond English and Kannada.
+
+See [Milestone 7 architecture notes](docs/milestones/milestone-7-localized-ui-strings.md).
