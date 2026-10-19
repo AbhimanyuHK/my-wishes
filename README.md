@@ -9,7 +9,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 ## Current milestones
 
 - **Milestone 1 — Project scaffolding:** merged into `main`.
-- **Milestone 2 — Offline data foundation:** DataStore preferences, profile/language models, and bundled English/Kannada greeting catalogs are under review in a separate pull request.
+- **Milestone 2 — Offline data foundation:** merged into `main`.
+- **Milestone 3 — Card generation engine:** implemented on the `milestone-3-card-generation-engine` branch and submitted for review.
 
 ## Offline data foundation
 
@@ -20,6 +21,16 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - No network calls or internet permission are required for this data layer.
 
 See [Milestone 2 architecture notes](docs/milestones/milestone-2-offline-data-foundation.md).
+
+## Card generation engine
+
+- `CardGeneratorEngine` renders 1080×1080 PNG-ready bitmaps offline.
+- Supports an optional occasion title, circular-cropped photo, multiline greeting, signature, theme colors, and caller-supplied typeface.
+- PNG exports are written to the app-private `cacheDir/generated-cards` directory; sharing should use the configured FileProvider.
+- Kannada font support is exposed through an optional `Typeface`; a licensed font asset has not yet been added.
+- UI integration, Photo Picker integration, and share-intent wiring are separate follow-up work.
+
+See [Milestone 3 architecture notes](docs/milestones/milestone-3-card-generation-engine.md).
 
 ## Build and test
 
