@@ -24,7 +24,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 14 — Custom greeting text:** merged into `main`.
 - **Milestone 15 — Save cards to device:** merged into `main`.
 - **Milestone 16 — Recent generated cards:** merged into `main`.
-- **Milestone 17 — Delete recent cards:** proposed in pull request.
+- **Milestone 17 — Delete recent cards:** merged into `main`.
+- **Milestone 18 — Profile settings reset:** proposed in pull request.
 
 ## Offline data foundation
 
@@ -42,7 +43,7 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 ## User interface
 
 - Browse and search occasions/greetings offline, save favorites with screen-reader-labelled controls, filter to favorite greetings, clear filters from an empty state, switch language, optionally replace the selected greeting with custom English or Kannada text, add a photo, generate a preview, reopen or delete recent generated cards, save a PNG through Android’s document picker, and share the PNG.
-- Display name, card signature, and selected profile photo are restored from local preferences/app-private storage.
+- Display name, card signature, and selected profile photo are restored from local preferences/app-private storage; users can clear the saved profile and its private photo.
 - Photo selection uses the Android system picker; selected image bytes are copied into app-private storage.
 - The typeface hook supports a bundled Kannada font later, but no custom font binary is currently included.
 

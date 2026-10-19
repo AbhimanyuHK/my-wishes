@@ -3,6 +3,7 @@
     <string name="app_name">My Wishes</string>
     <string name="home_subtitle">Create a greeting worth sharing.</string>
     <string name="dark_theme">Dark theme</string>
+    <string name="clear_profile">Clear profile</string>
     <string name="your_name_optional">Your name (optional)</string>
     <string name="card_signature_optional">Card signature (optional)</string>
     <string name="custom_greeting_optional">Custom greeting (optional)</string>

@@ -3,6 +3,7 @@
     <string name="app_name">ನನ್ನ ಶುಭಾಶಯಗಳು</string>
     <string name="home_subtitle">ಹಂಚಿಕೊಳ್ಳಲು ಸುಂದರವಾದ ಶುಭಾಶಯ ರಚಿಸಿ.</string>
     <string name="dark_theme">ಡಾರ್ಕ್ ಥೀಮ್</string>
+    <string name="clear_profile">ಪ್ರೊಫೈಲ್ ತೆರವುಗೊಳಿಸಿ</string>
     <string name="your_name_optional">ನಿಮ್ಮ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
     <string name="card_signature_optional">ಕಾರ್ಡ್‌ನ ಸಹಿ (ಐಚ್ಛಿಕ)</string>
     <string name="custom_greeting_optional">ನಿಮ್ಮದೇ ಶುಭಾಶಯ (ಐಚ್ಛಿಕ)</string>
