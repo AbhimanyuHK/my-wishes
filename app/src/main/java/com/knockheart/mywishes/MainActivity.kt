@@ -277,8 +277,20 @@ private fun WishesHome() {
             singleLine = true
         )
         if (loading) Text(stringResource(R.string.loading_greetings))
-        if (!loading && searchQuery.isNotBlank() && filteredOccasions.isEmpty()) {
-            Text(stringResource(R.string.no_greetings_found), color = MaterialTheme.colorScheme.onSurfaceVariant)
+        if (!loading && filteredOccasions.isEmpty()) {
+            Text(
+                text = stringResource(R.string.no_greetings_found),
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            OutlinedButton(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    searchQuery = ""
+                    favoritesOnly = false
+                }
+            ) {
+                Text(stringResource(R.string.clear_greeting_filters))
+            }
         }
         filteredOccasions.forEach { (occasion, visibleGreetings) ->
             Card(
@@ -351,20 +363,31 @@ private fun WishesHome() {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     paletteRow.forEach { palette ->
-                        OutlinedButton(
-                            modifier = Modifier.weight(1f),
-                            onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
-                        ) {
-                            Text(
-                                text = when (palette) {
-                                    CardPalette.SUNSET -> stringResource(R.string.palette_sunset)
-                                    CardPalette.OCEAN -> stringResource(R.string.palette_ocean)
-                                    CardPalette.FOREST -> stringResource(R.string.palette_forest)
-                                    CardPalette.ROSE -> stringResource(R.string.palette_rose)
-                                    CardPalette.NIGHT -> stringResource(R.string.palette_night)
-                                },
-                                color = androidx.compose.ui.graphics.Color(palette.accentColor)
-                            )
+                        val paletteLabel = when (palette) {
+                            CardPalette.SUNSET -> stringResource(R.string.palette_sunset)
+                            CardPalette.OCEAN -> stringResource(R.string.palette_ocean)
+                            CardPalette.FOREST -> stringResource(R.string.palette_forest)
+                            CardPalette.ROSE -> stringResource(R.string.palette_rose)
+                            CardPalette.NIGHT -> stringResource(R.string.palette_night)
+                        }
+                        val isSelected = preferences.cardPaletteId == palette.id
+                        if (isSelected) {
+                            Button(
+                                modifier = Modifier.weight(1f),
+                                onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
+                            ) {
+                                Text(paletteLabel)
+                            }
+                        } else {
+                            OutlinedButton(
+                                modifier = Modifier.weight(1f),
+                                onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
+                            ) {
+                                Text(
+                                    text = paletteLabel,
+                                    color = androidx.compose.ui.graphics.Color(palette.accentColor)
+                                )
+                            }
                         }
                     }
                     repeat(3 - paletteRow.size) { Spacer(Modifier.weight(1f)) }
