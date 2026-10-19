@@ -53,6 +53,7 @@ import com.knockheart.mywishes.data.catalog.Occasion
 import com.knockheart.mywishes.data.model.AppLanguage
 import com.knockheart.mywishes.data.model.UserProfile
 import com.knockheart.mywishes.data.preferences.UserPreferencesRepository
+import com.knockheart.mywishes.data.profile.ProfileImageStorage
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -97,6 +98,16 @@ private fun WishesHome() {
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var languageMenuExpanded by remember { mutableStateOf(false) }
+    val profileImageStorage = remember { ProfileImageStorage(context) }
+    var profileLoaded by remember { mutableStateOf(false) }
+
+    LaunchedEffect(preferences.profile, profileLoaded) {
+        if (!profileLoaded) {
+            displayName = preferences.profile.displayName
+            photoBitmap = profileImageStorage.load(preferences.profile.profileImagePath)
+            profileLoaded = true
+        }
+    }
 
     LaunchedEffect(preferences.preferredLanguage) {
         loading = true
@@ -117,12 +128,21 @@ private fun WishesHome() {
     ) { uri: Uri? ->
         if (uri != null) {
             try {
-                context.contentResolver.openInputStream(uri)?.use { stream ->
-                    photoBitmap = BitmapFactory.decodeStream(stream)
+                val privatePath = profileImageStorage.copyFromContentUri(uri.toString())
+                val savedBitmap = profileImageStorage.load(privatePath)
+                if (savedBitmap == null) {
+                    errorMessage = "The selected image could not be saved."
+                } else {
+                    photoBitmap = savedBitmap
+                    scope.launch {
+                        preferencesRepository.saveProfile(
+                            UserProfile(displayName = displayName, profileImagePath = privatePath)
+                        )
+                    }
+                    errorMessage = null
                 }
-                if (photoBitmap == null) errorMessage = "The selected image could not be opened."
             } catch (error: Exception) {
-                errorMessage = error.localizedMessage ?: "Could not open the selected image."
+                errorMessage = error.localizedMessage ?: "Could not save the selected image."
             }
         }
     }
@@ -245,7 +265,9 @@ private fun WishesHome() {
                     previewBitmap = CardGeneratorEngine(context).render(request)
                     errorMessage = null
                     scope.launch {
-                        preferencesRepository.saveProfile(UserProfile(displayName = displayName))
+                        preferencesRepository.saveProfile(
+                            UserProfile(displayName = displayName, profileImagePath = preferences.profile.profileImagePath)
+                        )
                     }
                 } catch (error: Exception) {
                     errorMessage = error.localizedMessage ?: "Could not generate the card."
