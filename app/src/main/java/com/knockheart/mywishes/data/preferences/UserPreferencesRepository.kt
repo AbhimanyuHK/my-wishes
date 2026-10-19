@@ -27,7 +27,8 @@ class UserPreferencesRepository(context: Context) {
         UserPreferences(
             profile = UserProfile(
                 displayName = stored[Keys.DISPLAY_NAME].orEmpty(),
-                profileImagePath = stored[Keys.PROFILE_IMAGE_PATH]
+                profileImagePath = stored[Keys.PROFILE_IMAGE_PATH],
+                cardSignature = stored[Keys.CARD_SIGNATURE].orEmpty()
             ),
             preferredLanguage = AppLanguage.fromCode(stored[Keys.PREFERRED_LANGUAGE]),
             isDarkTheme = stored[Keys.DARK_THEME] ?: false
@@ -49,6 +50,13 @@ class UserPreferencesRepository(context: Context) {
             } else {
                 stored[Keys.PROFILE_IMAGE_PATH] = imagePath
             }
+
+            val signature = profile.cardSignature.trim()
+            if (signature.isEmpty()) {
+                stored.remove(Keys.CARD_SIGNATURE)
+            } else {
+                stored[Keys.CARD_SIGNATURE] = signature
+            }
         }
     }
 
@@ -68,12 +76,14 @@ class UserPreferencesRepository(context: Context) {
         dataStore.edit { stored ->
             stored.remove(Keys.DISPLAY_NAME)
             stored.remove(Keys.PROFILE_IMAGE_PATH)
+            stored.remove(Keys.CARD_SIGNATURE)
         }
     }
 
     private object Keys {
         val DISPLAY_NAME = stringPreferencesKey("profile_display_name")
         val PROFILE_IMAGE_PATH = stringPreferencesKey("profile_image_path")
+        val CARD_SIGNATURE = stringPreferencesKey("profile_card_signature")
         val PREFERRED_LANGUAGE = stringPreferencesKey("preferred_language")
         val DARK_THEME = booleanPreferencesKey("dark_theme_enabled")
     }
