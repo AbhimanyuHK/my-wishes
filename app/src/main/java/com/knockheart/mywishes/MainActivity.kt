@@ -29,7 +29,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -61,7 +63,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyWishesTheme {
+            val preferencesRepository = remember { UserPreferencesRepository(this@MainActivity) }
+            val preferences by preferencesRepository.preferences.collectAsState(
+                initial = com.knockheart.mywishes.data.model.UserPreferences()
+            )
+            MyWishesTheme(isDarkTheme = preferences.isDarkTheme) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -74,8 +80,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun MyWishesTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = lightColorScheme(), content = content)
+private fun MyWishesTheme(isDarkTheme: Boolean, content: @Composable () -> Unit) {
+    MaterialTheme(
+        colorScheme = if (isDarkTheme) darkColorScheme() else lightColorScheme(),
+        content = content
+    )
 }
 
 @Composable
@@ -159,6 +168,16 @@ private fun WishesHome() {
             Column(modifier = Modifier.weight(1f)) {
                 Text("My Wishes", style = MaterialTheme.typography.headlineMedium)
                 Text("Create a greeting worth sharing.")
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Dark theme", modifier = Modifier.padding(end = 8.dp))
+                    Switch(
+                        checked = preferences.isDarkTheme,
+                        onCheckedChange = { enabled ->
+                            scope.launch { preferencesRepository.setDarkThemeEnabled(enabled) }
+                        },
+                        modifier = Modifier,
+                    )
+                }
             }
             Column(horizontalAlignment = Alignment.End) {
                 OutlinedButton(onClick = { languageMenuExpanded = true }) {
