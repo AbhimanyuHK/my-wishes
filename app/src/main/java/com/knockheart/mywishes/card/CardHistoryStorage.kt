@@ -31,6 +31,14 @@ class CardHistoryStorage(context: Context, private val maxCards: Int = 10) {
     }
 
     @Synchronized
+    fun delete(file: File): Boolean {
+        val historyDirectory = directory.canonicalFile
+        val target = file.canonicalFile
+        if (target.parentFile != historyDirectory || !target.isFile) return false
+        return target.delete()
+    }
+
+    @Synchronized
     fun listRecent(): List<File> {
         if (!directory.isDirectory) return emptyList()
         return directory.listFiles { file ->

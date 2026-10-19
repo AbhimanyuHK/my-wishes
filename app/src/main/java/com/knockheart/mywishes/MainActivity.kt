@@ -493,15 +493,7 @@ private fun WishesHome() {
             Text(stringResource(R.string.recent_cards), style = MaterialTheme.typography.titleLarge)
             recentCards.forEach { cardFile ->
                 Row(
-                    modifier = Modifier.fillMaxWidth().clickable {
-                        val restored = BitmapFactory.decodeFile(cardFile.absolutePath)
-                        if (restored != null) {
-                            previewBitmap = restored
-                            errorMessage = null
-                        } else {
-                            errorMessage = context.getString(R.string.card_history_load_error)
-                        }
-                    }.padding(vertical = 4.dp),
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
@@ -510,10 +502,39 @@ private fun WishesHome() {
                         Image(
                             bitmap = thumbnail.asImageBitmap(),
                             contentDescription = stringResource(R.string.recent_card_thumbnail),
-                            modifier = Modifier.size(72.dp)
+                            modifier = Modifier.size(72.dp).clickable {
+                                previewBitmap = thumbnail
+                                errorMessage = null
+                            }
                         )
                     }
-                    Text(cardFile.name, modifier = Modifier.weight(1f))
+                    Text(
+                        cardFile.name,
+                        modifier = Modifier.weight(1f).clickable {
+                            val restored = BitmapFactory.decodeFile(cardFile.absolutePath)
+                            if (restored != null) {
+                                previewBitmap = restored
+                                errorMessage = null
+                            } else {
+                                errorMessage = context.getString(R.string.card_history_load_error)
+                            }
+                        }
+                    )
+                    IconButton(
+                        onClick = {
+                            if (cardHistoryStorage.delete(cardFile)) {
+                                recentCards = cardHistoryStorage.listRecent()
+                                errorMessage = null
+                            } else {
+                                errorMessage = context.getString(R.string.card_history_delete_error)
+                            }
+                        },
+                        modifier = Modifier.semantics {
+                            contentDescription = context.getString(R.string.delete_recent_card_accessibility, cardFile.name)
+                        }
+                    ) {
+                        Text("×")
+                    }
                 }
             }
         }
