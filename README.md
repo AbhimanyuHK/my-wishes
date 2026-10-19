@@ -11,7 +11,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 1 — Project scaffolding:** merged into `main`.
 - **Milestone 2 — Offline data foundation:** merged into `main`.
 - **Milestone 3 — Card generation engine:** merged into `main`.
-- **Milestone 4 — Greeting catalog and card creation UI:** submitted for review.
+- **Milestone 4 — Greeting catalog and card creation UI:** merged into `main`.
+- **Milestone 5 — Persistent profile:** submitted for review.
 
 ## Offline data foundation
 
@@ -43,3 +44,11 @@ gradle testDebugUnitTest assembleDebug
 ```
 
 Compilation, automated tests, and device/emulator visual QA have not been executed by the GitHub connector environment.
+
+## Persistent profile
+
+- The display name and selected profile/card photo are restored across sessions.
+- Selected image bytes are copied to app-private `filesDir/profile-images`; only the private path is stored in DataStore.
+- No broad storage permissions or network calls are introduced.
+
+See [Milestone 5 architecture notes](docs/milestones/milestone-5-profile-settings-accessibility.md).
