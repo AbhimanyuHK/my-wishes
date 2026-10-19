@@ -294,6 +294,23 @@ private fun WishesHome() {
             singleLine = true
         )
 
+        OutlinedButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                val oldImagePath = preferences.profile.profileImagePath
+                scope.launch {
+                    preferencesRepository.clearProfile()
+                    oldImagePath?.let(profileImageStorage::delete)
+                    displayName = ""
+                    signature = ""
+                    photoBitmap = null
+                    errorMessage = null
+                }
+            }
+        ) {
+            Text(stringResource(R.string.clear_profile))
+        }
+
         Text(stringResource(R.string.choose_occasion), style = MaterialTheme.typography.titleLarge)
         OutlinedButton(
             modifier = Modifier.fillMaxWidth(),
