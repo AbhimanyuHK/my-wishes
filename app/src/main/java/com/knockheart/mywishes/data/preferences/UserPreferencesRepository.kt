@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.knockheart.mywishes.data.model.AppLanguage
 import com.knockheart.mywishes.data.model.UserPreferences
@@ -31,7 +32,8 @@ class UserPreferencesRepository(context: Context) {
                 cardSignature = stored[Keys.CARD_SIGNATURE].orEmpty()
             ),
             preferredLanguage = AppLanguage.fromCode(stored[Keys.PREFERRED_LANGUAGE]),
-            isDarkTheme = stored[Keys.DARK_THEME] ?: false
+            isDarkTheme = stored[Keys.DARK_THEME] ?: false,
+            favoriteGreetingIds = stored[Keys.FAVORITE_GREETING_IDS] ?: emptySet()
         )
     }
 
@@ -57,6 +59,15 @@ class UserPreferencesRepository(context: Context) {
             } else {
                 stored[Keys.CARD_SIGNATURE] = signature
             }
+        }
+    }
+
+    suspend fun setFavoriteGreeting(greetingId: String, isFavorite: Boolean) {
+        dataStore.edit { stored ->
+            val favorites = stored[Keys.FAVORITE_GREETING_IDS].orEmpty().toMutableSet()
+            if (isFavorite) favorites.add(greetingId) else favorites.remove(greetingId)
+            if (favorites.isEmpty()) stored.remove(Keys.FAVORITE_GREETING_IDS)
+            else stored[Keys.FAVORITE_GREETING_IDS] = favorites
         }
     }
 
@@ -86,5 +97,6 @@ class UserPreferencesRepository(context: Context) {
         val CARD_SIGNATURE = stringPreferencesKey("profile_card_signature")
         val PREFERRED_LANGUAGE = stringPreferencesKey("preferred_language")
         val DARK_THEME = booleanPreferencesKey("dark_theme_enabled")
+        val FAVORITE_GREETING_IDS = stringSetPreferencesKey("favorite_greeting_ids")
     }
 }
