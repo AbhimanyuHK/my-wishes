@@ -117,9 +117,10 @@ private fun WishesHome() {
 
     var occasions by remember { mutableStateOf<List<Occasion>>(emptyList()) }
     var searchQuery by remember { mutableStateOf("") }
+    var favoritesOnly by remember { mutableStateOf(false) }
     val filteredOccasions = remember(occasions, searchQuery) {
         val query = searchQuery.trim()
-        if (query.isEmpty()) {
+        val candidateOccasions = if (query.isEmpty()) {
             occasions.map { occasion -> occasion to occasion.greetings }
         } else {
             occasions.mapNotNull { occasion ->
@@ -132,6 +133,10 @@ private fun WishesHome() {
                 }
                 if (matchingGreetings.isNotEmpty()) occasion to matchingGreetings else null
             }
+        }
+        candidateOccasions.mapNotNull { (occasion, greetings) ->
+            val visible = if (favoritesOnly) greetings.filter { it.id in preferences.favoriteGreetingIds } else greetings
+            if (visible.isNotEmpty()) occasion to visible else null
         }
     }
     var selectedGreeting by remember { mutableStateOf<Greeting?>(null) }
@@ -257,6 +262,12 @@ private fun WishesHome() {
         )
 
         Text(stringResource(R.string.choose_occasion), style = MaterialTheme.typography.titleLarge)
+        OutlinedButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { favoritesOnly = !favoritesOnly }
+        ) {
+            Text(if (favoritesOnly) stringResource(R.string.show_all_greetings) else stringResource(R.string.favorites_only))
+        }
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
@@ -296,6 +307,14 @@ private fun WishesHome() {
                                     color = MaterialTheme.colorScheme.primary
                                 )
                                 Text(greeting.text, modifier = Modifier.weight(1f))
+                                Text(
+                                    text = if (greeting.id in preferences.favoriteGreetingIds) "★" else "☆",
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.clickable {
+                                        val currentlyFavorite = greeting.id in preferences.favoriteGreetingIds
+                                        scope.launch { preferencesRepository.setFavoriteGreeting(greeting.id, !currentlyFavorite) }
+                                    }.padding(start = 10.dp)
+                                )
                             }
                             if (index < visibleGreetings.lastIndex) {
                                 Spacer(Modifier.height(2.dp))
