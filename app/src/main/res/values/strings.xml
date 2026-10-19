@@ -16,6 +16,8 @@
     <string name="palette_rose">Rose</string>
     <string name="palette_night">Night</string>
     <string name="favorites_only">Show favorites only</string>
+    <string name="add_favorite_accessibility">Add greeting to favorites: %1$s</string>
+    <string name="remove_favorite_accessibility">Remove greeting from favorites: %1$s</string>
     <string name="show_all_greetings">Show all greetings</string>
     <string name="loading_greetings">Loading greetings…</string>
     <string name="add_photo_optional">Add a photo (optional)</string>

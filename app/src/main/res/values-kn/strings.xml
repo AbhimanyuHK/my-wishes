@@ -16,6 +16,8 @@
     <string name="palette_rose">ಗುಲಾಬಿ</string>
     <string name="palette_night">ರಾತ್ರಿ</string>
     <string name="favorites_only">ಮೆಚ್ಚಿನ ಶುಭಾಶಯಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸಿ</string>
+    <string name="add_favorite_accessibility">ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಶುಭಾಶಯ ಸೇರಿಸಿ: %1$s</string>
+    <string name="remove_favorite_accessibility">ಮೆಚ್ಚಿನವುಗಳಿಂದ ಶುಭಾಶಯ ತೆಗೆದುಹಾಕಿ: %1$s</string>
     <string name="show_all_greetings">ಎಲ್ಲಾ ಶುಭಾಶಯಗಳನ್ನು ತೋರಿಸಿ</string>
     <string name="loading_greetings">ಶುಭಾಶಯಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <string name="add_photo_optional">ಫೋಟೋ ಸೇರಿಸಿ (ಐಚ್ಛಿಕ)</string>

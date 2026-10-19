@@ -19,7 +19,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 - **Milestone 9 — Offline greeting search:** merged into `main`.
 - **Milestone 10 — Favorite greetings:** merged into `main`.
 - **Milestone 11 — Card color palettes:** merged into `main`.
-- **Milestone 12 — Browsing UX polish:** proposed in pull request.
+- **Milestone 12 — Browsing UX polish:** merged into `main`.
+- **Milestone 13 — Accessible favorite controls:** proposed in pull request.
 
 ## Offline data foundation
 
@@ -36,7 +37,7 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 
 ## User interface
 
-- Browse and search occasions/greetings offline, save favorites, filter to favorite greetings, clear filters from an empty state, switch language, add a photo, generate a preview, and share the PNG.
+- Browse and search occasions/greetings offline, save favorites with screen-reader-labelled controls, filter to favorite greetings, clear filters from an empty state, switch language, add a photo, generate a preview, and share the PNG.
 - Display name, card signature, and selected profile photo are restored from local preferences/app-private storage.
 - Photo selection uses the Android system picker; selected image bytes are copied into app-private storage.
 - The typeface hook supports a bundled Kannada font later, but no custom font binary is currently included.
