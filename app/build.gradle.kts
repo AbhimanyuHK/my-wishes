@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.abhimanyu.mywishes"
+    namespace = "com.knockheart.mywishes"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.abhimanyu.mywishes"
+        applicationId = "com.knockheart.mywishes"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
