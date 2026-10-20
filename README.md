@@ -8,9 +8,8 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 
 ## Current milestones
 
-- **Milestones 1–20:** merged into `main`.
-- **Milestone 21 — CI and regression tests:** merged into `main`.
-- **Milestone 22 — Release readiness and final QA checklist:** proposed in pull request.
+- **Milestones 1–22:** merged into `main`.
+- **Milestone 23 — Production release signing:** signing configuration and CI verification are proposed in a separate pull request.
 
 ## Offline data foundation
 
@@ -33,7 +32,16 @@ The permanent Android namespace, application ID, and Kotlin source package are `
 
 ## Build, test, and release
 
-GitHub Actions runs catalog/package identity validation, JVM unit tests, and debug/release variant assembly. CI build success does not replace visual QA on real devices or emulators.
+GitHub Actions validates the catalogs and package identity, runs JVM unit tests, and builds debug/release variants. Pull-request builds run without release secrets and therefore produce unsigned release variants. Pushes to `main` and manual workflow runs require the four release-signing secrets, decode the keystore only on the temporary runner, sign the release APK/AAB, verify signatures, and upload the signed packages as a GitHub Actions artifact retained for 30 days.
+
+Required repository secrets under **Settings → Secrets and variables → Actions**:
+
+- `ANDROID_KEYSTORE_BASE64`: Base64 text of the private `.jks` file.
+- `ANDROID_KEYSTORE_PASSWORD`: keystore password.
+- `ANDROID_KEY_ALIAS`: key alias (for this key: `my-wishes-release`).
+- `ANDROID_KEY_PASSWORD`: private key password.
+
+Never commit the keystore, Base64 file, or passwords. Base64 is an encoding, not encryption. Keep a secure offline backup of the keystore and passwords. Losing the signing key can prevent future updates signed with the same identity.
 
 With Java 17, Android SDK tooling, and Gradle 8.13 installed, run:
 
@@ -41,9 +49,10 @@ With Java 17, Android SDK tooling, and Gradle 8.13 installed, run:
 gradle --no-daemon testDebugUnitTest
 gradle --no-daemon assembleDebug
 gradle --no-daemon assembleRelease
+gradle --no-daemon bundleRelease
 ```
 
-CI also builds the release Android App Bundle (AAB) and uploads it as a downloadable GitHub Actions artifact named `my-wishes-release-aab-<run-number>` (retained for 30 days). Open the successful Actions run and download it from **Artifacts**. This keeps generated binaries out of Git history. The current release build is not configured with production signing, so do not publish the generated AAB. Store any future keystore and passwords in protected GitHub Actions secrets, never in the repository. See [release readiness and QA checklist](docs/release-readiness.md).
+The signed production artifact is available only after a successful push-to-`main` or manually dispatched workflow with all four secrets configured. Open the successful [GitHub Actions runs](https://github.com/AbhimanyuHK/my-wishes/actions), select the run, and download `my-wishes-production-release-<run-number>` from **Artifacts**. Artifacts expire after 30 days; attach approved binaries to a versioned GitHub Release for longer-term distribution. CI success does not replace visual QA on a real device or emulator. See [release readiness and QA checklist](docs/release-readiness.md).
 
 ## Architecture notes
 
