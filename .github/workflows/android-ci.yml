@@ -27,6 +27,10 @@ jobs:
   android:
     name: Android tests and build variants
     runs-on: ubuntu-latest
+    env:
+      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -43,6 +47,32 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.13"
+
+      # Release builds on main and manually dispatched release builds must be signed.
+      # PR builds deliberately skip secrets and build unsigned release variants.
+      - name: Require release signing secrets
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64" || { echo "::error::Missing ANDROID_KEYSTORE_BASE64 secret"; exit 1; }
+          test -n "$ANDROID_KEYSTORE_PASSWORD" || { echo "::error::Missing ANDROID_KEYSTORE_PASSWORD secret"; exit 1; }
+          test -n "$ANDROID_KEY_ALIAS" || { echo "::error::Missing ANDROID_KEY_ALIAS secret"; exit 1; }
+          test -n "$ANDROID_KEY_PASSWORD" || { echo "::error::Missing ANDROID_KEY_PASSWORD secret"; exit 1; }
+
+      - name: Decode release keystore
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > app/release-key.jks
+          chmod 600 app/release-key.jks
+          test -s app/release-key.jks
+
       - name: Run unit tests
         run: gradle --no-daemon testDebugUnitTest
       - name: Assemble debug APK
@@ -51,10 +81,36 @@ jobs:
         run: gradle --no-daemon assembleRelease
       - name: Build release Android App Bundle
         run: gradle --no-daemon bundleRelease
-      - name: Upload release AAB for reference
+
+      - name: Verify production APK signature
+        if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find app/build/outputs/apk/release -maxdepth 1 -name '*.apk' -type f | head -n 1)"
+          test -n "$APK"
+          APKSIGNER="$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          test -n "$APKSIGNER"
+          "$APKSIGNER" verify --verbose "$APK"
+
+      - name: Verify production AAB signature
+        if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          AAB="$(find app/build/outputs/bundle/release -maxdepth 1 -name '*.aab' -type f | head -n 1)"
+          test -n "$AAB"
+          jarsigner -verify -verbose -certs "$AAB" > /tmp/aab-signature-verification.txt
+          grep -q "jar verified." /tmp/aab-signature-verification.txt
+          echo "Release AAB signature verified."
+
+      - name: Upload signed release APK and AAB
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
-          name: my-wishes-release-aab-${{ github.run_number }}
-          path: app/build/outputs/bundle/release/*.aab
+          name: my-wishes-production-release-${{ github.run_number }}
+          path: |
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/bundle/release/*.aab
           if-no-files-found: error
           retention-days: 30
