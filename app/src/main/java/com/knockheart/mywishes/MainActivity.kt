@@ -612,7 +612,7 @@ private fun WishesApp() {
 @Composable
 private fun CategoryTile(occasion: Occasion, modifier: Modifier = Modifier, onClick: () -> Unit) {
     val symbols = listOf("🎂", "💐", "❤️", "🌼", "🎉", "🌙", "✨", "🎈")
-    val symbol = symbols[(occasion.id.hashCode().toLong().and(0x7fffffff).rem(symbols.size)).toInt()]
+    val symbol = symbols[(occasion.id.hashCode() and Int.MAX_VALUE) % symbols.size]
     Card(
         modifier = modifier.heightIn(min = 132.dp).clickable(onClick = onClick),
         shape = RoundedCornerShape(20.dp),
