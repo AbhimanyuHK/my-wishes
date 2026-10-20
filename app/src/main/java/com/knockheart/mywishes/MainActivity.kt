@@ -1,9 +1,8 @@
 package com.knockheart.mywishes
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import java.io.File
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,33 +11,41 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -48,18 +55,20 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
-import com.knockheart.mywishes.card.CardPalette
 import com.knockheart.mywishes.card.CardGenerationRequest
 import com.knockheart.mywishes.card.CardGeneratorEngine
 import com.knockheart.mywishes.card.CardHistoryStorage
+import com.knockheart.mywishes.card.CardPalette
 import com.knockheart.mywishes.data.catalog.AssetGreetingCatalogRepository
 import com.knockheart.mywishes.data.catalog.Greeting
 import com.knockheart.mywishes.data.catalog.Occasion
@@ -68,7 +77,17 @@ import com.knockheart.mywishes.data.model.UserProfile
 import com.knockheart.mywishes.data.preferences.UserPreferencesRepository
 import com.knockheart.mywishes.data.profile.ProfileImageStorage
 import kotlinx.coroutines.launch
+import java.io.File
 import java.util.Locale
+import android.content.res.Configuration
+
+private enum class AppRoute { HOME, CATEGORIES, WISH_LIST, EDITOR, HISTORY, PROFILE }
+private enum class MainTab(val label: String, val symbol: String) {
+    HOME("Home", "⌂"),
+    CATEGORIES("Categories", "▦"),
+    HISTORY("History", "◷"),
+    PROFILE("Profile", "●")
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,19 +106,14 @@ class MainActivity : ComponentActivity() {
             val localizedContext = remember(localizedConfiguration) {
                 createConfigurationContext(localizedConfiguration)
             }
-            CompositionLocalProvider(
-                // The localized Context is a ConfigurationContext, not the Activity itself.
-                // Explicitly provide the Activity Result owner so Compose launchers can register.
+            androidx.compose.runtime.CompositionLocalProvider(
                 LocalActivityResultRegistryOwner provides this@MainActivity,
-                LocalContext provides localizedContext,
+                androidx.compose.ui.platform.LocalContext provides localizedContext,
                 LocalConfiguration provides localizedConfiguration
             ) {
                 MyWishesTheme(isDarkTheme = preferences.isDarkTheme) {
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                        WishesHome()
+                    Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                        WishesApp()
                     }
                 }
             }
@@ -109,510 +123,529 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MyWishesTheme(isDarkTheme: Boolean, content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = if (isDarkTheme) darkColorScheme() else lightColorScheme(),
-        content = content
+    val lightScheme = lightColorScheme(
+        primary = Color(0xFF7655D9),
+        onPrimary = Color.White,
+        secondary = Color(0xFFEC8C78),
+        background = Color(0xFFFFFAF7),
+        surface = Color(0xFFFFFFFF),
+        surfaceVariant = Color(0xFFF1ECFA)
     )
+    val darkScheme = darkColorScheme(
+        primary = Color(0xFFC6B7FF),
+        secondary = Color(0xFFFFB6A5)
+    )
+    MaterialTheme(colorScheme = if (isDarkTheme) darkScheme else lightScheme, content = content)
 }
 
 @Composable
-private fun WishesHome() {
+private fun WishesApp() {
     val context = LocalContext.current
     val preferencesRepository = remember { UserPreferencesRepository(context) }
     val catalogRepository = remember { AssetGreetingCatalogRepository(context) }
+    val profileImageStorage = remember { ProfileImageStorage(context) }
+    val historyStorage = remember { CardHistoryStorage(context) }
     val preferences by preferencesRepository.preferences.collectAsState(
         initial = com.knockheart.mywishes.data.model.UserPreferences()
     )
     val scope = rememberCoroutineScope()
 
+    var route by remember { mutableStateOf(AppRoute.HOME) }
     var occasions by remember { mutableStateOf<List<Occasion>>(emptyList()) }
-    var searchQuery by remember { mutableStateOf("") }
-    var favoritesOnly by remember { mutableStateOf(false) }
-    val filteredOccasions = remember(occasions, searchQuery, favoritesOnly, preferences.favoriteGreetingIds) {
-        val query = searchQuery.trim()
-        val candidateOccasions = if (query.isEmpty()) {
-            occasions.map { occasion -> occasion to occasion.greetings }
-        } else {
-            occasions.mapNotNull { occasion ->
-                val occasionMatches = occasion.title.contains(query, ignoreCase = true) ||
-                    occasion.description.contains(query, ignoreCase = true)
-                val matchingGreetings = if (occasionMatches) {
-                    occasion.greetings
-                } else {
-                    occasion.greetings.filter { it.text.contains(query, ignoreCase = true) }
-                }
-                if (matchingGreetings.isNotEmpty()) occasion to matchingGreetings else null
-            }
-        }
-        candidateOccasions.mapNotNull { (occasion, greetings) ->
-            val visible = if (favoritesOnly) greetings.filter { it.id in preferences.favoriteGreetingIds } else greetings
-            if (visible.isNotEmpty()) occasion to visible else null
-        }
-    }
-    var selectedGreeting by remember { mutableStateOf<Greeting?>(null) }
     var selectedOccasion by remember { mutableStateOf<Occasion?>(null) }
+    var selectedGreeting by remember { mutableStateOf<Greeting?>(null) }
+    var search by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var signature by remember { mutableStateOf("") }
-    var customGreeting by remember { mutableStateOf("") }
-    var photoBitmap by remember { mutableStateOf<android.graphics.Bitmap?>(null) }
-    var previewBitmap by remember { mutableStateOf<android.graphics.Bitmap?>(null) }
+    var profileImagePath by remember { mutableStateOf<String?>(null) }
+    var profilePhoto by remember { mutableStateOf<Bitmap?>(null) }
+    var useProfilePhoto by remember { mutableStateOf(true) }
+    var customWish by remember { mutableStateOf(false) }
+    var customWishText by remember { mutableStateOf("") }
+    var customOccasionTitle by remember { mutableStateOf("A special wish") }
+    var previewBitmap by remember { mutableStateOf<Bitmap?>(null) }
     var recentCards by remember { mutableStateOf<List<File>>(emptyList()) }
+    var message by remember { mutableStateOf<String?>(null) }
     var loading by remember { mutableStateOf(false) }
-    var errorMessage by remember { mutableStateOf<String?>(null) }
-    var languageMenuExpanded by remember { mutableStateOf(false) }
-    val profileImageStorage = remember { ProfileImageStorage(context) }
-    val cardHistoryStorage = remember { CardHistoryStorage(context) }
-    var profileLoaded by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        recentCards = cardHistoryStorage.listRecent()
-    }
-
-    LaunchedEffect(preferences.profile, profileLoaded) {
-        if (!profileLoaded) {
-            displayName = preferences.profile.displayName
-            signature = preferences.profile.cardSignature
-            photoBitmap = profileImageStorage.load(preferences.profile.profileImagePath)
-            profileLoaded = true
-        }
-    }
+    var languageMenuOpen by remember { mutableStateOf(false) }
 
     LaunchedEffect(preferences.preferredLanguage) {
         loading = true
-        errorMessage = null
         try {
             occasions = catalogRepository.loadCatalog(preferences.preferredLanguage.code).occasions
-            selectedOccasion = occasions.firstOrNull()
-            selectedGreeting = selectedOccasion?.greetings?.firstOrNull()
+            if (selectedOccasion == null) selectedOccasion = occasions.firstOrNull()
         } catch (error: Exception) {
-            errorMessage = error.localizedMessage ?: context.getString(R.string.catalog_load_error)
+            message = error.localizedMessage ?: "Could not load wishes. Please try again."
         } finally {
             loading = false
         }
     }
+    LaunchedEffect(preferences.profile) {
+        displayName = preferences.profile.displayName
+        signature = preferences.profile.cardSignature
+        profileImagePath = preferences.profile.profileImagePath
+        profilePhoto = profileImageStorage.load(preferences.profile.profileImagePath)
+    }
+    LaunchedEffect(Unit) { recentCards = historyStorage.listRecent() }
 
-    val saveCardLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.CreateDocument("image/png")
-    ) { uri ->
+    val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        if (uri != null) {
+            try {
+                val previousPath = profileImagePath
+                val newPath = profileImageStorage.copyFromContentUri(uri.toString())
+                val bitmap = profileImageStorage.load(newPath)
+                if (bitmap == null) {
+                    message = "Couldn't load that photo."
+                } else {
+                    profileImagePath = newPath
+                    profilePhoto = bitmap
+                    scope.launch {
+                        preferencesRepository.saveProfile(
+                            UserProfile(displayName = displayName, profileImagePath = newPath, cardSignature = signature)
+                        )
+                        previousPath?.let(profileImageStorage::delete)
+                    }
+                    message = "Profile photo updated."
+                }
+            } catch (error: Exception) {
+                message = error.localizedMessage ?: "Couldn't save that photo."
+            }
+        }
+    }
+
+    val saveCardLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("image/png")) { uri ->
         val bitmap = previewBitmap
         if (uri != null && bitmap != null) {
             try {
-                val output = context.contentResolver.openOutputStream(uri)
-                    ?: throw IllegalStateException(context.getString(R.string.card_save_error))
+                val output = context.contentResolver.openOutputStream(uri) ?: error("Couldn't open the destination.")
                 output.use { stream ->
-                    if (!bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, stream)) {
-                        throw IllegalStateException(context.getString(R.string.card_save_error))
-                    }
+                    check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)) { "Couldn't save the image." }
                 }
-                errorMessage = context.getString(R.string.card_saved_successfully)
+                message = "Card saved to your device."
             } catch (error: Exception) {
-                errorMessage = error.localizedMessage ?: context.getString(R.string.card_save_error)
+                message = error.localizedMessage ?: "Couldn't save the card."
             }
         }
     }
 
-    val photoPicker = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
-        if (uri != null) {
-            try {
-                val privatePath = profileImageStorage.copyFromContentUri(uri.toString())
-                val savedBitmap = profileImageStorage.load(privatePath)
-                if (savedBitmap == null) {
-                    errorMessage = context.getString(R.string.image_save_error)
-                } else {
-                    photoBitmap = savedBitmap
-                    scope.launch {
-                        preferencesRepository.saveProfile(
-                            UserProfile(
-                                displayName = displayName,
-                                profileImagePath = privatePath,
-                                cardSignature = signature
-                            )
-                        )
-                    }
-                    errorMessage = null
-                }
-            } catch (error: Exception) {
-                errorMessage = error.localizedMessage ?: context.getString(R.string.image_save_error)
+    fun openOccasion(occasion: Occasion) {
+        selectedOccasion = occasion
+        selectedGreeting = null
+        search = ""
+        route = AppRoute.WISH_LIST
+    }
+
+    fun openGreeting(occasion: Occasion, greeting: Greeting) {
+        selectedOccasion = occasion
+        selectedGreeting = greeting
+        customWish = false
+        customWishText = ""
+        previewBitmap = null
+        message = null
+        route = AppRoute.EDITOR
+    }
+
+    fun generateCard() {
+        val greetingText = if (customWish) customWishText.trim() else selectedGreeting?.text.orEmpty()
+        if (greetingText.isBlank()) {
+            message = "Add a wish message before creating your card."
+            return
+        }
+        try {
+            val palette = CardPalette.fromId(preferences.cardPaletteId)
+            val bitmap = CardGeneratorEngine(context).render(
+                CardGenerationRequest(
+                    greetingText = greetingText,
+                    occasionTitle = if (customWish) customOccasionTitle.trim().ifBlank { "A special wish" } else selectedOccasion?.title,
+                    signature = signature.ifBlank { displayName },
+                    photo = if (useProfilePhoto) profilePhoto else null,
+                    backgroundColor = palette.backgroundColor,
+                    accentColor = palette.accentColor,
+                    textColor = palette.textColor
+                )
+            )
+            previewBitmap = bitmap
+            historyStorage.save(bitmap)
+            recentCards = historyStorage.listRecent()
+            message = "Your wish card is ready!"
+            scope.launch {
+                preferencesRepository.saveProfile(
+                    UserProfile(displayName = displayName, profileImagePath = profileImagePath, cardSignature = signature)
+                )
             }
+        } catch (error: Exception) {
+            message = error.localizedMessage ?: "Couldn't create the card. Please try again."
         }
     }
 
-    Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(14.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
-                Text(stringResource(R.string.home_subtitle))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(stringResource(R.string.dark_theme), modifier = Modifier.padding(end = 8.dp))
-                    Switch(
-                        checked = preferences.isDarkTheme,
-                        onCheckedChange = { enabled ->
-                            scope.launch { preferencesRepository.setDarkThemeEnabled(enabled) }
-                        },
-                        modifier = Modifier,
+    Scaffold(
+        bottomBar = {
+            NavigationBar(containerColor = MaterialTheme.colorScheme.surface) {
+                MainTab.entries.forEach { tab ->
+                    val target = when (tab) {
+                        MainTab.HOME -> AppRoute.HOME
+                        MainTab.CATEGORIES -> AppRoute.CATEGORIES
+                        MainTab.HISTORY -> AppRoute.HISTORY
+                        MainTab.PROFILE -> AppRoute.PROFILE
+                    }
+                    NavigationBarItem(
+                        selected = route == target || (tab == MainTab.CATEGORIES && route in setOf(AppRoute.WISH_LIST, AppRoute.EDITOR)),
+                        onClick = { route = target; message = null },
+                        icon = { Text(tab.symbol, style = MaterialTheme.typography.titleMedium) },
+                        label = { Text(tab.label) }
                     )
                 }
             }
-            Column(horizontalAlignment = Alignment.End) {
-                OutlinedButton(onClick = { languageMenuExpanded = true }) {
-                    Text(preferences.preferredLanguage.nativeName)
+        }
+    ) { padding ->
+        Column(
+            Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState()).padding(horizontal = 18.dp, vertical = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text("Knockheart", color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+                    Text("My Wishes", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                 }
-                DropdownMenu(
-                    expanded = languageMenuExpanded,
-                    onDismissRequest = { languageMenuExpanded = false }
-                ) {
-                    AppLanguage.supported.forEach { language ->
-                        DropdownMenuItem(
-                            text = { Text(language.nativeName) },
-                            onClick = {
-                                languageMenuExpanded = false
-                                scope.launch { preferencesRepository.setPreferredLanguage(language) }
+                if (profilePhoto != null) {
+                    Image(
+                        bitmap = profilePhoto!!.asImageBitmap(),
+                        contentDescription = "Profile photo",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.size(52.dp).clip(CircleShape).clickable { route = AppRoute.PROFILE }
+                    )
+                } else {
+                    Box(
+                        Modifier.size(52.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surfaceVariant).clickable { route = AppRoute.PROFILE },
+                        contentAlignment = Alignment.Center
+                    ) { Text("☺", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary) }
+                }
+            }
+
+            when (route) {
+                AppRoute.HOME -> {
+                    Card(
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                        shape = RoundedCornerShape(26.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(Modifier.padding(22.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(if (displayName.isBlank()) "Make someone's day ✨" else "Hello, $displayName! ✨", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                            Text("A little wish can make a big difference. Create something lovely today.")
+                            Button(onClick = { route = AppRoute.CATEGORIES }, modifier = Modifier.fillMaxWidth()) {
+                                Text("Explore wishes  →")
                             }
-                        )
+                            OutlinedButton(onClick = {
+                                customWish = true
+                                selectedGreeting = null
+                                customWishText = ""
+                                customOccasionTitle = "A special wish"
+                                previewBitmap = null
+                                route = AppRoute.EDITOR
+                            }, modifier = Modifier.fillMaxWidth()) {
+                                Text("✦  Create a custom card")
+                            }
+                        }
                     }
-                }
-            }
-        }
-
-        OutlinedTextField(
-            value = displayName,
-            onValueChange = { displayName = it },
-            modifier = Modifier.fillMaxWidth(),
-            label = { Text(stringResource(R.string.your_name_optional)) },
-            singleLine = true
-        )
-        OutlinedTextField(
-            value = signature,
-            onValueChange = { signature = it },
-            modifier = Modifier.fillMaxWidth(),
-            label = { Text(stringResource(R.string.card_signature_optional)) },
-            singleLine = true
-        )
-
-        OutlinedButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = {
-                val oldImagePath = preferences.profile.profileImagePath
-                scope.launch {
-                    preferencesRepository.clearProfile()
-                    oldImagePath?.let(profileImageStorage::delete)
-                    displayName = ""
-                    signature = ""
-                    photoBitmap = null
-                    errorMessage = null
-                }
-            }
-        ) {
-            Text(stringResource(R.string.clear_profile))
-        }
-
-        Text(stringResource(R.string.choose_occasion), style = MaterialTheme.typography.titleLarge)
-        OutlinedButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { favoritesOnly = !favoritesOnly }
-        ) {
-            Text(if (favoritesOnly) stringResource(R.string.show_all_greetings) else stringResource(R.string.favorites_only))
-        }
-        OutlinedTextField(
-            value = searchQuery,
-            onValueChange = { searchQuery = it },
-            modifier = Modifier.fillMaxWidth(),
-            label = { Text(stringResource(R.string.search_greetings)) },
-            singleLine = true
-        )
-        if (loading) Text(stringResource(R.string.loading_greetings))
-        if (!loading && filteredOccasions.isEmpty()) {
-            Text(
-                text = stringResource(R.string.no_greetings_found),
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            OutlinedButton(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {
-                    searchQuery = ""
-                    favoritesOnly = false
-                }
-            ) {
-                Text(stringResource(R.string.clear_greeting_filters))
-            }
-        }
-        filteredOccasions.forEach { (occasion, visibleGreetings) ->
-            Card(
-                modifier = Modifier.fillMaxWidth().clickable {
-                    selectedOccasion = occasion
-                    selectedGreeting = visibleGreetings.firstOrNull()
-                    customGreeting = ""
-                    previewBitmap = null
-                }
-            ) {
-                Column(modifier = Modifier.padding(14.dp)) {
-                    Text(occasion.title, style = MaterialTheme.typography.titleMedium)
-                    if (occasion.description.isNotBlank()) {
-                        Text(occasion.description, style = MaterialTheme.typography.bodySmall)
+                    Text("Browse by occasion", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                    occasions.chunked(2).forEach { pair ->
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            pair.forEach { occasion ->
+                                CategoryTile(occasion, Modifier.weight(1f)) { openOccasion(occasion) }
+                            }
+                            if (pair.size == 1) Spacer(Modifier.weight(1f))
+                        }
                     }
-                    if (selectedOccasion?.id == occasion.id) {
-                        Spacer(Modifier.height(8.dp))
-                        visibleGreetings.forEachIndexed { index, greeting ->
-                            Row(
-                                modifier = Modifier.fillMaxWidth().clickable {
-                                    selectedGreeting = greeting
-                                    customGreeting = ""
-                                    previewBitmap = null
-                                }.padding(vertical = 5.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    text = if (selectedGreeting?.id == greeting.id) "● " else "○ ",
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Text(greeting.text, modifier = Modifier.weight(1f))
-                                val isFavorite = greeting.id in preferences.favoriteGreetingIds
-                                IconButton(
-                                    onClick = {
-                                        scope.launch {
-                                            preferencesRepository.setFavoriteGreeting(greeting.id, !isFavorite)
-                                        }
-                                    },
-                                    modifier = Modifier.semantics {
-                                        contentDescription = context.getString(
-                                            if (isFavorite) R.string.remove_favorite_accessibility
-                                            else R.string.add_favorite_accessibility,
-                                            greeting.text
-                                        )
-                                    }
-                                ) {
-                                    Text(
-                                        text = if (isFavorite) "★" else "☆",
-                                        color = MaterialTheme.colorScheme.primary
-                                    )
+                    if (recentCards.isNotEmpty()) {
+                        Text("Recently created", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            recentCards.take(3).forEach { file ->
+                                HistoryThumbnail(file, Modifier.weight(1f)) {
+                                    val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+                                    if (bitmap != null) { previewBitmap = bitmap; route = AppRoute.HISTORY }
                                 }
                             }
-                            if (index < visibleGreetings.lastIndex) {
-                                Spacer(Modifier.height(2.dp))
+                        }
+                        OutlinedButton(onClick = { route = AppRoute.HISTORY }, modifier = Modifier.fillMaxWidth()) { Text("View all history") }
+                    }
+                }
+                AppRoute.CATEGORIES -> {
+                    Text("Find the perfect wish", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                    Text("Choose an occasion to explore ready-to-use messages.")
+                    OutlinedTextField(
+                        value = search, onValueChange = { search = it },
+                        modifier = Modifier.fillMaxWidth(), singleLine = true,
+                        label = { Text("Search categories") }
+                    )
+                    val visible = occasions.filter {
+                        it.title.contains(search, ignoreCase = true) || it.description.contains(search, ignoreCase = true)
+                    }
+                    visible.chunked(2).forEach { pair ->
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            pair.forEach { occasion -> CategoryTile(occasion, Modifier.weight(1f)) { openOccasion(occasion) } }
+                            if (pair.size == 1) Spacer(Modifier.weight(1f))
+                        }
+                    }
+                    if (visible.isEmpty()) Text("No categories match your search.")
+                }
+                AppRoute.WISH_LIST -> {
+                    OutlinedButton(onClick = { route = AppRoute.CATEGORIES }) { Text("← All categories") }
+                    Text(selectedOccasion?.title ?: "Wishes", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                    Text(selectedOccasion?.description.orEmpty(), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    selectedOccasion?.greetings.orEmpty().forEach { greeting ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth().clickable { openGreeting(selectedOccasion!!, greeting) },
+                            shape = RoundedCornerShape(18.dp),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                        ) {
+                            Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+                                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                                    Text(greeting.text, style = MaterialTheme.typography.bodyLarge)
+                                    Text("Tap to design this card  →", color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.labelMedium)
+                                }
+                                Text("♡", color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.titleLarge,
+                                    modifier = Modifier.clickable {
+                                        scope.launch {
+                                            val isFavorite = greeting.id in preferences.favoriteGreetingIds
+                                            preferencesRepository.setFavoriteGreeting(greeting.id, !isFavorite)
+                                        }
+                                    }.padding(8.dp))
                             }
                         }
                     }
+                    OutlinedButton(onClick = {
+                        customWish = true
+                        customWishText = ""
+                        customOccasionTitle = selectedOccasion?.title ?: "A special wish"
+                        route = AppRoute.EDITOR
+                    }, modifier = Modifier.fillMaxWidth()) { Text("＋ Write my own wish") }
                 }
-            }
-        }
-
-        if (selectedGreeting != null) {
-            OutlinedTextField(
-                value = customGreeting,
-                onValueChange = { customGreeting = it },
-                modifier = Modifier.fillMaxWidth(),
-                label = { Text(stringResource(R.string.custom_greeting_optional)) },
-                placeholder = { Text(stringResource(R.string.custom_greeting_hint)) },
-                minLines = 2,
-                maxLines = 5
-            )
-        }
-
-        OutlinedButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { photoPicker.launch("image/*") }
-        ) {
-            Text(if (photoBitmap == null) stringResource(R.string.add_photo_optional) else stringResource(R.string.change_selected_photo))
-        }
-        if (photoBitmap != null) {
-            Image(
-                bitmap = photoBitmap!!.asImageBitmap(),
-                contentDescription = stringResource(R.string.selected_photo),
-                modifier = Modifier.size(112.dp).align(Alignment.CenterHorizontally)
-            )
-        }
-
-        Text(stringResource(R.string.card_color_palette), style = MaterialTheme.typography.titleMedium)
-        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            listOf(
-                listOf(CardPalette.SUNSET, CardPalette.OCEAN, CardPalette.FOREST),
-                listOf(CardPalette.ROSE, CardPalette.NIGHT)
-            ).forEach { paletteRow ->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    paletteRow.forEach { palette ->
-                        val paletteLabel = when (palette) {
-                            CardPalette.SUNSET -> stringResource(R.string.palette_sunset)
-                            CardPalette.OCEAN -> stringResource(R.string.palette_ocean)
-                            CardPalette.FOREST -> stringResource(R.string.palette_forest)
-                            CardPalette.ROSE -> stringResource(R.string.palette_rose)
-                            CardPalette.NIGHT -> stringResource(R.string.palette_night)
-                        }
-                        val isSelected = preferences.cardPaletteId == palette.id
-                        if (isSelected) {
-                            Button(
-                                modifier = Modifier.weight(1f),
-                                onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
-                            ) {
-                                Text(paletteLabel)
+                AppRoute.EDITOR -> {
+                    OutlinedButton(onClick = {
+                        route = if (customWish) AppRoute.HOME else AppRoute.WISH_LIST
+                        previewBitmap = null
+                    }) { Text("← Back") }
+                    Text(if (customWish) "Create your own card" else "Make it yours", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                    Text("Personalize your message, then create a shareable square greeting card.")
+                    if (customWish) {
+                        OutlinedTextField(
+                            value = customOccasionTitle, onValueChange = { customOccasionTitle = it },
+                            modifier = Modifier.fillMaxWidth(), label = { Text("Card title / occasion") }, singleLine = true
+                        )
+                        OutlinedTextField(
+                            value = customWishText, onValueChange = { customWishText = it },
+                            modifier = Modifier.fillMaxWidth(), label = { Text("Your custom wish") },
+                            placeholder = { Text("Write a message from your heart…") }, minLines = 4, maxLines = 8
+                        )
+                    } else {
+                        Card(shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
+                            Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(selectedOccasion?.title.orEmpty(), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                                Text(selectedGreeting?.text.orEmpty(), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Medium)
                             }
+                        }
+                        OutlinedTextField(
+                            value = customWishText, onValueChange = { customWishText = it },
+                            modifier = Modifier.fillMaxWidth(), label = { Text("Edit message (optional)") },
+                            placeholder = { Text("Leave empty to use the selected wish") }, minLines = 2, maxLines = 6
+                        )
+                    }
+                    Text("Card style", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        listOf(CardPalette.SUNSET, CardPalette.OCEAN, CardPalette.FOREST, CardPalette.ROSE, CardPalette.NIGHT).forEach { palette ->
+                            val selected = preferences.cardPaletteId == palette.id
+                            Box(
+                                Modifier.weight(1f).height(48.dp).clip(RoundedCornerShape(12.dp))
+                                    .background(Color(palette.backgroundColor))
+                                    .clickable { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
+                                    .padding(3.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Box(Modifier.fillMaxSize().clip(RoundedCornerShape(9.dp)).background(Color(palette.accentColor).copy(alpha = if (selected) 0.85f else 0.35f)), contentAlignment = Alignment.Center) {
+                                    Text(if (selected) "✓" else " ", color = Color.White)
+                                }
+                            }
+                        }
+                    }
+                    if (profilePhoto != null) {
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                            Text("Include my profile photo", modifier = Modifier.weight(1f))
+                            Switch(checked = useProfilePhoto, onCheckedChange = { useProfilePhoto = it })
+                        }
+                    }
+                    OutlinedButton(onClick = { route = AppRoute.PROFILE }, modifier = Modifier.fillMaxWidth()) { Text("Edit profile & photo") }
+                    Button(
+                        onClick = { generateCard() },
+                        enabled = if (customWish) customWishText.isNotBlank() else selectedGreeting != null,
+                        modifier = Modifier.fillMaxWidth()
+                    ) { Text("✨ Generate wish card") }
+
+                    previewBitmap?.let { bitmap ->
+                        Text("Preview", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                        Image(bitmap.asImageBitmap(), contentDescription = "Generated greeting card preview", contentScale = ContentScale.Fit,
+                            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)))
+                        OutlinedButton(onClick = { saveCardLauncher.launch("my-wish.png") }, modifier = Modifier.fillMaxWidth()) { Text("Save image to device") }
+                        Button(onClick = {
+                            try {
+                                val file = File(context.cacheDir, "my-wishes-share.png")
+                                file.outputStream().use { stream ->
+                                    check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)) { "Couldn't prepare the image to share." }
+                                }
+                                val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+                                val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                                    type = "image/png"
+                                    putExtra(Intent.EXTRA_STREAM, uri)
+                                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                }
+                                context.startActivity(Intent.createChooser(sendIntent, "Share your wish"))
+                            } catch (error: Exception) {
+                                message = error.localizedMessage ?: "Couldn't share the card."
+                            }
+                        }, modifier = Modifier.fillMaxWidth()) { Text("Share wish card") }
+                    }
+                }
+                AppRoute.HISTORY -> {
+                    Text("Your creations", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                    Text("Your latest cards stay on this device.")
+                    if (recentCards.isEmpty()) {
+                        EmptyState("No cards yet", "Create a wish card and it will appear here.")
+                        Button(onClick = { route = AppRoute.CATEGORIES }, modifier = Modifier.fillMaxWidth()) { Text("Create your first card") }
+                    } else {
+                        recentCards.forEach { file ->
+                            Card(shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
+                                Row(Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    HistoryThumbnail(file, Modifier.size(94.dp)) {
+                                        val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+                                        if (bitmap != null) { previewBitmap = bitmap; message = null }
+                                    }
+                                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                        Text(file.name.removeSuffix(".png"), style = MaterialTheme.typography.labelLarge, maxLines = 1)
+                                        OutlinedButton(onClick = {
+                                            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+                                            if (bitmap != null) { previewBitmap = bitmap; message = null } else message = "Couldn't open this card."
+                                        }) { Text("Preview") }
+                                    }
+                                    OutlinedButton(onClick = {
+                                        if (historyStorage.delete(file)) {
+                                            recentCards = historyStorage.listRecent()
+                                            message = "Card deleted."
+                                        } else message = "Couldn't delete this card."
+                                    }) { Text("Delete") }
+                                }
+                            }
+                        }
+                    }
+                    previewBitmap?.let { bitmap ->
+                        Text("Selected card preview", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                        Image(bitmap.asImageBitmap(), contentDescription = "Selected saved card", contentScale = ContentScale.Fit,
+                            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)))
+                        OutlinedButton(onClick = { saveCardLauncher.launch("my-wish.png") }, modifier = Modifier.fillMaxWidth()) { Text("Save selected card") }
+                    }
+                }
+                AppRoute.PROFILE -> {
+                    Text("Your profile", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                    Text("Add your details once and use them on the cards you create.")
+                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        if (profilePhoto != null) {
+                            Image(profilePhoto!!.asImageBitmap(), contentDescription = "Your profile photo", contentScale = ContentScale.Crop,
+                                modifier = Modifier.size(124.dp).clip(CircleShape))
                         } else {
-                            OutlinedButton(
-                                modifier = Modifier.weight(1f),
-                                onClick = { scope.launch { preferencesRepository.setCardPalette(palette.id) } }
-                            ) {
-                                Text(
-                                    text = paletteLabel,
-                                    color = androidx.compose.ui.graphics.Color(palette.accentColor)
-                                )
+                            Box(Modifier.size(124.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surfaceVariant), contentAlignment = Alignment.Center) {
+                                Text("☺", style = MaterialTheme.typography.displayMedium, color = MaterialTheme.colorScheme.primary)
                             }
                         }
                     }
-                    repeat(3 - paletteRow.size) { Spacer(Modifier.weight(1f)) }
-                }
-            }
-        }
-
-        Button(
-            modifier = Modifier.fillMaxWidth(),
-            enabled = selectedGreeting != null && !loading,
-            onClick = {
-                val greeting = selectedGreeting ?: return@Button
-                try {
-                    val request = CardGenerationRequest(
-                        greetingText = customGreeting.trim().ifBlank { greeting.text },
-                        occasionTitle = selectedOccasion?.title,
-                        signature = signature.ifBlank { displayName },
-                        photo = photoBitmap,
-                        backgroundColor = CardPalette.fromId(preferences.cardPaletteId).backgroundColor,
-                        accentColor = CardPalette.fromId(preferences.cardPaletteId).accentColor,
-                        textColor = CardPalette.fromId(preferences.cardPaletteId).textColor
-                    )
-                    previewBitmap = CardGeneratorEngine(context).render(request)
-                    cardHistoryStorage.save(previewBitmap!!)
-                    recentCards = cardHistoryStorage.listRecent()
-                    errorMessage = null
-                    scope.launch {
-                        preferencesRepository.saveProfile(
-                            UserProfile(
-                                displayName = displayName,
-                                profileImagePath = preferences.profile.profileImagePath,
-                                cardSignature = signature
-                            )
-                        )
+                    Button(onClick = { photoPicker.launch("image/*") }, modifier = Modifier.fillMaxWidth()) {
+                        Text(if (profilePhoto == null) "＋ Add profile photo" else "Change profile photo")
                     }
-                } catch (error: Exception) {
-                    errorMessage = error.localizedMessage ?: context.getString(R.string.card_generate_error)
-                }
-            }
-        ) {
-            Text(stringResource(R.string.generate_card_preview))
-        }
-
-        if (recentCards.isNotEmpty()) {
-            Text(stringResource(R.string.recent_cards), style = MaterialTheme.typography.titleLarge)
-            recentCards.forEach { cardFile ->
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    val thumbnail = BitmapFactory.decodeFile(cardFile.absolutePath)
-                    if (thumbnail != null) {
-                        Image(
-                            bitmap = thumbnail.asImageBitmap(),
-                            contentDescription = stringResource(R.string.recent_card_thumbnail),
-                            modifier = Modifier.size(72.dp).clickable {
-                                previewBitmap = thumbnail
-                                errorMessage = null
-                            }
-                        )
+                    OutlinedTextField(value = displayName, onValueChange = { displayName = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Your name") }, singleLine = true)
+                    OutlinedTextField(value = signature, onValueChange = { signature = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Card signature") }, singleLine = true)
+                    Text("App preferences", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text("Dark theme", fontWeight = FontWeight.Medium)
+                            Text("Choose a comfortable appearance.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Switch(checked = preferences.isDarkTheme, onCheckedChange = { scope.launch { preferencesRepository.setDarkThemeEnabled(it) } })
                     }
-                    Text(
-                        cardFile.name,
-                        modifier = Modifier.weight(1f).clickable {
-                            val restored = BitmapFactory.decodeFile(cardFile.absolutePath)
-                            if (restored != null) {
-                                previewBitmap = restored
-                                errorMessage = null
-                            } else {
-                                errorMessage = context.getString(R.string.card_history_load_error)
+                    Text("Language", style = MaterialTheme.typography.titleMedium)
+                    Box {
+                        OutlinedButton(onClick = { languageMenuOpen = true }, modifier = Modifier.fillMaxWidth()) {
+                            Text("${preferences.preferredLanguage.nativeName}  ▾")
+                        }
+                        DropdownMenu(expanded = languageMenuOpen, onDismissRequest = { languageMenuOpen = false }) {
+                            AppLanguage.supported.forEach { language ->
+                                DropdownMenuItem(text = { Text(language.nativeName) }, onClick = {
+                                    languageMenuOpen = false
+                                    scope.launch { preferencesRepository.setPreferredLanguage(language) }
+                                })
                             }
                         }
-                    )
-                    IconButton(
-                        onClick = {
-                            if (cardHistoryStorage.delete(cardFile)) {
-                                recentCards = cardHistoryStorage.listRecent()
-                                errorMessage = null
-                            } else {
-                                errorMessage = context.getString(R.string.card_history_delete_error)
-                            }
-                        },
-                        modifier = Modifier.semantics {
-                            contentDescription = context.getString(R.string.delete_recent_card_accessibility, cardFile.name)
-                        }
-                    ) {
-                        Text("×")
                     }
+                    Button(onClick = {
+                        scope.launch {
+                            preferencesRepository.saveProfile(UserProfile(displayName.trim(), profileImagePath, signature.trim()))
+                            message = "Profile saved."
+                        }
+                    }, modifier = Modifier.fillMaxWidth()) { Text("Save profile") }
+                    OutlinedButton(onClick = {
+                        val oldPath = profileImagePath
+                        scope.launch {
+                            preferencesRepository.clearProfile()
+                            oldPath?.let(profileImageStorage::delete)
+                            displayName = ""
+                            signature = ""
+                            profileImagePath = null
+                            profilePhoto = null
+                            message = "Profile cleared."
+                        }
+                    }, modifier = Modifier.fillMaxWidth()) { Text("Clear profile") }
                 }
             }
+            if (loading) Text("Loading wishes…", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            message?.let { Text(it, color = if (it.contains("couldn't", true) || it.contains("error", true)) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary) }
+            Spacer(Modifier.height(8.dp))
         }
+    }
+}
 
-        previewBitmap?.let { bitmap ->
-            Text(stringResource(R.string.preview), style = MaterialTheme.typography.titleLarge)
-            Image(
-                bitmap = bitmap.asImageBitmap(),
-                contentDescription = stringResource(R.string.generated_card_preview),
-                modifier = Modifier.fillMaxWidth().height(320.dp)
-            )
-            OutlinedButton(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { saveCardLauncher.launch("my-wish.png") }
-            ) {
-                Text(stringResource(R.string.save_card_to_device))
-            }
-            Button(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {
-                    try {
-                        val file = CardGeneratorEngine(context).exportPng(
-                            CardGenerationRequest(
-                                greetingText = customGreeting.trim().ifBlank {
-                                    selectedGreeting?.text ?: return@Button
-                                },
-                                occasionTitle = selectedOccasion?.title,
-                                signature = signature.ifBlank { displayName },
-                                photo = photoBitmap,
-                                backgroundColor = CardPalette.fromId(preferences.cardPaletteId).backgroundColor,
-                                accentColor = CardPalette.fromId(preferences.cardPaletteId).accentColor,
-                                textColor = CardPalette.fromId(preferences.cardPaletteId).textColor
-                            )
-                        )
-                        val uri = FileProvider.getUriForFile(
-                            context,
-                            "${context.packageName}.fileprovider",
-                            file
-                        )
-                        val sendIntent = Intent(Intent.ACTION_SEND).apply {
-                            type = "image/png"
-                            putExtra(Intent.EXTRA_STREAM, uri)
-                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                        }
-                        context.startActivity(Intent.createChooser(sendIntent, context.getString(R.string.share_your_wish)))
-                    } catch (error: Exception) {
-                        errorMessage = error.localizedMessage ?: context.getString(R.string.card_share_error)
-                    }
-                }
-            ) {
-                Text(stringResource(R.string.share_card))
-            }
+@Composable
+private fun CategoryTile(occasion: Occasion, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    val symbols = listOf("🎂", "💐", "❤️", "🌼", "🎉", "🌙", "✨", "🎈")
+    val symbol = symbols[(occasion.id.hashCode().toLong().and(0x7fffffff).rem(symbols.size)).toInt()]
+    Card(
+        modifier = modifier.heightIn(min = 132.dp).clickable(onClick = onClick),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(Modifier.fillMaxWidth().padding(15.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(symbol, style = MaterialTheme.typography.headlineMedium)
+            Text(occasion.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            Text("${occasion.greetings.size} wishes  →", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
         }
+    }
+}
 
-        errorMessage?.let { message ->
-            Text(message, color = MaterialTheme.colorScheme.error)
+@Composable
+private fun HistoryThumbnail(file: File, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    val bitmap = remember(file.absolutePath, file.lastModified()) { BitmapFactory.decodeFile(file.absolutePath) }
+    if (bitmap != null) {
+        Image(bitmap.asImageBitmap(), contentDescription = "Saved greeting card", contentScale = ContentScale.Crop,
+            modifier = modifier.clip(RoundedCornerShape(14.dp)).clickable(onClick = onClick))
+    } else {
+        Box(modifier.height(94.dp).clip(RoundedCornerShape(14.dp)).background(MaterialTheme.colorScheme.surfaceVariant), contentAlignment = Alignment.Center) {
+            Text("Image unavailable", style = MaterialTheme.typography.labelSmall)
         }
-        Spacer(Modifier.height(12.dp))
+    }
+}
+
+@Composable
+private fun EmptyState(title: String, subtitle: String) {
+    Card(shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
+        Column(Modifier.fillMaxWidth().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("✨", style = MaterialTheme.typography.displaySmall)
+            Text(title, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+            Text(subtitle, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
     }
 }
