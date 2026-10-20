@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalActivityResultRegistryOwner
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -87,6 +88,9 @@ class MainActivity : ComponentActivity() {
                 createConfigurationContext(localizedConfiguration)
             }
             CompositionLocalProvider(
+                // The localized Context is a ConfigurationContext, not the Activity itself.
+                // Explicitly provide the Activity Result owner so Compose launchers can register.
+                LocalActivityResultRegistryOwner provides this@MainActivity,
                 LocalContext provides localizedContext,
                 LocalConfiguration provides localizedConfiguration
             ) {
