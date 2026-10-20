@@ -246,7 +246,7 @@ private fun WishesApp() {
     }
 
     fun generateCard() {
-        val greetingText = if (customWish) customWishText.trim() else selectedGreeting?.text.orEmpty()
+        val greetingText = customWishText.trim().ifBlank { if (customWish) "" else selectedGreeting?.text.orEmpty() }
         if (greetingText.isBlank()) {
             message = "Add a wish message before creating your card."
             return
