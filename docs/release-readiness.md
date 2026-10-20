@@ -8,7 +8,8 @@ This checklist separates automated checks from manual device verification. Check
 - [ ] CI confirms namespace and application ID remain `com.knockheart.mywishes`.
 - [ ] JVM unit tests pass.
 - [ ] Debug APK variant assembles.
-- [ ] Release variant assembles.
+- [ ] Release APK and AAB variants assemble.
+- [ ] On pushes to `main` and manual workflow runs, CI confirms release APK and AAB signatures using the configured keystore secrets.
 - [ ] Review warnings and dependency updates before creating a release tag.
 
 ## Manual device / emulator QA
@@ -36,9 +37,10 @@ Test on at least one API 26+ device/emulator, and include a current Android vers
 - [ ] Confirm the release manifest/application ID is `com.knockheart.mywishes` (debug builds intentionally add `.debug`).
 - [ ] Increment `versionCode` and update `versionName` for the intended release.
 - [ ] Configure release signing through secure CI secrets or a local protected keystore; never commit signing keys or passwords.
-- [ ] Build and verify the signed release artifact; install/update it on a test device before publishing.
+- [ ] Verify signed APK and AAB signatures in CI.
+- [ ] Install/update the signed APK on a test device before publishing.
 - [ ] Review privacy policy, store listing, screenshots, support contact, and data-safety declarations before store submission.
 
 ## Current limitations
 
-CI assembly is not evidence of visual/device QA. The repository workflow assembles the release variant without production signing. This checklist is a plan until each item is verified by a human tester.
+CI assembly is not evidence of visual/device QA. Pull-request builds intentionally omit release secrets and therefore build unsigned release variants. Pushes to `main` and manually dispatched workflows require signing secrets and verify signed release outputs, but each artifact still needs human device QA before publication.
