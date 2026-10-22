@@ -61,6 +61,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -124,16 +125,23 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun MyWishesTheme(isDarkTheme: Boolean, content: @Composable () -> Unit) {
     val lightScheme = lightColorScheme(
-        primary = Color(0xFF7655D9),
+        primary = Color(0xFF4A247F),
         onPrimary = Color.White,
-        secondary = Color(0xFFEC8C78),
-        background = Color(0xFFFFFAF7),
-        surface = Color(0xFFFFFFFF),
-        surfaceVariant = Color(0xFFF1ECFA)
+        secondary = Color(0xFFD4AF37),
+        onSecondary = Color(0xFF190A3D),
+        background = Color(0xFFFFF8EA),
+        onBackground = Color(0xFF24133D),
+        surface = Color(0xFFFFFDF8),
+        onSurface = Color(0xFF24133D),
+        surfaceVariant = Color(0xFFF1E8D7),
+        onSurfaceVariant = Color(0xFF5D4B70)
     )
     val darkScheme = darkColorScheme(
-        primary = Color(0xFFC6B7FF),
-        secondary = Color(0xFFFFB6A5)
+        primary = Color(0xFFD7B8FF),
+        secondary = Color(0xFFF4D36F),
+        background = Color(0xFF190A3D),
+        surface = Color(0xFF25134A),
+        surfaceVariant = Color(0xFF38205D)
     )
     MaterialTheme(colorScheme = if (isDarkTheme) darkScheme else lightScheme, content = content)
 }
@@ -611,15 +619,28 @@ private fun WishesApp() {
 
 @Composable
 private fun CategoryTile(occasion: Occasion, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    val symbols = listOf("🎂", "💐", "❤️", "🌼", "🎉", "🌙", "✨", "🎈")
-    val symbol = symbols[(occasion.id.hashCode() and Int.MAX_VALUE) % symbols.size]
+    val title = occasion.title.lowercase()
+    val iconRes = when {
+        "birthday" in title -> R.drawable.ic_category_birthday
+        "anniversary" in title -> R.drawable.ic_category_anniversary
+        "love" in title || "romance" in title -> R.drawable.ic_category_love
+        "friend" in title -> R.drawable.ic_category_friendship
+        "festival" in title || "holiday" in title -> R.drawable.ic_category_festival
+        "morning" in title -> R.drawable.ic_category_morning
+        "congrat" in title || "achievement" in title -> R.drawable.ic_category_congratulations
+        else -> R.drawable.ic_category_general
+    }
     Card(
         modifier = modifier.heightIn(min = 132.dp).clickable(onClick = onClick),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column(Modifier.fillMaxWidth().padding(15.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(symbol, style = MaterialTheme.typography.headlineMedium)
+            Image(
+                painter = painterResource(iconRes),
+                contentDescription = null,
+                modifier = Modifier.size(48.dp)
+            )
             Text(occasion.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Text("${occasion.greetings.size} wishes  →", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
         }
