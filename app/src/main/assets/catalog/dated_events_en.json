@@ -1,0 +1,2531 @@
+{
+  "schemaVersion": 1,
+  "language": "en",
+  "coverage": {
+    "fromYear": 2026,
+    "toYear": 2030
+  },
+  "datePolicy": "fixed-date-only; movable lunar and regional festivals require verified annual dates",
+  "events": [
+    {
+      "id": "dated_new_year_2026",
+      "eventId": "new_year",
+      "date": "2026-01-01",
+      "title": "New Year's Day",
+      "greetings": [
+        {
+          "id": "dated_new_year_2026_1",
+          "text": "Warm wishes on New Year's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_new_year_2026_2",
+          "text": "Celebrating New Year's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_new_year_2026_3",
+          "text": "May New Year's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_new_year_2026_4",
+          "text": "Wishing you and your loved ones a meaningful New Year's Day."
+        },
+        {
+          "id": "dated_new_year_2026_5",
+          "text": "On New Year's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_youth_day_2026",
+      "eventId": "youth_day",
+      "date": "2026-01-12",
+      "title": "National Youth Day",
+      "greetings": [
+        {
+          "id": "dated_youth_day_2026_1",
+          "text": "Warm wishes on National Youth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_youth_day_2026_2",
+          "text": "Celebrating National Youth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_youth_day_2026_3",
+          "text": "May National Youth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_youth_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful National Youth Day."
+        },
+        {
+          "id": "dated_youth_day_2026_5",
+          "text": "On National Youth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_army_day_2026",
+      "eventId": "army_day",
+      "date": "2026-01-15",
+      "title": "Indian Army Day",
+      "greetings": [
+        {
+          "id": "dated_army_day_2026_1",
+          "text": "Warm wishes on Indian Army Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_army_day_2026_2",
+          "text": "Celebrating Indian Army Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_army_day_2026_3",
+          "text": "May Indian Army Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_army_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Indian Army Day."
+        },
+        {
+          "id": "dated_army_day_2026_5",
+          "text": "On Indian Army Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_republic_day_2026",
+      "eventId": "republic_day",
+      "date": "2026-01-26",
+      "title": "Republic Day",
+      "greetings": [
+        {
+          "id": "dated_republic_day_2026_1",
+          "text": "Warm wishes on Republic Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_republic_day_2026_2",
+          "text": "Celebrating Republic Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_republic_day_2026_3",
+          "text": "May Republic Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_republic_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Republic Day."
+        },
+        {
+          "id": "dated_republic_day_2026_5",
+          "text": "On Republic Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_science_day_2026",
+      "eventId": "science_day",
+      "date": "2026-02-28",
+      "title": "National Science Day",
+      "greetings": [
+        {
+          "id": "dated_science_day_2026_1",
+          "text": "Warm wishes on National Science Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_science_day_2026_2",
+          "text": "Celebrating National Science Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_science_day_2026_3",
+          "text": "May National Science Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_science_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful National Science Day."
+        },
+        {
+          "id": "dated_science_day_2026_5",
+          "text": "On National Science Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_womens_day_2026",
+      "eventId": "womens_day",
+      "date": "2026-03-08",
+      "title": "International Women's Day",
+      "greetings": [
+        {
+          "id": "dated_womens_day_2026_1",
+          "text": "Warm wishes on International Women's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_womens_day_2026_2",
+          "text": "Celebrating International Women's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_womens_day_2026_3",
+          "text": "May International Women's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_womens_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful International Women's Day."
+        },
+        {
+          "id": "dated_womens_day_2026_5",
+          "text": "On International Women's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_earth_day_2026",
+      "eventId": "earth_day",
+      "date": "2026-04-22",
+      "title": "Earth Day",
+      "greetings": [
+        {
+          "id": "dated_earth_day_2026_1",
+          "text": "Warm wishes on Earth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_earth_day_2026_2",
+          "text": "Celebrating Earth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_earth_day_2026_3",
+          "text": "May Earth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_earth_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Earth Day."
+        },
+        {
+          "id": "dated_earth_day_2026_5",
+          "text": "On Earth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_labour_day_2026",
+      "eventId": "labour_day",
+      "date": "2026-05-01",
+      "title": "Labour Day",
+      "greetings": [
+        {
+          "id": "dated_labour_day_2026_1",
+          "text": "Warm wishes on Labour Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_labour_day_2026_2",
+          "text": "Celebrating Labour Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_labour_day_2026_3",
+          "text": "May Labour Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_labour_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Labour Day."
+        },
+        {
+          "id": "dated_labour_day_2026_5",
+          "text": "On Labour Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_environment_day_2026",
+      "eventId": "environment_day",
+      "date": "2026-06-05",
+      "title": "World Environment Day",
+      "greetings": [
+        {
+          "id": "dated_environment_day_2026_1",
+          "text": "Warm wishes on World Environment Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_environment_day_2026_2",
+          "text": "Celebrating World Environment Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_environment_day_2026_3",
+          "text": "May World Environment Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_environment_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful World Environment Day."
+        },
+        {
+          "id": "dated_environment_day_2026_5",
+          "text": "On World Environment Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_doctors_day_2026",
+      "eventId": "doctors_day",
+      "date": "2026-07-01",
+      "title": "National Doctors' Day",
+      "greetings": [
+        {
+          "id": "dated_doctors_day_2026_1",
+          "text": "Warm wishes on National Doctors' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_doctors_day_2026_2",
+          "text": "Celebrating National Doctors' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_doctors_day_2026_3",
+          "text": "May National Doctors' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_doctors_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful National Doctors' Day."
+        },
+        {
+          "id": "dated_doctors_day_2026_5",
+          "text": "On National Doctors' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_independence_day_2026",
+      "eventId": "independence_day",
+      "date": "2026-08-15",
+      "title": "Independence Day",
+      "greetings": [
+        {
+          "id": "dated_independence_day_2026_1",
+          "text": "Warm wishes on Independence Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_independence_day_2026_2",
+          "text": "Celebrating Independence Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_independence_day_2026_3",
+          "text": "May Independence Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_independence_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Independence Day."
+        },
+        {
+          "id": "dated_independence_day_2026_5",
+          "text": "On Independence Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_teachers_day_2026",
+      "eventId": "teachers_day",
+      "date": "2026-09-05",
+      "title": "Teachers' Day",
+      "greetings": [
+        {
+          "id": "dated_teachers_day_2026_1",
+          "text": "Warm wishes on Teachers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_teachers_day_2026_2",
+          "text": "Celebrating Teachers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_teachers_day_2026_3",
+          "text": "May Teachers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_teachers_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Teachers' Day."
+        },
+        {
+          "id": "dated_teachers_day_2026_5",
+          "text": "On Teachers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_engineers_day_2026",
+      "eventId": "engineers_day",
+      "date": "2026-09-15",
+      "title": "Engineers' Day",
+      "greetings": [
+        {
+          "id": "dated_engineers_day_2026_1",
+          "text": "Warm wishes on Engineers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_engineers_day_2026_2",
+          "text": "Celebrating Engineers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_engineers_day_2026_3",
+          "text": "May Engineers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_engineers_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Engineers' Day."
+        },
+        {
+          "id": "dated_engineers_day_2026_5",
+          "text": "On Engineers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_gandhi_jayanti_2026",
+      "eventId": "gandhi_jayanti",
+      "date": "2026-10-02",
+      "title": "Gandhi Jayanti",
+      "greetings": [
+        {
+          "id": "dated_gandhi_jayanti_2026_1",
+          "text": "Warm wishes on Gandhi Jayanti! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2026_2",
+          "text": "Celebrating Gandhi Jayanti with gratitude and good wishes."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2026_3",
+          "text": "May Gandhi Jayanti inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Gandhi Jayanti."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2026_5",
+          "text": "On Gandhi Jayanti, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_karnataka_rajyotsava_2026",
+      "eventId": "karnataka_rajyotsava",
+      "date": "2026-11-01",
+      "title": "Karnataka Rajyotsava",
+      "greetings": [
+        {
+          "id": "dated_karnataka_rajyotsava_2026_1",
+          "text": "Warm wishes on Karnataka Rajyotsava! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2026_2",
+          "text": "Celebrating Karnataka Rajyotsava with gratitude and good wishes."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2026_3",
+          "text": "May Karnataka Rajyotsava inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Karnataka Rajyotsava."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2026_5",
+          "text": "On Karnataka Rajyotsava, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_childrens_day_2026",
+      "eventId": "childrens_day",
+      "date": "2026-11-14",
+      "title": "Children's Day",
+      "greetings": [
+        {
+          "id": "dated_childrens_day_2026_1",
+          "text": "Warm wishes on Children's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_childrens_day_2026_2",
+          "text": "Celebrating Children's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_childrens_day_2026_3",
+          "text": "May Children's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_childrens_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Children's Day."
+        },
+        {
+          "id": "dated_childrens_day_2026_5",
+          "text": "On Children's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_constitution_day_2026",
+      "eventId": "constitution_day",
+      "date": "2026-11-26",
+      "title": "Constitution Day",
+      "greetings": [
+        {
+          "id": "dated_constitution_day_2026_1",
+          "text": "Warm wishes on Constitution Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_constitution_day_2026_2",
+          "text": "Celebrating Constitution Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_constitution_day_2026_3",
+          "text": "May Constitution Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_constitution_day_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Constitution Day."
+        },
+        {
+          "id": "dated_constitution_day_2026_5",
+          "text": "On Constitution Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_christmas_2026",
+      "eventId": "christmas",
+      "date": "2026-12-25",
+      "title": "Christmas Day",
+      "greetings": [
+        {
+          "id": "dated_christmas_2026_1",
+          "text": "Warm wishes on Christmas Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_christmas_2026_2",
+          "text": "Celebrating Christmas Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_christmas_2026_3",
+          "text": "May Christmas Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_christmas_2026_4",
+          "text": "Wishing you and your loved ones a meaningful Christmas Day."
+        },
+        {
+          "id": "dated_christmas_2026_5",
+          "text": "On Christmas Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_new_year_2027",
+      "eventId": "new_year",
+      "date": "2027-01-01",
+      "title": "New Year's Day",
+      "greetings": [
+        {
+          "id": "dated_new_year_2027_1",
+          "text": "Warm wishes on New Year's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_new_year_2027_2",
+          "text": "Celebrating New Year's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_new_year_2027_3",
+          "text": "May New Year's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_new_year_2027_4",
+          "text": "Wishing you and your loved ones a meaningful New Year's Day."
+        },
+        {
+          "id": "dated_new_year_2027_5",
+          "text": "On New Year's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_youth_day_2027",
+      "eventId": "youth_day",
+      "date": "2027-01-12",
+      "title": "National Youth Day",
+      "greetings": [
+        {
+          "id": "dated_youth_day_2027_1",
+          "text": "Warm wishes on National Youth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_youth_day_2027_2",
+          "text": "Celebrating National Youth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_youth_day_2027_3",
+          "text": "May National Youth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_youth_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful National Youth Day."
+        },
+        {
+          "id": "dated_youth_day_2027_5",
+          "text": "On National Youth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_army_day_2027",
+      "eventId": "army_day",
+      "date": "2027-01-15",
+      "title": "Indian Army Day",
+      "greetings": [
+        {
+          "id": "dated_army_day_2027_1",
+          "text": "Warm wishes on Indian Army Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_army_day_2027_2",
+          "text": "Celebrating Indian Army Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_army_day_2027_3",
+          "text": "May Indian Army Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_army_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Indian Army Day."
+        },
+        {
+          "id": "dated_army_day_2027_5",
+          "text": "On Indian Army Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_republic_day_2027",
+      "eventId": "republic_day",
+      "date": "2027-01-26",
+      "title": "Republic Day",
+      "greetings": [
+        {
+          "id": "dated_republic_day_2027_1",
+          "text": "Warm wishes on Republic Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_republic_day_2027_2",
+          "text": "Celebrating Republic Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_republic_day_2027_3",
+          "text": "May Republic Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_republic_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Republic Day."
+        },
+        {
+          "id": "dated_republic_day_2027_5",
+          "text": "On Republic Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_science_day_2027",
+      "eventId": "science_day",
+      "date": "2027-02-28",
+      "title": "National Science Day",
+      "greetings": [
+        {
+          "id": "dated_science_day_2027_1",
+          "text": "Warm wishes on National Science Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_science_day_2027_2",
+          "text": "Celebrating National Science Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_science_day_2027_3",
+          "text": "May National Science Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_science_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful National Science Day."
+        },
+        {
+          "id": "dated_science_day_2027_5",
+          "text": "On National Science Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_womens_day_2027",
+      "eventId": "womens_day",
+      "date": "2027-03-08",
+      "title": "International Women's Day",
+      "greetings": [
+        {
+          "id": "dated_womens_day_2027_1",
+          "text": "Warm wishes on International Women's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_womens_day_2027_2",
+          "text": "Celebrating International Women's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_womens_day_2027_3",
+          "text": "May International Women's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_womens_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful International Women's Day."
+        },
+        {
+          "id": "dated_womens_day_2027_5",
+          "text": "On International Women's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_earth_day_2027",
+      "eventId": "earth_day",
+      "date": "2027-04-22",
+      "title": "Earth Day",
+      "greetings": [
+        {
+          "id": "dated_earth_day_2027_1",
+          "text": "Warm wishes on Earth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_earth_day_2027_2",
+          "text": "Celebrating Earth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_earth_day_2027_3",
+          "text": "May Earth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_earth_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Earth Day."
+        },
+        {
+          "id": "dated_earth_day_2027_5",
+          "text": "On Earth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_labour_day_2027",
+      "eventId": "labour_day",
+      "date": "2027-05-01",
+      "title": "Labour Day",
+      "greetings": [
+        {
+          "id": "dated_labour_day_2027_1",
+          "text": "Warm wishes on Labour Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_labour_day_2027_2",
+          "text": "Celebrating Labour Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_labour_day_2027_3",
+          "text": "May Labour Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_labour_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Labour Day."
+        },
+        {
+          "id": "dated_labour_day_2027_5",
+          "text": "On Labour Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_environment_day_2027",
+      "eventId": "environment_day",
+      "date": "2027-06-05",
+      "title": "World Environment Day",
+      "greetings": [
+        {
+          "id": "dated_environment_day_2027_1",
+          "text": "Warm wishes on World Environment Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_environment_day_2027_2",
+          "text": "Celebrating World Environment Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_environment_day_2027_3",
+          "text": "May World Environment Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_environment_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful World Environment Day."
+        },
+        {
+          "id": "dated_environment_day_2027_5",
+          "text": "On World Environment Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_doctors_day_2027",
+      "eventId": "doctors_day",
+      "date": "2027-07-01",
+      "title": "National Doctors' Day",
+      "greetings": [
+        {
+          "id": "dated_doctors_day_2027_1",
+          "text": "Warm wishes on National Doctors' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_doctors_day_2027_2",
+          "text": "Celebrating National Doctors' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_doctors_day_2027_3",
+          "text": "May National Doctors' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_doctors_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful National Doctors' Day."
+        },
+        {
+          "id": "dated_doctors_day_2027_5",
+          "text": "On National Doctors' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_independence_day_2027",
+      "eventId": "independence_day",
+      "date": "2027-08-15",
+      "title": "Independence Day",
+      "greetings": [
+        {
+          "id": "dated_independence_day_2027_1",
+          "text": "Warm wishes on Independence Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_independence_day_2027_2",
+          "text": "Celebrating Independence Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_independence_day_2027_3",
+          "text": "May Independence Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_independence_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Independence Day."
+        },
+        {
+          "id": "dated_independence_day_2027_5",
+          "text": "On Independence Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_teachers_day_2027",
+      "eventId": "teachers_day",
+      "date": "2027-09-05",
+      "title": "Teachers' Day",
+      "greetings": [
+        {
+          "id": "dated_teachers_day_2027_1",
+          "text": "Warm wishes on Teachers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_teachers_day_2027_2",
+          "text": "Celebrating Teachers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_teachers_day_2027_3",
+          "text": "May Teachers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_teachers_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Teachers' Day."
+        },
+        {
+          "id": "dated_teachers_day_2027_5",
+          "text": "On Teachers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_engineers_day_2027",
+      "eventId": "engineers_day",
+      "date": "2027-09-15",
+      "title": "Engineers' Day",
+      "greetings": [
+        {
+          "id": "dated_engineers_day_2027_1",
+          "text": "Warm wishes on Engineers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_engineers_day_2027_2",
+          "text": "Celebrating Engineers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_engineers_day_2027_3",
+          "text": "May Engineers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_engineers_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Engineers' Day."
+        },
+        {
+          "id": "dated_engineers_day_2027_5",
+          "text": "On Engineers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_gandhi_jayanti_2027",
+      "eventId": "gandhi_jayanti",
+      "date": "2027-10-02",
+      "title": "Gandhi Jayanti",
+      "greetings": [
+        {
+          "id": "dated_gandhi_jayanti_2027_1",
+          "text": "Warm wishes on Gandhi Jayanti! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2027_2",
+          "text": "Celebrating Gandhi Jayanti with gratitude and good wishes."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2027_3",
+          "text": "May Gandhi Jayanti inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Gandhi Jayanti."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2027_5",
+          "text": "On Gandhi Jayanti, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_karnataka_rajyotsava_2027",
+      "eventId": "karnataka_rajyotsava",
+      "date": "2027-11-01",
+      "title": "Karnataka Rajyotsava",
+      "greetings": [
+        {
+          "id": "dated_karnataka_rajyotsava_2027_1",
+          "text": "Warm wishes on Karnataka Rajyotsava! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2027_2",
+          "text": "Celebrating Karnataka Rajyotsava with gratitude and good wishes."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2027_3",
+          "text": "May Karnataka Rajyotsava inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Karnataka Rajyotsava."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2027_5",
+          "text": "On Karnataka Rajyotsava, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_childrens_day_2027",
+      "eventId": "childrens_day",
+      "date": "2027-11-14",
+      "title": "Children's Day",
+      "greetings": [
+        {
+          "id": "dated_childrens_day_2027_1",
+          "text": "Warm wishes on Children's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_childrens_day_2027_2",
+          "text": "Celebrating Children's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_childrens_day_2027_3",
+          "text": "May Children's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_childrens_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Children's Day."
+        },
+        {
+          "id": "dated_childrens_day_2027_5",
+          "text": "On Children's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_constitution_day_2027",
+      "eventId": "constitution_day",
+      "date": "2027-11-26",
+      "title": "Constitution Day",
+      "greetings": [
+        {
+          "id": "dated_constitution_day_2027_1",
+          "text": "Warm wishes on Constitution Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_constitution_day_2027_2",
+          "text": "Celebrating Constitution Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_constitution_day_2027_3",
+          "text": "May Constitution Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_constitution_day_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Constitution Day."
+        },
+        {
+          "id": "dated_constitution_day_2027_5",
+          "text": "On Constitution Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_christmas_2027",
+      "eventId": "christmas",
+      "date": "2027-12-25",
+      "title": "Christmas Day",
+      "greetings": [
+        {
+          "id": "dated_christmas_2027_1",
+          "text": "Warm wishes on Christmas Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_christmas_2027_2",
+          "text": "Celebrating Christmas Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_christmas_2027_3",
+          "text": "May Christmas Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_christmas_2027_4",
+          "text": "Wishing you and your loved ones a meaningful Christmas Day."
+        },
+        {
+          "id": "dated_christmas_2027_5",
+          "text": "On Christmas Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_new_year_2028",
+      "eventId": "new_year",
+      "date": "2028-01-01",
+      "title": "New Year's Day",
+      "greetings": [
+        {
+          "id": "dated_new_year_2028_1",
+          "text": "Warm wishes on New Year's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_new_year_2028_2",
+          "text": "Celebrating New Year's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_new_year_2028_3",
+          "text": "May New Year's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_new_year_2028_4",
+          "text": "Wishing you and your loved ones a meaningful New Year's Day."
+        },
+        {
+          "id": "dated_new_year_2028_5",
+          "text": "On New Year's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_youth_day_2028",
+      "eventId": "youth_day",
+      "date": "2028-01-12",
+      "title": "National Youth Day",
+      "greetings": [
+        {
+          "id": "dated_youth_day_2028_1",
+          "text": "Warm wishes on National Youth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_youth_day_2028_2",
+          "text": "Celebrating National Youth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_youth_day_2028_3",
+          "text": "May National Youth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_youth_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful National Youth Day."
+        },
+        {
+          "id": "dated_youth_day_2028_5",
+          "text": "On National Youth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_army_day_2028",
+      "eventId": "army_day",
+      "date": "2028-01-15",
+      "title": "Indian Army Day",
+      "greetings": [
+        {
+          "id": "dated_army_day_2028_1",
+          "text": "Warm wishes on Indian Army Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_army_day_2028_2",
+          "text": "Celebrating Indian Army Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_army_day_2028_3",
+          "text": "May Indian Army Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_army_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Indian Army Day."
+        },
+        {
+          "id": "dated_army_day_2028_5",
+          "text": "On Indian Army Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_republic_day_2028",
+      "eventId": "republic_day",
+      "date": "2028-01-26",
+      "title": "Republic Day",
+      "greetings": [
+        {
+          "id": "dated_republic_day_2028_1",
+          "text": "Warm wishes on Republic Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_republic_day_2028_2",
+          "text": "Celebrating Republic Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_republic_day_2028_3",
+          "text": "May Republic Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_republic_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Republic Day."
+        },
+        {
+          "id": "dated_republic_day_2028_5",
+          "text": "On Republic Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_science_day_2028",
+      "eventId": "science_day",
+      "date": "2028-02-28",
+      "title": "National Science Day",
+      "greetings": [
+        {
+          "id": "dated_science_day_2028_1",
+          "text": "Warm wishes on National Science Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_science_day_2028_2",
+          "text": "Celebrating National Science Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_science_day_2028_3",
+          "text": "May National Science Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_science_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful National Science Day."
+        },
+        {
+          "id": "dated_science_day_2028_5",
+          "text": "On National Science Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_womens_day_2028",
+      "eventId": "womens_day",
+      "date": "2028-03-08",
+      "title": "International Women's Day",
+      "greetings": [
+        {
+          "id": "dated_womens_day_2028_1",
+          "text": "Warm wishes on International Women's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_womens_day_2028_2",
+          "text": "Celebrating International Women's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_womens_day_2028_3",
+          "text": "May International Women's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_womens_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful International Women's Day."
+        },
+        {
+          "id": "dated_womens_day_2028_5",
+          "text": "On International Women's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_earth_day_2028",
+      "eventId": "earth_day",
+      "date": "2028-04-22",
+      "title": "Earth Day",
+      "greetings": [
+        {
+          "id": "dated_earth_day_2028_1",
+          "text": "Warm wishes on Earth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_earth_day_2028_2",
+          "text": "Celebrating Earth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_earth_day_2028_3",
+          "text": "May Earth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_earth_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Earth Day."
+        },
+        {
+          "id": "dated_earth_day_2028_5",
+          "text": "On Earth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_labour_day_2028",
+      "eventId": "labour_day",
+      "date": "2028-05-01",
+      "title": "Labour Day",
+      "greetings": [
+        {
+          "id": "dated_labour_day_2028_1",
+          "text": "Warm wishes on Labour Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_labour_day_2028_2",
+          "text": "Celebrating Labour Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_labour_day_2028_3",
+          "text": "May Labour Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_labour_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Labour Day."
+        },
+        {
+          "id": "dated_labour_day_2028_5",
+          "text": "On Labour Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_environment_day_2028",
+      "eventId": "environment_day",
+      "date": "2028-06-05",
+      "title": "World Environment Day",
+      "greetings": [
+        {
+          "id": "dated_environment_day_2028_1",
+          "text": "Warm wishes on World Environment Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_environment_day_2028_2",
+          "text": "Celebrating World Environment Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_environment_day_2028_3",
+          "text": "May World Environment Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_environment_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful World Environment Day."
+        },
+        {
+          "id": "dated_environment_day_2028_5",
+          "text": "On World Environment Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_doctors_day_2028",
+      "eventId": "doctors_day",
+      "date": "2028-07-01",
+      "title": "National Doctors' Day",
+      "greetings": [
+        {
+          "id": "dated_doctors_day_2028_1",
+          "text": "Warm wishes on National Doctors' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_doctors_day_2028_2",
+          "text": "Celebrating National Doctors' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_doctors_day_2028_3",
+          "text": "May National Doctors' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_doctors_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful National Doctors' Day."
+        },
+        {
+          "id": "dated_doctors_day_2028_5",
+          "text": "On National Doctors' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_independence_day_2028",
+      "eventId": "independence_day",
+      "date": "2028-08-15",
+      "title": "Independence Day",
+      "greetings": [
+        {
+          "id": "dated_independence_day_2028_1",
+          "text": "Warm wishes on Independence Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_independence_day_2028_2",
+          "text": "Celebrating Independence Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_independence_day_2028_3",
+          "text": "May Independence Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_independence_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Independence Day."
+        },
+        {
+          "id": "dated_independence_day_2028_5",
+          "text": "On Independence Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_teachers_day_2028",
+      "eventId": "teachers_day",
+      "date": "2028-09-05",
+      "title": "Teachers' Day",
+      "greetings": [
+        {
+          "id": "dated_teachers_day_2028_1",
+          "text": "Warm wishes on Teachers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_teachers_day_2028_2",
+          "text": "Celebrating Teachers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_teachers_day_2028_3",
+          "text": "May Teachers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_teachers_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Teachers' Day."
+        },
+        {
+          "id": "dated_teachers_day_2028_5",
+          "text": "On Teachers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_engineers_day_2028",
+      "eventId": "engineers_day",
+      "date": "2028-09-15",
+      "title": "Engineers' Day",
+      "greetings": [
+        {
+          "id": "dated_engineers_day_2028_1",
+          "text": "Warm wishes on Engineers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_engineers_day_2028_2",
+          "text": "Celebrating Engineers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_engineers_day_2028_3",
+          "text": "May Engineers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_engineers_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Engineers' Day."
+        },
+        {
+          "id": "dated_engineers_day_2028_5",
+          "text": "On Engineers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_gandhi_jayanti_2028",
+      "eventId": "gandhi_jayanti",
+      "date": "2028-10-02",
+      "title": "Gandhi Jayanti",
+      "greetings": [
+        {
+          "id": "dated_gandhi_jayanti_2028_1",
+          "text": "Warm wishes on Gandhi Jayanti! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2028_2",
+          "text": "Celebrating Gandhi Jayanti with gratitude and good wishes."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2028_3",
+          "text": "May Gandhi Jayanti inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Gandhi Jayanti."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2028_5",
+          "text": "On Gandhi Jayanti, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_karnataka_rajyotsava_2028",
+      "eventId": "karnataka_rajyotsava",
+      "date": "2028-11-01",
+      "title": "Karnataka Rajyotsava",
+      "greetings": [
+        {
+          "id": "dated_karnataka_rajyotsava_2028_1",
+          "text": "Warm wishes on Karnataka Rajyotsava! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2028_2",
+          "text": "Celebrating Karnataka Rajyotsava with gratitude and good wishes."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2028_3",
+          "text": "May Karnataka Rajyotsava inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Karnataka Rajyotsava."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2028_5",
+          "text": "On Karnataka Rajyotsava, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_childrens_day_2028",
+      "eventId": "childrens_day",
+      "date": "2028-11-14",
+      "title": "Children's Day",
+      "greetings": [
+        {
+          "id": "dated_childrens_day_2028_1",
+          "text": "Warm wishes on Children's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_childrens_day_2028_2",
+          "text": "Celebrating Children's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_childrens_day_2028_3",
+          "text": "May Children's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_childrens_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Children's Day."
+        },
+        {
+          "id": "dated_childrens_day_2028_5",
+          "text": "On Children's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_constitution_day_2028",
+      "eventId": "constitution_day",
+      "date": "2028-11-26",
+      "title": "Constitution Day",
+      "greetings": [
+        {
+          "id": "dated_constitution_day_2028_1",
+          "text": "Warm wishes on Constitution Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_constitution_day_2028_2",
+          "text": "Celebrating Constitution Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_constitution_day_2028_3",
+          "text": "May Constitution Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_constitution_day_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Constitution Day."
+        },
+        {
+          "id": "dated_constitution_day_2028_5",
+          "text": "On Constitution Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_christmas_2028",
+      "eventId": "christmas",
+      "date": "2028-12-25",
+      "title": "Christmas Day",
+      "greetings": [
+        {
+          "id": "dated_christmas_2028_1",
+          "text": "Warm wishes on Christmas Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_christmas_2028_2",
+          "text": "Celebrating Christmas Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_christmas_2028_3",
+          "text": "May Christmas Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_christmas_2028_4",
+          "text": "Wishing you and your loved ones a meaningful Christmas Day."
+        },
+        {
+          "id": "dated_christmas_2028_5",
+          "text": "On Christmas Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_new_year_2029",
+      "eventId": "new_year",
+      "date": "2029-01-01",
+      "title": "New Year's Day",
+      "greetings": [
+        {
+          "id": "dated_new_year_2029_1",
+          "text": "Warm wishes on New Year's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_new_year_2029_2",
+          "text": "Celebrating New Year's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_new_year_2029_3",
+          "text": "May New Year's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_new_year_2029_4",
+          "text": "Wishing you and your loved ones a meaningful New Year's Day."
+        },
+        {
+          "id": "dated_new_year_2029_5",
+          "text": "On New Year's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_youth_day_2029",
+      "eventId": "youth_day",
+      "date": "2029-01-12",
+      "title": "National Youth Day",
+      "greetings": [
+        {
+          "id": "dated_youth_day_2029_1",
+          "text": "Warm wishes on National Youth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_youth_day_2029_2",
+          "text": "Celebrating National Youth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_youth_day_2029_3",
+          "text": "May National Youth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_youth_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful National Youth Day."
+        },
+        {
+          "id": "dated_youth_day_2029_5",
+          "text": "On National Youth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_army_day_2029",
+      "eventId": "army_day",
+      "date": "2029-01-15",
+      "title": "Indian Army Day",
+      "greetings": [
+        {
+          "id": "dated_army_day_2029_1",
+          "text": "Warm wishes on Indian Army Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_army_day_2029_2",
+          "text": "Celebrating Indian Army Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_army_day_2029_3",
+          "text": "May Indian Army Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_army_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Indian Army Day."
+        },
+        {
+          "id": "dated_army_day_2029_5",
+          "text": "On Indian Army Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_republic_day_2029",
+      "eventId": "republic_day",
+      "date": "2029-01-26",
+      "title": "Republic Day",
+      "greetings": [
+        {
+          "id": "dated_republic_day_2029_1",
+          "text": "Warm wishes on Republic Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_republic_day_2029_2",
+          "text": "Celebrating Republic Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_republic_day_2029_3",
+          "text": "May Republic Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_republic_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Republic Day."
+        },
+        {
+          "id": "dated_republic_day_2029_5",
+          "text": "On Republic Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_science_day_2029",
+      "eventId": "science_day",
+      "date": "2029-02-28",
+      "title": "National Science Day",
+      "greetings": [
+        {
+          "id": "dated_science_day_2029_1",
+          "text": "Warm wishes on National Science Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_science_day_2029_2",
+          "text": "Celebrating National Science Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_science_day_2029_3",
+          "text": "May National Science Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_science_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful National Science Day."
+        },
+        {
+          "id": "dated_science_day_2029_5",
+          "text": "On National Science Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_womens_day_2029",
+      "eventId": "womens_day",
+      "date": "2029-03-08",
+      "title": "International Women's Day",
+      "greetings": [
+        {
+          "id": "dated_womens_day_2029_1",
+          "text": "Warm wishes on International Women's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_womens_day_2029_2",
+          "text": "Celebrating International Women's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_womens_day_2029_3",
+          "text": "May International Women's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_womens_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful International Women's Day."
+        },
+        {
+          "id": "dated_womens_day_2029_5",
+          "text": "On International Women's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_earth_day_2029",
+      "eventId": "earth_day",
+      "date": "2029-04-22",
+      "title": "Earth Day",
+      "greetings": [
+        {
+          "id": "dated_earth_day_2029_1",
+          "text": "Warm wishes on Earth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_earth_day_2029_2",
+          "text": "Celebrating Earth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_earth_day_2029_3",
+          "text": "May Earth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_earth_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Earth Day."
+        },
+        {
+          "id": "dated_earth_day_2029_5",
+          "text": "On Earth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_labour_day_2029",
+      "eventId": "labour_day",
+      "date": "2029-05-01",
+      "title": "Labour Day",
+      "greetings": [
+        {
+          "id": "dated_labour_day_2029_1",
+          "text": "Warm wishes on Labour Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_labour_day_2029_2",
+          "text": "Celebrating Labour Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_labour_day_2029_3",
+          "text": "May Labour Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_labour_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Labour Day."
+        },
+        {
+          "id": "dated_labour_day_2029_5",
+          "text": "On Labour Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_environment_day_2029",
+      "eventId": "environment_day",
+      "date": "2029-06-05",
+      "title": "World Environment Day",
+      "greetings": [
+        {
+          "id": "dated_environment_day_2029_1",
+          "text": "Warm wishes on World Environment Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_environment_day_2029_2",
+          "text": "Celebrating World Environment Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_environment_day_2029_3",
+          "text": "May World Environment Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_environment_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful World Environment Day."
+        },
+        {
+          "id": "dated_environment_day_2029_5",
+          "text": "On World Environment Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_doctors_day_2029",
+      "eventId": "doctors_day",
+      "date": "2029-07-01",
+      "title": "National Doctors' Day",
+      "greetings": [
+        {
+          "id": "dated_doctors_day_2029_1",
+          "text": "Warm wishes on National Doctors' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_doctors_day_2029_2",
+          "text": "Celebrating National Doctors' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_doctors_day_2029_3",
+          "text": "May National Doctors' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_doctors_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful National Doctors' Day."
+        },
+        {
+          "id": "dated_doctors_day_2029_5",
+          "text": "On National Doctors' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_independence_day_2029",
+      "eventId": "independence_day",
+      "date": "2029-08-15",
+      "title": "Independence Day",
+      "greetings": [
+        {
+          "id": "dated_independence_day_2029_1",
+          "text": "Warm wishes on Independence Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_independence_day_2029_2",
+          "text": "Celebrating Independence Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_independence_day_2029_3",
+          "text": "May Independence Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_independence_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Independence Day."
+        },
+        {
+          "id": "dated_independence_day_2029_5",
+          "text": "On Independence Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_teachers_day_2029",
+      "eventId": "teachers_day",
+      "date": "2029-09-05",
+      "title": "Teachers' Day",
+      "greetings": [
+        {
+          "id": "dated_teachers_day_2029_1",
+          "text": "Warm wishes on Teachers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_teachers_day_2029_2",
+          "text": "Celebrating Teachers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_teachers_day_2029_3",
+          "text": "May Teachers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_teachers_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Teachers' Day."
+        },
+        {
+          "id": "dated_teachers_day_2029_5",
+          "text": "On Teachers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_engineers_day_2029",
+      "eventId": "engineers_day",
+      "date": "2029-09-15",
+      "title": "Engineers' Day",
+      "greetings": [
+        {
+          "id": "dated_engineers_day_2029_1",
+          "text": "Warm wishes on Engineers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_engineers_day_2029_2",
+          "text": "Celebrating Engineers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_engineers_day_2029_3",
+          "text": "May Engineers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_engineers_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Engineers' Day."
+        },
+        {
+          "id": "dated_engineers_day_2029_5",
+          "text": "On Engineers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_gandhi_jayanti_2029",
+      "eventId": "gandhi_jayanti",
+      "date": "2029-10-02",
+      "title": "Gandhi Jayanti",
+      "greetings": [
+        {
+          "id": "dated_gandhi_jayanti_2029_1",
+          "text": "Warm wishes on Gandhi Jayanti! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2029_2",
+          "text": "Celebrating Gandhi Jayanti with gratitude and good wishes."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2029_3",
+          "text": "May Gandhi Jayanti inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Gandhi Jayanti."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2029_5",
+          "text": "On Gandhi Jayanti, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_karnataka_rajyotsava_2029",
+      "eventId": "karnataka_rajyotsava",
+      "date": "2029-11-01",
+      "title": "Karnataka Rajyotsava",
+      "greetings": [
+        {
+          "id": "dated_karnataka_rajyotsava_2029_1",
+          "text": "Warm wishes on Karnataka Rajyotsava! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2029_2",
+          "text": "Celebrating Karnataka Rajyotsava with gratitude and good wishes."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2029_3",
+          "text": "May Karnataka Rajyotsava inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Karnataka Rajyotsava."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2029_5",
+          "text": "On Karnataka Rajyotsava, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_childrens_day_2029",
+      "eventId": "childrens_day",
+      "date": "2029-11-14",
+      "title": "Children's Day",
+      "greetings": [
+        {
+          "id": "dated_childrens_day_2029_1",
+          "text": "Warm wishes on Children's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_childrens_day_2029_2",
+          "text": "Celebrating Children's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_childrens_day_2029_3",
+          "text": "May Children's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_childrens_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Children's Day."
+        },
+        {
+          "id": "dated_childrens_day_2029_5",
+          "text": "On Children's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_constitution_day_2029",
+      "eventId": "constitution_day",
+      "date": "2029-11-26",
+      "title": "Constitution Day",
+      "greetings": [
+        {
+          "id": "dated_constitution_day_2029_1",
+          "text": "Warm wishes on Constitution Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_constitution_day_2029_2",
+          "text": "Celebrating Constitution Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_constitution_day_2029_3",
+          "text": "May Constitution Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_constitution_day_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Constitution Day."
+        },
+        {
+          "id": "dated_constitution_day_2029_5",
+          "text": "On Constitution Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_christmas_2029",
+      "eventId": "christmas",
+      "date": "2029-12-25",
+      "title": "Christmas Day",
+      "greetings": [
+        {
+          "id": "dated_christmas_2029_1",
+          "text": "Warm wishes on Christmas Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_christmas_2029_2",
+          "text": "Celebrating Christmas Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_christmas_2029_3",
+          "text": "May Christmas Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_christmas_2029_4",
+          "text": "Wishing you and your loved ones a meaningful Christmas Day."
+        },
+        {
+          "id": "dated_christmas_2029_5",
+          "text": "On Christmas Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_new_year_2030",
+      "eventId": "new_year",
+      "date": "2030-01-01",
+      "title": "New Year's Day",
+      "greetings": [
+        {
+          "id": "dated_new_year_2030_1",
+          "text": "Warm wishes on New Year's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_new_year_2030_2",
+          "text": "Celebrating New Year's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_new_year_2030_3",
+          "text": "May New Year's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_new_year_2030_4",
+          "text": "Wishing you and your loved ones a meaningful New Year's Day."
+        },
+        {
+          "id": "dated_new_year_2030_5",
+          "text": "On New Year's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_youth_day_2030",
+      "eventId": "youth_day",
+      "date": "2030-01-12",
+      "title": "National Youth Day",
+      "greetings": [
+        {
+          "id": "dated_youth_day_2030_1",
+          "text": "Warm wishes on National Youth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_youth_day_2030_2",
+          "text": "Celebrating National Youth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_youth_day_2030_3",
+          "text": "May National Youth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_youth_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful National Youth Day."
+        },
+        {
+          "id": "dated_youth_day_2030_5",
+          "text": "On National Youth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_army_day_2030",
+      "eventId": "army_day",
+      "date": "2030-01-15",
+      "title": "Indian Army Day",
+      "greetings": [
+        {
+          "id": "dated_army_day_2030_1",
+          "text": "Warm wishes on Indian Army Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_army_day_2030_2",
+          "text": "Celebrating Indian Army Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_army_day_2030_3",
+          "text": "May Indian Army Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_army_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Indian Army Day."
+        },
+        {
+          "id": "dated_army_day_2030_5",
+          "text": "On Indian Army Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_republic_day_2030",
+      "eventId": "republic_day",
+      "date": "2030-01-26",
+      "title": "Republic Day",
+      "greetings": [
+        {
+          "id": "dated_republic_day_2030_1",
+          "text": "Warm wishes on Republic Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_republic_day_2030_2",
+          "text": "Celebrating Republic Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_republic_day_2030_3",
+          "text": "May Republic Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_republic_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Republic Day."
+        },
+        {
+          "id": "dated_republic_day_2030_5",
+          "text": "On Republic Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_science_day_2030",
+      "eventId": "science_day",
+      "date": "2030-02-28",
+      "title": "National Science Day",
+      "greetings": [
+        {
+          "id": "dated_science_day_2030_1",
+          "text": "Warm wishes on National Science Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_science_day_2030_2",
+          "text": "Celebrating National Science Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_science_day_2030_3",
+          "text": "May National Science Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_science_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful National Science Day."
+        },
+        {
+          "id": "dated_science_day_2030_5",
+          "text": "On National Science Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_womens_day_2030",
+      "eventId": "womens_day",
+      "date": "2030-03-08",
+      "title": "International Women's Day",
+      "greetings": [
+        {
+          "id": "dated_womens_day_2030_1",
+          "text": "Warm wishes on International Women's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_womens_day_2030_2",
+          "text": "Celebrating International Women's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_womens_day_2030_3",
+          "text": "May International Women's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_womens_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful International Women's Day."
+        },
+        {
+          "id": "dated_womens_day_2030_5",
+          "text": "On International Women's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_earth_day_2030",
+      "eventId": "earth_day",
+      "date": "2030-04-22",
+      "title": "Earth Day",
+      "greetings": [
+        {
+          "id": "dated_earth_day_2030_1",
+          "text": "Warm wishes on Earth Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_earth_day_2030_2",
+          "text": "Celebrating Earth Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_earth_day_2030_3",
+          "text": "May Earth Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_earth_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Earth Day."
+        },
+        {
+          "id": "dated_earth_day_2030_5",
+          "text": "On Earth Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_labour_day_2030",
+      "eventId": "labour_day",
+      "date": "2030-05-01",
+      "title": "Labour Day",
+      "greetings": [
+        {
+          "id": "dated_labour_day_2030_1",
+          "text": "Warm wishes on Labour Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_labour_day_2030_2",
+          "text": "Celebrating Labour Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_labour_day_2030_3",
+          "text": "May Labour Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_labour_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Labour Day."
+        },
+        {
+          "id": "dated_labour_day_2030_5",
+          "text": "On Labour Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_environment_day_2030",
+      "eventId": "environment_day",
+      "date": "2030-06-05",
+      "title": "World Environment Day",
+      "greetings": [
+        {
+          "id": "dated_environment_day_2030_1",
+          "text": "Warm wishes on World Environment Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_environment_day_2030_2",
+          "text": "Celebrating World Environment Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_environment_day_2030_3",
+          "text": "May World Environment Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_environment_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful World Environment Day."
+        },
+        {
+          "id": "dated_environment_day_2030_5",
+          "text": "On World Environment Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_doctors_day_2030",
+      "eventId": "doctors_day",
+      "date": "2030-07-01",
+      "title": "National Doctors' Day",
+      "greetings": [
+        {
+          "id": "dated_doctors_day_2030_1",
+          "text": "Warm wishes on National Doctors' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_doctors_day_2030_2",
+          "text": "Celebrating National Doctors' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_doctors_day_2030_3",
+          "text": "May National Doctors' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_doctors_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful National Doctors' Day."
+        },
+        {
+          "id": "dated_doctors_day_2030_5",
+          "text": "On National Doctors' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_independence_day_2030",
+      "eventId": "independence_day",
+      "date": "2030-08-15",
+      "title": "Independence Day",
+      "greetings": [
+        {
+          "id": "dated_independence_day_2030_1",
+          "text": "Warm wishes on Independence Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_independence_day_2030_2",
+          "text": "Celebrating Independence Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_independence_day_2030_3",
+          "text": "May Independence Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_independence_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Independence Day."
+        },
+        {
+          "id": "dated_independence_day_2030_5",
+          "text": "On Independence Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_teachers_day_2030",
+      "eventId": "teachers_day",
+      "date": "2030-09-05",
+      "title": "Teachers' Day",
+      "greetings": [
+        {
+          "id": "dated_teachers_day_2030_1",
+          "text": "Warm wishes on Teachers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_teachers_day_2030_2",
+          "text": "Celebrating Teachers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_teachers_day_2030_3",
+          "text": "May Teachers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_teachers_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Teachers' Day."
+        },
+        {
+          "id": "dated_teachers_day_2030_5",
+          "text": "On Teachers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_engineers_day_2030",
+      "eventId": "engineers_day",
+      "date": "2030-09-15",
+      "title": "Engineers' Day",
+      "greetings": [
+        {
+          "id": "dated_engineers_day_2030_1",
+          "text": "Warm wishes on Engineers' Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_engineers_day_2030_2",
+          "text": "Celebrating Engineers' Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_engineers_day_2030_3",
+          "text": "May Engineers' Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_engineers_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Engineers' Day."
+        },
+        {
+          "id": "dated_engineers_day_2030_5",
+          "text": "On Engineers' Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_gandhi_jayanti_2030",
+      "eventId": "gandhi_jayanti",
+      "date": "2030-10-02",
+      "title": "Gandhi Jayanti",
+      "greetings": [
+        {
+          "id": "dated_gandhi_jayanti_2030_1",
+          "text": "Warm wishes on Gandhi Jayanti! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2030_2",
+          "text": "Celebrating Gandhi Jayanti with gratitude and good wishes."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2030_3",
+          "text": "May Gandhi Jayanti inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Gandhi Jayanti."
+        },
+        {
+          "id": "dated_gandhi_jayanti_2030_5",
+          "text": "On Gandhi Jayanti, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_karnataka_rajyotsava_2030",
+      "eventId": "karnataka_rajyotsava",
+      "date": "2030-11-01",
+      "title": "Karnataka Rajyotsava",
+      "greetings": [
+        {
+          "id": "dated_karnataka_rajyotsava_2030_1",
+          "text": "Warm wishes on Karnataka Rajyotsava! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2030_2",
+          "text": "Celebrating Karnataka Rajyotsava with gratitude and good wishes."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2030_3",
+          "text": "May Karnataka Rajyotsava inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Karnataka Rajyotsava."
+        },
+        {
+          "id": "dated_karnataka_rajyotsava_2030_5",
+          "text": "On Karnataka Rajyotsava, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_childrens_day_2030",
+      "eventId": "childrens_day",
+      "date": "2030-11-14",
+      "title": "Children's Day",
+      "greetings": [
+        {
+          "id": "dated_childrens_day_2030_1",
+          "text": "Warm wishes on Children's Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_childrens_day_2030_2",
+          "text": "Celebrating Children's Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_childrens_day_2030_3",
+          "text": "May Children's Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_childrens_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Children's Day."
+        },
+        {
+          "id": "dated_childrens_day_2030_5",
+          "text": "On Children's Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_constitution_day_2030",
+      "eventId": "constitution_day",
+      "date": "2030-11-26",
+      "title": "Constitution Day",
+      "greetings": [
+        {
+          "id": "dated_constitution_day_2030_1",
+          "text": "Warm wishes on Constitution Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_constitution_day_2030_2",
+          "text": "Celebrating Constitution Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_constitution_day_2030_3",
+          "text": "May Constitution Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_constitution_day_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Constitution Day."
+        },
+        {
+          "id": "dated_constitution_day_2030_5",
+          "text": "On Constitution Day, may happiness and togetherness fill your home."
+        }
+      ]
+    },
+    {
+      "id": "dated_christmas_2030",
+      "eventId": "christmas",
+      "date": "2030-12-25",
+      "title": "Christmas Day",
+      "greetings": [
+        {
+          "id": "dated_christmas_2030_1",
+          "text": "Warm wishes on Christmas Day! May the day bring joy and peace."
+        },
+        {
+          "id": "dated_christmas_2030_2",
+          "text": "Celebrating Christmas Day with gratitude and good wishes."
+        },
+        {
+          "id": "dated_christmas_2030_3",
+          "text": "May Christmas Day inspire kindness, hope, and beautiful memories."
+        },
+        {
+          "id": "dated_christmas_2030_4",
+          "text": "Wishing you and your loved ones a meaningful Christmas Day."
+        },
+        {
+          "id": "dated_christmas_2030_5",
+          "text": "On Christmas Day, may happiness and togetherness fill your home."
+        }
+      ]
+    }
+  ]
+}
