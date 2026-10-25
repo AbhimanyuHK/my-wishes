@@ -22,7 +22,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Validate catalog structure, bilingual IDs, and package identity
-        run: python scripts/validate_catalogs.py
+        run: |
+          python scripts/validate_catalogs.py
+          python scripts/validate_dated_catalog.py
 
   android:
     name: Android tests and build variants
