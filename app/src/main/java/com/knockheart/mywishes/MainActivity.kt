@@ -71,6 +71,7 @@ import com.knockheart.mywishes.card.CardGeneratorEngine
 import com.knockheart.mywishes.card.CardHistoryStorage
 import com.knockheart.mywishes.card.CardPalette
 import com.knockheart.mywishes.data.catalog.AssetGreetingCatalogRepository
+import com.knockheart.mywishes.data.catalog.DatedWishes
 import com.knockheart.mywishes.data.catalog.Greeting
 import com.knockheart.mywishes.data.catalog.Occasion
 import com.knockheart.mywishes.data.model.AppLanguage
@@ -79,6 +80,8 @@ import com.knockheart.mywishes.data.preferences.UserPreferencesRepository
 import com.knockheart.mywishes.data.profile.ProfileImageStorage
 import kotlinx.coroutines.launch
 import java.io.File
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 import android.content.res.Configuration
 
@@ -161,6 +164,7 @@ private fun WishesApp() {
     var route by remember { mutableStateOf(AppRoute.HOME) }
     var occasions by remember { mutableStateOf<List<Occasion>>(emptyList()) }
     var selectedOccasion by remember { mutableStateOf<Occasion?>(null) }
+    var calendarYear by remember { mutableStateOf(LocalDate.now().year.coerceIn(2026, 2030)) }
     var selectedGreeting by remember { mutableStateOf<Greeting?>(null) }
     var search by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
@@ -355,6 +359,30 @@ private fun WishesApp() {
                             }
                         }
                     }
+                    val today = LocalDate.now()
+                    val datedEvents = DatedWishes.upcoming(today, preferences.preferredLanguage.code, 30)
+                    Text("Today & upcoming dates", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                    Text("Showing dated occasions for the next 30 days (2026–2030).", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    if (datedEvents.isEmpty()) {
+                        Text("No scheduled fixed-date occasions in the next 30 days.")
+                    }
+                    datedEvents.take(12).forEach { dated ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth().clickable { openOccasion(dated.occasion) },
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+                        ) {
+                            Column(Modifier.padding(16.dp)) {
+                                Text(
+                                    if (dated.date == today) "TODAY · ${dated.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH))}"
+                                    else dated.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)),
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Text(dated.occasion.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                                Text("5 wishes · Tap to create a card", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    }
                     Text("Browse by occasion", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                     occasions.chunked(2).forEach { pair ->
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -380,6 +408,27 @@ private fun WishesApp() {
                 AppRoute.CATEGORIES -> {
                     Text("Find the perfect wish", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
                     Text("Choose an occasion to explore ready-to-use messages.")
+                    Text("Browse events by year", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        (2026..2030).forEach { year ->
+                            OutlinedButton(onClick = { calendarYear = year }, modifier = Modifier.weight(1f),
+                                contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 0.dp, vertical = 4.dp)) {
+                                Text(year.toString(), style = MaterialTheme.typography.labelSmall,
+                                    fontWeight = if (calendarYear == year) FontWeight.Bold else FontWeight.Normal)
+                            }
+                        }
+                    }
+                    DatedWishes.forYear(calendarYear, preferences.preferredLanguage.code).forEach { dated ->
+                        Card(modifier = Modifier.fillMaxWidth().clickable { openOccasion(dated.occasion) }) {
+                            Column(Modifier.padding(12.dp)) {
+                                Text(dated.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)),
+                                    style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
+                                Text(dated.occasion.title, fontWeight = FontWeight.SemiBold)
+                                Text("5 wishes", style = MaterialTheme.typography.labelSmall)
+                            }
+                        }
+                    }
+
                     OutlinedTextField(
                         value = search, onValueChange = { search = it },
                         modifier = Modifier.fillMaxWidth(), singleLine = true,
