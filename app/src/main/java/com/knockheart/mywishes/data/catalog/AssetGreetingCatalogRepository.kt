@@ -46,7 +46,22 @@ class AssetGreetingCatalogRepository(context: Context) {
                         id = occasionJson.getString("id"),
                         title = occasionJson.getString("title"),
                         description = occasionJson.optString("description"),
-                        greetings = greetings
+                        greetings = if (greetings.size >= 5) greetings else {
+                        val title = occasionJson.getString("title")
+                        val additions = (greetings.size until 5).map { index ->
+                            val text = if (languageCode == "kn") when (index % 3) {
+                                0 -> "${title}ದ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು! ನಿಮ್ಮ ಬದುಕು ಸಂತೋಷದಿಂದ ತುಂಬಿರಲಿ."
+                                1 -> "${title}ದ ಶುಭ ಸಂದರ್ಭದಲ್ಲಿ ನಿಮಗೂ ನಿಮ್ಮ ಕುಟುಂಬಕ್ಕೂ ಶುಭ ಹಾರೈಕೆಗಳು."
+                                else -> "${title}ದ ಈ ವಿಶೇಷ ಕ್ಷಣ ನಿಮಗೆ ನೆಮ್ಮದಿ ಮತ್ತು ಯಶಸ್ಸು ತರಲಿ."
+                            } else when (index % 3) {
+                                0 -> "Warm wishes for ${title}! May happiness surround you."
+                                1 -> "Sending heartfelt ${title} wishes to you and your loved ones."
+                                else -> "May this ${title} occasion bring beautiful memories and joy."
+                            }
+                            Greeting("${occasionJson.getString("id")}_extra_${index + 1}", text)
+                        }
+                        greetings + additions
+                    }
                     )
                 )
             }
