@@ -14,6 +14,18 @@
         {
           "id": "birthday_short_01",
           "text": "May your new year of life bring happiness, good health, and dreams come true."
+        },
+        {
+          "id": "birthday_extra_3",
+          "text": "Birthday: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "birthday_extra_4",
+          "text": "Birthday: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "birthday_extra_5",
+          "text": "Birthday: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -29,6 +41,18 @@
         {
           "id": "friendship_short_01",
           "text": "Real friendship turns ordinary days into unforgettable memories."
+        },
+        {
+          "id": "friendship_extra_3",
+          "text": "Friendship: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "friendship_extra_4",
+          "text": "Friendship: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "friendship_extra_5",
+          "text": "Friendship: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -216,6 +240,18 @@
         {
           "id": "festival_short_01",
           "text": "Wishing you and your family happiness, prosperity, and togetherness."
+        },
+        {
+          "id": "festivals_extra_3",
+          "text": "Festive Wishes: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "festivals_extra_4",
+          "text": "Festive Wishes: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "festivals_extra_5",
+          "text": "Festive Wishes: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -231,6 +267,18 @@
         {
           "id": "wedding_anniversary_01",
           "text": "May every year together deepen your love and bring you new reasons to celebrate."
+        },
+        {
+          "id": "wedding_extra_3",
+          "text": "Wedding & Anniversary: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "wedding_extra_4",
+          "text": "Wedding & Anniversary: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "wedding_extra_5",
+          "text": "Wedding & Anniversary: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -246,6 +294,18 @@
         {
           "id": "new_baby_family_01",
           "text": "Congratulations on your beautiful new arrival. Wishing your family endless joy."
+        },
+        {
+          "id": "new_baby_extra_3",
+          "text": "New Baby: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "new_baby_extra_4",
+          "text": "New Baby: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "new_baby_extra_5",
+          "text": "New Baby: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -261,6 +321,18 @@
         {
           "id": "congratulations_next_01",
           "text": "Celebrate this milestone and keep reaching for bigger dreams. Your journey is just beginning."
+        },
+        {
+          "id": "congratulations_extra_3",
+          "text": "Congratulations & Achievements: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "congratulations_extra_4",
+          "text": "Congratulations & Achievements: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "congratulations_extra_5",
+          "text": "Congratulations & Achievements: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -276,6 +348,18 @@
         {
           "id": "get_well_care_01",
           "text": "Take good care of yourself and give yourself time to rest. Wishing you brighter, healthier days ahead."
+        },
+        {
+          "id": "get_well_extra_3",
+          "text": "Get Well Soon: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "get_well_extra_4",
+          "text": "Get Well Soon: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "get_well_extra_5",
+          "text": "Get Well Soon: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -291,6 +375,18 @@
         {
           "id": "housewarming_prosperity_01",
           "text": "Wishing your family prosperity, harmony, and countless joyful moments in your new home."
+        },
+        {
+          "id": "housewarming_extra_3",
+          "text": "New Home & Housewarming: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "housewarming_extra_4",
+          "text": "New Home & Housewarming: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "housewarming_extra_5",
+          "text": "New Home & Housewarming: May kindness and happiness make this celebration truly special."
         }
       ]
     },
@@ -306,6 +402,18 @@
         {
           "id": "retirement_newchapter_01",
           "text": "May this new chapter bring you time for family, passions, peaceful days, and fresh adventures."
+        },
+        {
+          "id": "retirement_extra_3",
+          "text": "Retirement & New Chapter: May this occasion bring meaningful moments, laughter, and togetherness."
+        },
+        {
+          "id": "retirement_extra_4",
+          "text": "Retirement & New Chapter: Wishing you a day of hope, warmth, and unforgettable memories."
+        },
+        {
+          "id": "retirement_extra_5",
+          "text": "Retirement & New Chapter: May kindness and happiness make this celebration truly special."
         }
       ]
     }

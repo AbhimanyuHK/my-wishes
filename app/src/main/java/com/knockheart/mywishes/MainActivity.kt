@@ -360,7 +360,7 @@ private fun WishesApp() {
                         }
                     }
                     val today = LocalDate.now()
-                    val datedEvents = DatedWishes.upcoming(today, preferences.preferredLanguage.code, 30)
+                    val datedEvents = DatedWishes.upcoming(context, today, preferences.preferredLanguage.code, 30)
                     Text("Today & upcoming dates", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                     Text("Showing dated occasions for the next 30 days (2026–2030).", color = MaterialTheme.colorScheme.onSurfaceVariant)
                     if (datedEvents.isEmpty()) {
@@ -418,7 +418,7 @@ private fun WishesApp() {
                             }
                         }
                     }
-                    DatedWishes.forYear(calendarYear, preferences.preferredLanguage.code).forEach { dated ->
+                    DatedWishes.forYear(context, calendarYear, preferences.preferredLanguage.code).forEach { dated ->
                         Card(modifier = Modifier.fillMaxWidth().clickable { openOccasion(dated.occasion) }) {
                             Column(Modifier.padding(12.dp)) {
                                 Text(dated.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)),
