@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#190A3D</color>
+    <color name="wish_purple">#190A3D</color>
+    <color name="wish_purple_light">#4A247F</color>
+    <color name="wish_gold">#D4AF37</color>
+    <color name="wish_cream">#FFF3D6</color>
+</resources>

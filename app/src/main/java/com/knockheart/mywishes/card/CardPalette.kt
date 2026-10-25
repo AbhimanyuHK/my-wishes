@@ -10,11 +10,11 @@ enum class CardPalette(
     val accentColor: Int,
     val textColor: Int
 ) {
-    SUNSET("sunset", 0xFFFFF7ED.toInt(), 0xFF9A3412.toInt(), 0xFF292524.toInt()),
+    SUNSET("sunset", 0xFF190A3D.toInt(), 0xFFD4AF37.toInt(), 0xFFFFF3D6.toInt()),
     OCEAN("ocean", 0xFFEFF6FF.toInt(), 0xFF1D4ED8.toInt(), 0xFF172554.toInt()),
     FOREST("forest", 0xFFF0FDF4.toInt(), 0xFF166534.toInt(), 0xFF14532D.toInt()),
     ROSE("rose", 0xFFFFF1F2.toInt(), 0xFFBE123C.toInt(), 0xFF4C0519.toInt()),
-    NIGHT("night", 0xFF18181B.toInt(), 0xFFFBBF24.toInt(), 0xFFF4F4F5.toInt());
+    NIGHT("night", 0xFF28104F.toInt(), 0xFFF4D36F.toInt(), 0xFFFFF3D6.toInt());
 
     companion object {
         fun fromId(id: String?): CardPalette =
