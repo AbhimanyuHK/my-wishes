@@ -71,6 +71,7 @@ import com.knockheart.mywishes.card.CardGeneratorEngine
 import com.knockheart.mywishes.card.CardHistoryStorage
 import com.knockheart.mywishes.card.CardPalette
 import com.knockheart.mywishes.data.catalog.AssetGreetingCatalogRepository
+import com.knockheart.mywishes.data.catalog.DatedWishes
 import com.knockheart.mywishes.data.catalog.Greeting
 import com.knockheart.mywishes.data.catalog.Occasion
 import com.knockheart.mywishes.data.model.AppLanguage
@@ -79,6 +80,8 @@ import com.knockheart.mywishes.data.preferences.UserPreferencesRepository
 import com.knockheart.mywishes.data.profile.ProfileImageStorage
 import kotlinx.coroutines.launch
 import java.io.File
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 import android.content.res.Configuration
 
@@ -352,6 +355,30 @@ private fun WishesApp() {
                                 route = AppRoute.EDITOR
                             }, modifier = Modifier.fillMaxWidth()) {
                                 Text("✦  Create a custom card")
+                            }
+                        }
+                    }
+                    val today = LocalDate.now()
+                    val datedEvents = DatedWishes.upcoming(today, preferences.preferredLanguage.code, 30)
+                    Text("Today & upcoming dates", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                    Text("Showing dated occasions for the next 30 days (2026–2030).", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    if (datedEvents.isEmpty()) {
+                        Text("No scheduled fixed-date occasions in the next 30 days.")
+                    }
+                    datedEvents.take(12).forEach { dated ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth().clickable { openOccasion(dated.occasion) },
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+                        ) {
+                            Column(Modifier.padding(16.dp)) {
+                                Text(
+                                    if (dated.date == today) "TODAY · ${dated.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH))}"
+                                    else dated.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)),
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Text(dated.occasion.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                                Text("5 wishes · Tap to create a card", style = MaterialTheme.typography.bodySmall)
                             }
                         }
                     }
