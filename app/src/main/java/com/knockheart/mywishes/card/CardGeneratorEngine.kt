@@ -68,7 +68,7 @@ class CardGeneratorEngine(
                 (DESIGN_SIZE + diameter) / 2f,
                 cursorY + diameter
             )
-            drawCircularPhoto(canvas, photo, photoRect, request.accentColor)
+            drawSoftBlendedPhoto(canvas, photo, photoRect)
             cursorY = photoRect.bottom + 42f
         } ?: run {
             cursorY += 26f
@@ -133,34 +133,50 @@ class CardGeneratorEngine(
         return outputFile
     }
 
-    private fun drawCircularPhoto(canvas: Canvas, source: Bitmap, rect: RectF, borderColor: Int) {
-        val diameter = min(rect.width(), rect.height())
-        val left = rect.centerX() - diameter / 2f
-        val top = rect.centerY() - diameter / 2f
-        val destination = RectF(left, top, left + diameter, top + diameter)
+    /**
+     * Feather the photo into the card without a circular crop, rectangular frame,
+     * outline or hard edge. Keep the central portrait clear and fade only its edges.
+     */
+    private fun drawSoftBlendedPhoto(canvas: Canvas, source: Bitmap, rect: RectF) {
+        val width = rect.width().toInt()
+        val height = rect.height().toInt()
+        val cropped = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        try {
+            val cropCanvas = Canvas(cropped)
+            val sourceSize = min(source.width, source.height)
+            val sourceLeft = (source.width - sourceSize) / 2
+            val sourceTop = (source.height - sourceSize) / 2
+            val sourceRect = android.graphics.Rect(
+                sourceLeft, sourceTop, sourceLeft + sourceSize, sourceTop + sourceSize
+            )
+            cropCanvas.drawBitmap(
+                source, sourceRect, android.graphics.Rect(0, 0, width, height),
+                Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+            )
 
-        val saveCount = canvas.save()
-        val path = android.graphics.Path().apply {
-            addCircle(destination.centerX(), destination.centerY(), diameter / 2f, android.graphics.Path.Direction.CW)
+            val pixels = IntArray(width * height)
+            cropped.getPixels(pixels, 0, width, 0, 0, width, height)
+            val feather = min(width, height) * 0.22f
+            for (y in 0 until height) {
+                for (x in 0 until width) {
+                    val edgeDistance = min(
+                        min(x.toFloat(), (width - 1 - x).toFloat()),
+                        min(y.toFloat(), (height - 1 - y).toFloat())
+                    )
+                    val t = (edgeDistance / feather).coerceIn(0f, 1f)
+                    val fade = t * t * (3f - 2f * t)
+                    val index = y * width + x
+                    val pixel = pixels[index]
+                    val originalAlpha = pixel ushr 24
+                    val alpha = (originalAlpha * fade).toInt().coerceIn(0, 255)
+                    pixels[index] = (pixel and 0x00FFFFFF) or (alpha shl 24)
+                }
+            }
+            cropped.setPixels(pixels, 0, width, 0, 0, width, height)
+            canvas.drawBitmap(cropped, null, rect, Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG))
+        } finally {
+            cropped.recycle()
         }
-        canvas.clipPath(path)
-
-        val sourceSize = min(source.width, source.height)
-        val sourceLeft = (source.width - sourceSize) / 2
-        val sourceTop = (source.height - sourceSize) / 2
-        val sourceRect = android.graphics.Rect(
-            sourceLeft, sourceTop, sourceLeft + sourceSize, sourceTop + sourceSize
-        )
-        val photoPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-        canvas.drawBitmap(source, sourceRect, destination, photoPaint)
-        canvas.restoreToCount(saveCount)
-
-        val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = borderColor
-            style = Paint.Style.STROKE
-            strokeWidth = 8f
-        }
-        canvas.drawCircle(destination.centerX(), destination.centerY(), diameter / 2f - 4f, borderPaint)
     }
 
     private fun drawCenteredText(
